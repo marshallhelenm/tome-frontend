@@ -19,11 +19,11 @@ class MainContainer extends Component {
   render() {
     console.log("maincontainer props:", this.props);
     return (
-      <div>
+      <div id='slider'>
         <Notebook {...this.props} />
       </div>
     );
   }
 }
 
-export default composedAuthHOC(MainContainer);
+export default MainContainer;

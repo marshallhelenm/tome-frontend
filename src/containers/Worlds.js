@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../css/notebook1.css";
-import "../css/notebook2.css";
+import "../css/2018_notebook/css/coda-slider.css";
+import "../css/2018_notebook/tooplate_style.css";
 import Polaroid from "../components/Polaroid";
 import { fetchWorlds, currentWorld } from "../actions/worldsActions.js";
 import { connect } from "react-redux";
@@ -15,13 +15,14 @@ class Worlds extends Component {
     this.props.fetchWorlds(this.props);
   }
   generateCards = () => {
-    // console.log("cards!", this.props.worlds);
+    console.log("cards!", this.props.worlds);
     return this.props.worlds.map(world => {
       return (
         <Polaroid
           handleClick={this.clickWorld}
           world={world}
           key={world.name}
+          caption={world.name}
           id={world.id}
         />
       );
@@ -57,7 +58,7 @@ class Worlds extends Component {
             handleClick={this.clickWorld}
             id="new"
             img={IMG}
-            text="New World"
+            caption="New World"
           />
         </div>
       </div>

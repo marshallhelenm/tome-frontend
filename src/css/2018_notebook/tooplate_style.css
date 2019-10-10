@@ -11,7 +11,7 @@ body {
 	font-size: 14px;
 	line-height: 1.5em; 
 	background-color: #e2d8bd;
-	background-image: url(/notebook_css/images/tooplate_body.jpg);
+	background-image: url(images/tooplate_body.jpg);
 	background-repeat: repeat;
 }
 
@@ -67,7 +67,7 @@ em { color: #29b5d3; }
 }
 
 .tooplate_list li { 
-	background: transparent url(/notebook_css/images/tooplate_list.png) no-repeat; 
+	background: transparent url(images/tooplate_list.png) no-repeat; 
 	margin:0 0 20px; 
 	padding: 0 0 0 20px; 	
 	line-height: 1em; 
@@ -120,23 +120,23 @@ em { color: #29b5d3; }
 }
 
 .service_list li .service_one { 
-	background: url(/notebook_css/images/onebit_08.png) center left no-repeat; 
+	background: url(images/onebit_08.png) center left no-repeat; 
 }
 
 .service_list li .service_two { 
-	background: url(/notebook_css/images/onebit_11.png) center left no-repeat; 
+	background: url(images/onebit_11.png) center left no-repeat; 
 }
 
 .service_list li .service_three { 
-	background: url(/notebook_css/images/onebit_17.png) center left no-repeat; 
+	background: url(images/onebit_17.png) center left no-repeat; 
 }
 
 .service_list li .service_four { 
-	background: url(/notebook_css/images/onebit_21.png) center left no-repeat; 
+	background: url(images/onebit_21.png) center left no-repeat; 
 }
 
 .service_list li .service_five { 
-	background: url(/notebook_css/images/onebit_12.png) center left no-repeat; 
+	background: url(images/onebit_12.png) center left no-repeat; 
 }
 
 #contact_form {  

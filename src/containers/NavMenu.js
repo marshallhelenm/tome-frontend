@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../css/notebook1.css";
-import "../css/notebook2.css";
+import "../css/2018_notebook/css/coda-slider.css";
+import "../css/2018_notebook/tooplate_style.css";
 import { setLoggedOut } from "../actions/authActions";
 import {connect} from 'react-redux'
 
@@ -18,18 +18,18 @@ class NavMenu extends Component {
             </a>
           </li>
           <li>
-            <a href="#aboutus" className="menu_02">
-              About Us
+            <a href="#stories" className="menu_02">
+             Stories
             </a>
           </li>
           <li>
-            <a href="#services" className="menu_03">
-              Services
+            <a href="#characters" className="menu_03">
+              Characters
             </a>
           </li>
           <li>
-            <a href="#gallery" className="menu_04">
-              Gallery
+            <a href="#locations" className="menu_04">
+              Locations
             </a>
           </li>
           <li onClick={this.props.setLoggedOut}>

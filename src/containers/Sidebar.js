@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import '../css/notebook1.css'
-import '../css/notebook2.css'
+import '../css/2018_notebook/css/coda-slider.css'
+import '../css/2018_notebook/tooplate_style.css'
 import NavMenu from './NavMenu.js'
 
 class Sidebar extends Component {
