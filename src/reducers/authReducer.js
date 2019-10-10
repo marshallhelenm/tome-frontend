@@ -1,10 +1,9 @@
 const initialState = {
-    logged_in: false,
+    logged_in: localStorage.getItem('logged_in'),
     token: null
 }
 
 const reducer = (state=initialState, action) => {
-    console.log('action', action)
     switch (action.type){
         case 'SET_LOGGED_IN':
             return {

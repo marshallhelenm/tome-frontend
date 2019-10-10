@@ -5,10 +5,9 @@ import { setLoggedIn } from "../actions/authActions";
 const BASE_URL = "http://localhost:3000/";
 
 const LoginPage = props => {
+  console.log('props in LoginPage: ', props)
   const logIn = userHash => {
     console.log("loggin in!", userHash);
-
-    props.setLoggedIn("token999999");
 
     fetch(BASE_URL + "login", {
       method: "POST",
@@ -24,12 +23,13 @@ const LoginPage = props => {
           alert(user.error);
         } else {
           console.log("user: ", user);
-          localStorage.setItem("token", user.jwt);
-          console.log("props in login fetch: ", props);
+          localStorage.setItem("token", user.token);
+          // console.log("props in login fetch: ", props);
           // update store with flag that user is logged in
 
-          console.log("loggedin", setLoggedIn);
           props.setLoggedIn();
+          console.log("loggedin", props);
+          props.history.push("/home");
         }
       });
   };
@@ -39,11 +39,6 @@ const LoginPage = props => {
     let username = e.target.username.value;
     let password = e.target.password.value;
     logIn({ username, password });
-  };
-
-  const logOut = () => {
-    console.log("logging out!");
-    localStorage.setItem("token", null);
   };
 
   return (
@@ -59,7 +54,6 @@ const LoginPage = props => {
 };
 
 const mapStateToProps = state => {
-  console.log("map state to props auth", state);
   return {
     logged_in: state.auth.logged_in,
     token: state.auth.token
@@ -68,7 +62,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLoggedIn: (token = null) => dispatch(setLoggedIn(token))
+    setLoggedIn: () => dispatch(setLoggedIn())
   };
 };
 

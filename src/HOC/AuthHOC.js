@@ -1,5 +1,8 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import {compose} from 'redux'
+
 
 const AuthHOC = WrappedComponent => {
   return class PrivacyHOC extends React.Component {
@@ -8,11 +11,27 @@ const AuthHOC = WrappedComponent => {
     };
 
     render() {
-      return(
-          this.authorized()?<WrappedComponent />:<Redirect to='/login'/>
-      )
+      console.log("authHOC props:", this.props);
+      return this.authorized() ? (
+        // return true ? (
+        <WrappedComponent />
+      ) : (
+        <Redirect to="/login" />
+      );
     }
   };
 };
 
-export default AuthHOC;
+
+const mapStateToProps = state => {
+  return {
+    logged_in: state.auth.logged_in,
+    token: state.auth.token
+  };
+};
+
+const composedAuthHOC = compose(
+    connect(mapStateToProps), AuthHOC
+)
+
+export default composedAuthHOC;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Notebook from './Notebook.js'
-import AuthHOC from '../HOC/AuthHOC.js'
+import composedAuthHOC from '../HOC/AuthHOC.js'
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -19,6 +19,7 @@ class MainContainer extends Component {
   }
 
   render() {
+    console.log('maincontainer props:', this.props)
     return(
        <div>Here's the main page!
        <Notebook />
@@ -27,4 +28,4 @@ class MainContainer extends Component {
   }
 }
 
-export default AuthHOC(MainContainer);
+export default composedAuthHOC(MainContainer);

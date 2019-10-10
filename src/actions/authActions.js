@@ -1,7 +1,7 @@
-export const setLoggedIn = (token=null) => {
+export const setLoggedIn = () => {
     return {
         type: 'SET_LOGGED_IN',
-        payload: token || localStorage.getItem('token')
+        payload: localStorage.getItem('token')
     }
 }
 
