@@ -21,7 +21,7 @@ class MainContainer extends Component {
   render() {
     console.log('maincontainer props:', this.props)
     return(
-       <div>Here's the main page!
+       <div>
        <Notebook />
        </div>
        )
