@@ -29,7 +29,8 @@ const SignUpPage = props => {
           alert("Looks like that didn't work... please try again!");
         } else {
           console.log("user: ", user);
-          localStorage.setItem("token", user.token);
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('token', user.token);
           console.log("props in signup fetch: ", props);
 
           props.setLoggedIn();

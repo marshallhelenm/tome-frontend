@@ -11,11 +11,11 @@ class Polaroid extends Component {
   
   render() {
     return (
-      <div className='item' onClick={this.props.handleClick} id={this.props.id}>
+      <div className='item' onClick={this.props.handleClick} id={this.props.id} >
         <div className='polaroid'>
-            <img src={this.props.img ? this.props.img : 'https://img2.cgtrader.com/items/677143/ec4642a3bc/globe-antique-3d-model-max-fbx.jpg'}/>
+            <img src={this.props.img ? this.props.img : 'https://img2.cgtrader.com/items/677143/ec4642a3bc/globe-antique-3d-model-max-fbx.jpg'} alt={this.props.title} />
             <div className='caption'>
-                {this.props.text ? this.props.text : 'text here'}
+                {this.props.world ? this.props.world.name : 'text here'}
             </div>
         </div>
       </div>

@@ -6,10 +6,11 @@ import Page from './Page.js'
 
 class Notebook extends Component {
   render() {
+  console.log('Notebook props: ', this.props)  
     return (
         <div id='slider'>
             <Sidebar />
-            <Page />
+            <Page {...this.props} />
         </div>
       )
   }

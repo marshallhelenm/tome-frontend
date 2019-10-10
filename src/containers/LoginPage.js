@@ -5,9 +5,19 @@ import { setLoggedIn } from "../actions/authActions";
 const BASE_URL = "http://localhost:3000/";
 
 const LoginPage = props => {
-  console.log('props in LoginPage: ', props)
+  // console.log('props in LoginPage: ', props)
+
+  const handleLogIn = e => {
+    e.preventDefault();
+    let username = e.target.username.value;
+    let password = e.target.password.value;
+    // console.log('username: ', username, 'password: ', password)
+    logIn({ username, password });
+  };
+
+
   const logIn = userHash => {
-    console.log("loggin in!", userHash);
+    // console.log("loggin in!", userHash);
 
     fetch(BASE_URL + "login", {
       method: "POST",
@@ -19,27 +29,23 @@ const LoginPage = props => {
     })
       .then(response => response.json())
       .then(user => {
-        if (user.error) {
-          alert(user.error);
+        if (user.message) {
+          alert(user.message);
         } else {
-          console.log("user: ", user);
+          // console.log("user: ", user);
+          localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("token", user.token);
           // console.log("props in login fetch: ", props);
           // update store with flag that user is logged in
 
           props.setLoggedIn();
-          console.log("loggedin", props);
+          // console.log("loggedin", props);
           props.history.push("/home");
         }
       });
   };
 
-  const handleLogIn = e => {
-    e.preventDefault();
-    let username = e.target.username.value;
-    let password = e.target.password.value;
-    logIn({ username, password });
-  };
+  
 
   return (
     <div>
