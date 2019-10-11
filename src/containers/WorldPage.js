@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
 import { fetchStories, fetchWorldStories } from "../actions/storiesActions.js";
-
-const IMG =
-  "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
+import Display from "../components/Display.js";
 
 class WorldPage extends Component {
   // let src = props.world.img ? props.world.img : IMG
@@ -17,17 +15,25 @@ class WorldPage extends Component {
 
   render() {
     console.log("WorldPage props: ", this.props);
+
     return (
-      <div className="panel" id="world">
-        <div className="content_section">
-          <img src={IMG} alt={"an antique map"} />
-          {/* <img src={src} alt={alt} /> */}
-          <h2>{this.props.world.name}</h2>
-        </div>
-        <div className="content_section last_section">
-          <p>{this.props.world.description}</p>
-        </div>
-      </div>
+      <Display
+        IMG={this.props.world.img}
+        img_alt={this.props.world.name}
+        item={this.props.world}
+        title={this.props.world.name}
+        text={this.props.world.description}
+      />
+      // <div className="panel" id="world">
+      //   <div className="content_section">
+      //     <img src={IMG} alt={"an antique map"} />
+      //     {/* <img src={src} alt={alt} /> */}
+      //     <h2>{this.props.world.name}</h2>
+      //   </div>
+      //   <div className="content_section last_section">
+      //     <p>{this.props.world.description}</p>
+      //   </div>
+      // </div>
     );
   }
 }
