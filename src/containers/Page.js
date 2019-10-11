@@ -16,7 +16,7 @@ class Page extends Component {
         <div className="scroll">
           <div className="scrollContainer">
             <Router>
-              <Route path="/home" render={props => <Worlds {...props} />} />
+              <Route path="/tome" render={props => <Worlds {...props} />} />
               <Route path="/login" render={props => <LoginPage {...props} />} />
               <Route
                 path="/login"

@@ -7,7 +7,7 @@ import {compose} from 'redux'
 const AuthHOC = WrappedComponent => {
   return class PrivacyHOC extends React.Component {
     authorized = () => {
-      return this.props.logged_in === true;
+      return this.props.logged_in === 'true';
     };
 
     render() {
@@ -25,6 +25,7 @@ const AuthHOC = WrappedComponent => {
 
 const mapStateToProps = state => {
   return {
+    ...state,
     logged_in: state.auth.logged_in,
     token: state.auth.token
   };

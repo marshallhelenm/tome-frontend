@@ -40,7 +40,7 @@ const LoginPage = props => {
 
           props.setLoggedIn();
           // console.log("loggedin", props);
-          props.history.push("/home");
+          props.history.push("/tome");
         }
       });
   };

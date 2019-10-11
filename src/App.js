@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import MainContainer from "./containers/MainContainer.js";
+import Notebook from "./containers/Notebook";
 
 
 const App = props => {
@@ -8,7 +8,7 @@ const App = props => {
   return (
     <div className="App">
       {/* conditionally route based on logged in flag in store or use a higher order component */}
-      <MainContainer {...props} />
+      <Notebook {...props} />
       
     </div>
   );
