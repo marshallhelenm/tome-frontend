@@ -28,10 +28,7 @@ class Stories extends Component {
 
 const mapStateToProps = state => {
   return {
-    ...state,
-    stories: state.stories,
-    logged_in: state.auth.logged_in,
-    story: state.stories
+    ...state
   };
 };
 

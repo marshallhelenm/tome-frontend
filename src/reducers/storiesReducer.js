@@ -5,7 +5,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_STORIES":
-      console.log("setting stories: ", action.payload);
+      console.log("in stories reducer setting stories: ", action.payload);
 
       return {
         ...state,

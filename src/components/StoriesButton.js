@@ -1,12 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const StoriesButton = () => {
   return (
-    <li>
-      <a href={'http://localhost:3001/tome/stories'} className="menu_02">
-        Stories
-      </a>
-    </li>
+    <Link to={"/tome/stories"} className="menu_02">
+      <li>Stories</li>
+    </Link>
   );
 };
 

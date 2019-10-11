@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LogOutButton = () => {
   const handleLogOut = () => {
@@ -8,11 +9,9 @@ const LogOutButton = () => {
   };
 
   return (
-    <li onClick={handleLogOut}>
-      <a href={"http://localhost:3001/tome/stories"} className="menu_02">
-        Log Out
-      </a>
-    </li>
+    <Link to={"/"} className="menu_02">
+      <li onClick={handleLogOut}>Log Out</li>
+    </Link>
   );
 };
 

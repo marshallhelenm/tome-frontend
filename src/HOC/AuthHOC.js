@@ -11,7 +11,7 @@ const AuthHOC = WrappedComponent => {
     };
 
     render() {
-      console.log("authHOC props:", this.props);
+      // console.log("authHOC props:", this.props);
       return this.authorized() ? (
         // return true ? (
         <WrappedComponent {...this.props} />

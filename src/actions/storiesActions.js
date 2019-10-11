@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:3000/";
 
 export const setStories = stories => {
-  console.log('setting stories: ', stories)
+  console.log('in dispatcher setStories setting stories: ', stories)
   return {
     type: "SET_STORIES",
     payload: stories
@@ -28,6 +28,7 @@ export const fetchStories = () => {
 };
 
 export const fetchWorldStories = world => {
+  console.log('running fetchWorldStories. world: ', world)
   let user = JSON.parse(localStorage.getItem("user"));
 
   return dispatch => {

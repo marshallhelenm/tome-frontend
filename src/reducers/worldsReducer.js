@@ -5,6 +5,8 @@ const initialState = {
 const reducer = (state=initialState, action) => {
     switch (action.type){
         case 'SET_WORLDS':
+      console.log("in worlds reducer setting worlds: ", action.payload);
+
             return {
                 ...state,
                 worlds: action.payload
