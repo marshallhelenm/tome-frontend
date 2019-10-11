@@ -3,6 +3,7 @@ import "../css/2018_notebook/css/coda-slider.css";
 import "../css/2018_notebook/tooplate_style.css";
 import Sidebar from "./Sidebar.js";
 import Page from "./Page.js";
+import { BrowserRouter as Router } from "react-router-dom";
 
 class Notebook extends Component {
   render() {
@@ -10,8 +11,10 @@ class Notebook extends Component {
     return (
       <div id="slider">
         <div id="tooplate_wrapper">
-          <Sidebar {...this.props} />
-          <Page {...this.props} />
+          <Router>
+            <Sidebar {...this.props} />
+            <Page {...this.props} />
+          </Router>
         </div>
       </div>
     );

@@ -16,7 +16,7 @@ const AuthHOC = WrappedComponent => {
         // return true ? (
         <WrappedComponent {...this.props} />
       ) : (
-        <Redirect to="/login" />
+        <Redirect to="/" />
       );
     }
   };

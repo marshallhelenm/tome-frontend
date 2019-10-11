@@ -8,8 +8,6 @@ export const setWorlds = worlds => {
 };
 
 export const fetchWorlds = () => {
-  console.log("token in fetchworlds:", localStorage.getItem("token"));
-
   let user = JSON.parse(localStorage.getItem("user"));
 
   return dispatch => {

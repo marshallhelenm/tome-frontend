@@ -1,11 +1,10 @@
 import React from "react";
 
-const BASE_URL = "http://localhost:3000/";
 
 const CharactersButton = () => {
   return (
     <li>
-      <a href={BASE_URL + 'characters'} className="menu_02">
+      <a href={'http://localhost:3001/tome/characters'} className="menu_02">
         Characters
       </a>
     </li>

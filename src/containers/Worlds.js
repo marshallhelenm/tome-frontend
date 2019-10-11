@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../css/2018_notebook/css/coda-slider.css";
 import "../css/2018_notebook/tooplate_style.css";
-import Polaroid from "../components/Polaroid";
 import Gallery from "./Gallery.js";
 
 import { fetchWorlds, currentWorld } from "../actions/worldsActions.js";
@@ -12,67 +11,21 @@ const IMG =
   "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
 
 class Worlds extends Component {
-  // componentDidMount() {
-  //   // console.log("fetching worlds");
-  //   this.props.fetchWorlds(this.props);
-  // }
-  // generateCards = () => {
-  //   console.log("cards!", this.props.worlds);
-  //   return this.props.worlds.map(world => {
-  //     return (
-  //       <Polaroid
-  //         handleClick={this.clickWorld}
-  //         key={world.name}
-  //         caption={world.name}
-  //         id={world.id}
-  //       />
-  //     );
-  //   });
-  // };
-
-  // clickWorld = e => {
-  //   e.preventDefault();
-  //   // set current world in state
-  //   let world;
-  //   this.props.worlds.forEach(w => {
-  //     console.log(w.id, e.currentTarget.id);
-  //     if (`${w.id}` === `${e.currentTarget.id}`) {
-  //       world = w;
-  //     }
-  //     return world;
-  //   });
-  //   console.log("world: ", world);
-  //   this.props.currentWorld(world);
-  //   this.props.history.push(`/worlds/${e.currentTarget.id}`);
-  // };
-
+  componentDidMount() {
+    this.props.fetchWorlds(this.props);
+  }
   render() {
     console.log("Worlds props: ", this.props);
     return (
       <Gallery
         {...this.props}
-        fetchItems={this.props.fetchWorlds}
+        // fetchItems={this.props.fetchWorlds}
         currentItem={this.props.currentWorld}
         defaultIMG={IMG}
         items={this.props.worlds.worlds}
         type="worlds"
-        title={`Tales of ${this.props.world}`}
+        title={"Your Worlds"}
       />
-
-      // <div className="panel" id="worlds">
-      //   <div className="content_section">
-      //     <h2>Your Worlds</h2>
-      //   </div>
-      //   <div className="content_section last_section">
-      //     {this.generateCards()}
-      //     <Polaroid
-      //       handleClick={this.clickWorld}
-      //       id="new"
-      //       img={IMG}
-      //       caption="New World"
-      //     />
-      //   </div>
-      // </div>
     );
   }
 }

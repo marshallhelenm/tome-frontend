@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import "../css/2018_notebook/css/coda-slider.css";
 import "../css/2018_notebook/tooplate_style.css";
 import Polaroid from "../components/Polaroid";
-import { fetchStories, currentStory } from "../actions/storiesActions.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 
 
 class Gallery extends Component {
     
-  componentDidMount() {
-    // console.log("fetching stories");
-    this.props.fetchItems(this.props);
-  }
+  // componentDidMount() {
+  //   // console.log("fetching stories");
+  //   this.props.fetchItems(this.props);
+  // }
   generateCards = () => {
     // console.log("cards!", this.props.stories);
     return this.props.items.map(item => {
@@ -32,7 +31,7 @@ class Gallery extends Component {
     // set current story in state
     let item;
     this.props.items.forEach(s => {
-      console.log(s.id, e.currentTarget.id);
+      // console.log(s.id, e.currentTarget.id);
       if (`${s.id}` === `${e.currentTarget.id}`) {
         item = s;
       }
@@ -40,7 +39,7 @@ class Gallery extends Component {
     });
     console.log("item: ", item);
     this.props.currentItem(item);
-    this.props.history.push(`/${this.props.type}/${e.currentTarget.id}`);
+    this.props.history.push(`/tome/${this.props.type}/${e.currentTarget.id}`);
   };
   render() {
       console.log('gallery props: ', this.props)

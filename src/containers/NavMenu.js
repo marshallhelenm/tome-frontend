@@ -3,10 +3,9 @@ import "../css/2018_notebook/css/coda-slider.css";
 import "../css/2018_notebook/tooplate_style.css";
 import { setLoggedOut } from "../actions/authActions";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import HomeButton from "../components/HomeButton";
-import StoriesButton from "../components/StoriesButton";
+import { Route } from "react-router-dom";
 import LogOutButton from "../components/LogOutButton";
+import WorldNavMenu from "./WorldNavMenu";
 
 class NavMenu extends Component {
   // Will create methods etc to make sure that menu shows correct things at the correct times
@@ -15,14 +14,13 @@ class NavMenu extends Component {
 
   render() {
     return (
-      <Router>
         <div id="menu">
           <ul className="navigation">
+            <Route path="/tome/worlds/:id" render={props => (<WorldNavMenu/> )} />
             <Route path="/tome" render={props => (<LogOutButton {...props} />)} />
             {/* <Route path="/stories" render={props => <StoriesButton {...props} />} /> */}
           </ul>
         </div>
-      </Router>
     );
   }
 }

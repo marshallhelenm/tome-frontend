@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { setLoggedIn } from "../actions/authActions";
 
@@ -35,7 +35,7 @@ const SignUpPage = props => {
 
           props.setLoggedIn();
           console.log("loggedin", props);
-          props.history.push("/tome");
+          props.history.push("/tome/worlds");
         }
       });
   };

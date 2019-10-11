@@ -6,7 +6,7 @@ import Stories from "./Stories.js";
 import LoginPage from "./LoginPage.js";
 import SignUpPage from "./SignUpPage.js";
 import WorldPage from "./WorldPage.js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 class Page extends Component {
   render() {
@@ -15,22 +15,24 @@ class Page extends Component {
       <div id="content">
         <div className="scroll">
           <div className="scrollContainer">
-            <Router>
-              <Route path="/tome" render={props => <Worlds {...props} />} />
-              <Route path="/login" render={props => <LoginPage {...props} />} />
+              <Route path="/" exact render={props => <LoginPage {...props} />} />
+
+              <Route path="/tome/worlds" exact render={props => <Worlds {...props} />} />
+
+              <Route path="/tome/stories" exact render={props => <Stories {...props} />} />
+
               <Route
-                path="/login"
+                path="/" exact
                 render={props => <SignUpPage {...props} />}
               />
               <Route
-                path="/worlds/:id"
+                path="/tome/worlds/:id"
                 render={props => <WorldPage {...props} />}
               />
               {/* <Route
                 path="/stories"
                 render={props => <Stories {...props} />}
               /> */}
-            </Router>
           </div>
         </div>
       </div>
