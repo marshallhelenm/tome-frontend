@@ -18,7 +18,7 @@ class Stories extends Component {
         // fetchItems={this.props.fetchStories}
         currentItem={this.props.currentStory}
         defaultIMG={IMG}
-        items={this.props.stories}
+        items={this.props.stories.stories}
         type="stories"
         title={`Tales of ${this.props.story}`}
       />

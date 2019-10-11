@@ -18,8 +18,8 @@ class Gallery extends Component {
       return (
         <Polaroid
           handleClick={this.clickCard}
-          caption={item.name}
-          key={item.name}
+          caption={item.name ? item.name : item.title}
+          key={item.name ? item.name : item.title}
           id={item.id}
         />
       );

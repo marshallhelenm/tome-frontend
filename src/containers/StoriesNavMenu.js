@@ -2,18 +2,24 @@ import React from "react";
 import HomeButton from "../components/HomeButton";
 import CharactersButton from "../components/CharactersButton";
 import LocationsButton from "../components/LocationsButton";
+import WorldButton from "../components/WorldButton";
+import { connect } from "react-redux";
 
-const StoriesNavMenu = () => {
-  // will need to bring in state of current world for purposes of world button. which i haven't made yet.
+const StoriesNavMenu = props => {
   return (
     <>
       <HomeButton />
-      {/* a button to take you back to the current world: */}
-      {/* <WorldButton world={} /> */}
+      <WorldButton world={props.worlds.world} />
       <CharactersButton />
       <LocationsButton />
     </>
   );
 };
 
-export default StoriesNavMenu;
+const mapStateToProps = state => {
+  return {
+    ...state
+  };
+};
+
+export default connect(mapStateToProps)(StoriesNavMenu);
