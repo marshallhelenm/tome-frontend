@@ -1,24 +1,24 @@
 const initialState = {
-  stories: []
+  locations: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_STORIES":
+    case "SET_LOCATION":
       return {
         ...state,
-        stories: action.payload
+        locations: action.payload
       };
-    case "SET_WORLD_STORIES":
+    case "SET_STORY_LOCATION":
       return {
         ...state,
-        world_stories: action.payload
+        story_locations: action.payload
       };
-    case "CURRENT_STORY":
-      console.log("in current story", { ...state, story: action.payload });
+    case "CURRENT_CHARACTER":
+      console.log("in current location", { ...state, location: action.payload });
       return {
         ...state,
-        story: action.payload
+        location: action.payload
       };
     default:
       return state;

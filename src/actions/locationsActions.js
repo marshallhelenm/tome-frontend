@@ -1,26 +1,26 @@
 const BASE_URL = "http://localhost:3000/";
 
-export const setCharacters = characters => {
+export const setLocations = locations => {
   return {
-    type: "SET_CHARACTERS",
-    payload: characters
+    type: "SET_LOCATIONS",
+    payload: locations
   };
 };
 
-export const setStoryCharacters = characters => {
+export const setStoryLocations = locations => {
   return {
-    type: "SET_STORY_CHARACTERS",
-    payload: characters
+    type: "SET_STORY_LOCATIONS",
+    payload: locations
   };
 };
 
-export const fetchCharacters = () => {
+export const fetchLocations = () => {
 
   let user = JSON.parse(localStorage.getItem("user"));
 
   return dispatch => {
-    console.log('in fetchCharacters fetching characters')
-    return fetch(BASE_URL + "getcharacters", {
+    console.log('in fetchLocations fetching locations')
+    return fetch(BASE_URL + "getlocations", {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -30,17 +30,15 @@ export const fetchCharacters = () => {
       body: JSON.stringify({ user: user })
     })
       .then(res => res.json())
-      .then(characters => dispatch(setCharacters(characters)));
+      .then(locations => dispatch(setLocations(locations)));
   };
 };
 
-export const fetchStoryCharacters = story => {
-  console.log('in fetchStoryCharacters fetching characters for a story')
-
+export const fetchStoryLocations = story => {
   let user = JSON.parse(localStorage.getItem("user"));
-
+  console.log('in fetchStoryLocations fetching locations for a story')
   return dispatch => {
-    return fetch(BASE_URL + "getstorycharacters", {
+    return fetch(BASE_URL + "getstorylocations", {
       method: "POST",
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -53,15 +51,15 @@ export const fetchStoryCharacters = story => {
       })
     })
       .then(res => res.json())
-      .then(characters => dispatch(setStoryCharacters(characters)));
+      .then(locations => dispatch(setStoryLocations(locations)));
   };
 }
 
-export const currentCharacter = (character) =>
+export const currentLocation = (location) =>
 {
-  console.log('set character')
+  console.log('set location')
   return {
-    type: 'CURRENT_CHARACTER',
-    payload: character
+    type: 'CURRENT_LOCATION',
+    payload: location
   }
 }

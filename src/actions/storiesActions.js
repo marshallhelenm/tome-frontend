@@ -1,9 +1,14 @@
 const BASE_URL = "http://localhost:3000/";
 
 export const setStories = stories => {
-  console.log('in dispatcher setStories setting stories: ', stories)
   return {
     type: "SET_STORIES",
+    payload: stories
+  };
+};
+export const setWorldStories = stories => {
+  return {
+    type: "SET_WORLD_STORIES",
     payload: stories
   };
 };
@@ -45,7 +50,7 @@ export const fetchWorldStories = world => {
       })
     })
       .then(res => res.json())
-      .then(stories => dispatch(setStories(stories)));
+      .then(stories => dispatch(setWorldStories(stories)));
   };
 }
 

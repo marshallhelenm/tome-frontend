@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
+import "../css/tome.css";
 
 
 const IMG =
@@ -11,7 +12,7 @@ const Display = props => {
   return (
     <div className="panel" id="world">
       <div className="content_section">
-        <img src={props.IMG ? props.IMG : IMG} alt={props.img_alt ? props.img_alt : "an antique map"} />
+        <img src={props.IMG ? props.IMG : IMG} alt={props.img_alt ? props.img_alt : "an antique map"} className={'image_wrapper image_fl display_img'} />
         {/* <img src={src} alt={alt} /> */}
         <h2>{props.title}</h2>
       </div>

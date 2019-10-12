@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "../css/2018_notebook/css/coda-slider.css";
 import "../css/2018_notebook/tooplate_style.css";
 import Gallery from "./Gallery.js";
-
+import { fetchCharacters } from "../actions/charactersActions.js";
+import { fetchLocations } from "../actions/locationsActions.js";
 import { fetchWorlds, currentWorld } from "../actions/worldsActions.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
@@ -13,6 +14,8 @@ const IMG =
 class Worlds extends Component {
   componentDidMount() {
     this.props.fetchWorlds(this.props);
+    this.props.fetchCharacters(this.props.story);
+    // this.props.fetchLocations(this.props.story);
   }
   render() {
     console.log("Worlds props: ", this.props);
@@ -40,7 +43,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchWorlds: () => dispatch(fetchWorlds()),
-    currentWorld: world => dispatch(currentWorld(world))
+    currentWorld: world => dispatch(currentWorld(world)),
+    fetchCharacters: story => dispatch(fetchCharacters(story)),
+    fetchLocations: story => dispatch(fetchLocations(story))
   };
 };
 
