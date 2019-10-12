@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
-import { fetchStories, fetchWorldStories } from "../actions/storiesActions.js";
-import { fetchStoryCharacters } from "../actions/charactersActions.js";
-import { fetchStoryLocations } from "../actions/locationsActions.js";
-import Display from "../components/Display.js";
+import composedAuthHOC from "../../HOC/AuthHOC.js";
+import { fetchStories, fetchWorldStories } from "../../actions/storiesActions.js";
+import { fetchStoryCharacters } from "../../actions/charactersActions.js";
+import { fetchStoryLocations } from "../../actions/locationsActions.js";
+import Display from "../../components/Display.js";
 
 class StoryPage extends Component {
   componentDidMount() {

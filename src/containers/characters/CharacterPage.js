@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
-import Display from "../components/Display.js";
+import composedAuthHOC from "../../HOC/AuthHOC.js";
+import Display from "../../components/Display.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";

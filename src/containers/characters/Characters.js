@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Gallery from "./Gallery.js";
+import Gallery from "../Gallery.js";
 import {
   fetchCharacters,
   currentCharacter,
   fetchStoryCharacters
-} from "../actions/charactersActions.js";
+} from "../../actions/charactersActions.js";
 import { connect } from "react-redux";
-import composedAuthHOC from "../HOC/AuthHOC.js";
+import composedAuthHOC from "../../HOC/AuthHOC.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";

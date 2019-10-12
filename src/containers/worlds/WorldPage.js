@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
-import { fetchStories, fetchWorldStories } from "../actions/storiesActions.js";
-import Display from "../components/Display.js";
+import composedAuthHOC from "../../HOC/AuthHOC.js";
+import { fetchStories, fetchWorldStories } from "../../actions/storiesActions.js";
+import Display from "../../components/Display.js";
 
 class WorldPage extends Component {
   // let src = props.world.img ? props.world.img : IMG

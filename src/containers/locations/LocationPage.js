@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
-import { fetchLocations, fetchStoryLocations } from "../actions/locationsActions.js";
-import Display from "../components/Display.js";
+import composedAuthHOC from "../../HOC/AuthHOC.js";
+import { fetchLocations, fetchStoryLocations } from "../../actions/locationsActions.js";
+import Display from "../../components/Display.js";
 
 class LocationPage extends Component {
   componentDidMount() {
