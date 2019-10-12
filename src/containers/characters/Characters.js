@@ -24,7 +24,7 @@ class Characters extends Component {
         {...this.props}
         currentItem={this.props.currentCharacter}
         defaultIMG={IMG}
-        items={this.props.characters.characters}
+        items={this.props.characters.story_characters ? this.props.characters.story_characters : this.props.characters.characters}
         type="characters"
         title={"Characters"}
       />

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setLoggedIn, setLoggedOut } from "../actions/authActions";
-
+import "../css/2018_notebook/css/coda-slider.css";
+import "../css/2018_notebook/tooplate_style.css";
 const BASE_URL = "http://localhost:3000/";
 
 class LoginPage extends Component {
@@ -45,13 +46,27 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className={"content_section"}>
         <h1>Log In</h1>
-        <form onSubmit={this.handleLogIn}>
-          <input id="username" type="text" placeholder="Username" />
-          <input id="password" type="text" placeholder="Password" />
-          <button type="submit">Log In</button>
-        </form>
+        <div className={"col_380 float_l"}>
+          <form onSubmit={this.handleLogIn}>
+            <input
+              id="username"
+              type="text"
+              placeholder="Username"
+              className="input_field"
+            />
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              className="input_field"
+            />
+            <button type="submit" className={"submit_btn"}>
+              Log In
+            </button>
+          </form>
+        </div>
       </div>
     );
   }

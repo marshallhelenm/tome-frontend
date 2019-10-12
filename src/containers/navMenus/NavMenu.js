@@ -4,11 +4,11 @@ import "../css/2018_notebook/tooplate_style.css";
 import { setLoggedOut } from "../actions/authActions";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
-import LogOutButton from "../components/LogOutButton";
-import WorldNavMenu from "./WorldNavMenu";
-import StoriesNavMenu from "./StoriesNavMenu";
-import CharactersNavMenu from "./CharactersNavMenu";
-import LocationsNavMenu from "./LocationsNavMenu";
+import LogOutButton from "../components/navButtons/LogOutButton";
+import WorldNavMenu from "./navMenus/WorldNavMenu";
+import StoriesNavMenu from "./navMenus/StoriesNavMenu";
+import CharactersNavMenu from "./navMenus/CharactersNavMenu";
+import LocationsNavMenu from "./navMenus/LocationsNavMenu";
 
 class NavMenu extends Component {
   // Will create methods etc to make sure that menu shows correct things at the correct times

@@ -1,10 +1,10 @@
 import React from "react";
-import HomeButton from "../components/HomeButton";
-import CharactersButton from "../components/CharactersButton";
-import StoriesButton from "../components/StoriesButton";
-import StoryButton from "../components/StoryButton";
-import LocationsButton from "../components/LocationsButton";
-import WorldButton from "../components/WorldButton";
+import HomeButton from "../components/navButtons/HomeButton";
+import CharactersButton from "../components/navButtons/CharactersButton";
+import StoriesButton from "../components/navButtons/StoriesButton";
+import StoryButton from "../components/navButtons/StoryButton";
+import LocationsButton from "../components/navButtons/LocationsButton";
+import WorldButton from "../components/navButtons/WorldButton";
 import { connect } from "react-redux";
 
 const CharactersNavMenu = props => {

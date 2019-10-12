@@ -5,9 +5,7 @@ import Polaroid from "../components/Polaroid";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 
-
 class Gallery extends Component {
-    
   // componentDidMount() {
   //   // console.log("fetching stories");
   //   this.props.fetchItems(this.props);
@@ -19,7 +17,11 @@ class Gallery extends Component {
         <Polaroid
           handleClick={this.clickCard}
           caption={item.name ? item.name : item.title}
-          key={item.name ? item.name : item.title}
+          key={
+            item.name
+              ? item.name + "." + Math.random() * 10
+              : item.title + "." + Math.random() * 10
+          }
           id={item.id}
         />
       );
@@ -42,31 +44,31 @@ class Gallery extends Component {
     this.props.history.push(`/tome/${this.props.type}/${e.currentTarget.id}`);
   };
   render() {
-      console.log('gallery props: ', this.props)
+    console.log("gallery props: ", this.props);
     return (
-      <div className="panel" id="stories">
+      <>
         <div className="content_section">
           <h2>{this.props.title}</h2>
         </div>
-        <div className="content_section last_section">
+        <div className="content_section last_section gallery_box">
           {this.generateCards()}
           <Polaroid
             handleClick={this.clickCard}
             id="new"
-            key='new'
+            key="new"
             img={this.props.defaultIMG}
             caption="New"
           />
         </div>
-      </div>
+      </>
     );
   }
 }
 
 const mapStateToProps = state => {
-    return {
-        ...state
-    };
+  return {
+    ...state
   };
+};
 
-export default connect(mapStateToProps)(composedAuthHOC(Gallery))
+export default connect(mapStateToProps)(composedAuthHOC(Gallery));

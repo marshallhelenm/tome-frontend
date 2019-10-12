@@ -10,7 +10,7 @@ const IMG =
 const Display = props => {
   console.log("Display props: ", props);
   return (
-    <div className="panel" id="world">
+    <>
       <div className="content_section">
         <img src={props.IMG ? props.IMG : IMG} alt={props.img_alt ? props.img_alt : "an antique map"} className={'image_wrapper image_fl display_img'} />
         {/* <img src={src} alt={alt} /> */}
@@ -19,7 +19,7 @@ const Display = props => {
       <div className="content_section last_section">
         <p>{props.text}</p>
       </div>
-    </div>
+    </>
   );
 };
 

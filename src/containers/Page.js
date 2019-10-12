@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import "../css/2018_notebook/css/coda-slider.css";
 import "../css/2018_notebook/tooplate_style.css";
-import Worlds from "./Worlds.js";
-import Stories from "./Stories.js";
 import LoginPage from "./LoginPage.js";
 import SignUpPage from "./SignUpPage.js";
-import WorldPage from "./WorldPage.js";
-import StoryPage from "./StoryPage.js";
-import Characters from "./Characters.js";
-import CharacterPage from "./CharacterPage.js";
-import Locations from "./Locations.js";
-import LocationPage from "./LocationPage.js";
+import Worlds from "./worlds/Worlds.js";
+import WorldPage from "./worlds/WorldPage.js";
+import Stories from "./stories/Stories.js";
+import StoryPage from "./stories/StoryPage.js";
+import Characters from "./characters/Characters.js";
+import CharacterPage from "./characters/CharacterPage.js";
+import Locations from "./locations/Locations.js";
+import LocationPage from "./locations/LocationPage.js";
 import { Route } from "react-router-dom";
 
 class Page extends Component {
@@ -20,6 +20,8 @@ class Page extends Component {
       <div id="content">
         <div className="scroll">
           <div className="scrollContainer">
+    <div className="panel" >
+
             <Route path="/" exact render={props => <LoginPage {...props} />} />
             <Route path="/" exact render={props => <SignUpPage {...props} />} />
 
@@ -64,7 +66,7 @@ class Page extends Component {
               exact
               render={props => <LocationPage {...props} />}
             />
-          
+          </div>
           </div>
         </div>
       </div>

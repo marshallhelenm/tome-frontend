@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setLoggedIn } from "../actions/authActions";
+import "../css/2018_notebook/css/coda-slider.css";
+import "../css/2018_notebook/tooplate_style.css";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -41,11 +43,11 @@ const SignUpPage = props => {
   };
 
   return (
-    <div>
+    <div className="content_section" >
       <h1>Sign Up</h1>
       <form onSubmit={handleSignUp}>
-        <input id="username" type="text" placeholder="Username" />
-        <input id="password" type="text" placeholder="Password" />
+        <input id="username" type="text" placeholder="Username" className='input_field' />
+        <input id="password" type="text" placeholder="Password" className='input_field' />
         <button type="submit">Sign Up</button>
       </form>
     </div>
