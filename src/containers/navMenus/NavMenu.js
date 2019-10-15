@@ -32,6 +32,7 @@ class NavMenu extends Component {
           />
           <Route path="/tome/new/worlds" render={props => <WorldNavMenu />} />
           <Route path="/tome/edit/worlds" render={props => <WorldNavMenu />} />
+          <Route path="/tome/edit/stories" render={props => <StoriesNavMenu />} />
           <Route
             path="/tome/new/stories"
             render={props => <StoriesNavMenu />}

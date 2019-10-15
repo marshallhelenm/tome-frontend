@@ -9,6 +9,8 @@ import { fetchStoryCharacters } from "../../actions/charactersActions.js";
 import { fetchStoryLocations } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 
+const BASE_URL = "http://localhost:3000/";
+
 class StoryPage extends Component {
   componentDidMount() {
     console.log("StoryPage props: ", this.props);
@@ -17,6 +19,25 @@ class StoryPage extends Component {
   }
   // need to change the above to call on characters and locations instead
 
+  handleDeleteStory = () => {
+    this.deleteStory(this.props.story);
+  };
+  deleteStory = story => {
+    console.log("deleting this story!");
+
+    fetch(BASE_URL + `stories/${story.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ story })
+    }).then(() => {
+      this.props.history.push(`/tome/stories`);
+    });
+  };
+
   render() {
     console.log("StoryPage props: ", this.props);
 
@@ -24,11 +45,12 @@ class StoryPage extends Component {
       <Display
         {...this.props}
         category="stories"
+        handleDelete={this.handleDeleteStory}
         IMG={this.props.story.img}
         img_alt={this.props.story.title}
         item={this.props.story}
         title={this.props.story.title}
-        text={this.props.story.content}
+        text={this.props.story.description}
       />
     );
   }

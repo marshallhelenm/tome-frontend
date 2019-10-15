@@ -12,7 +12,6 @@ const EditWorld = props => {
   const editWorld = e => {
     e.preventDefault();
     console.log("saving changes to world");
-    console.log(localStorage.getItem("token"))
 
     fetch(BASE_URL + `worlds/${props.world.id}`, {
       method: "PATCH",
