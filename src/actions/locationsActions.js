@@ -14,20 +14,24 @@ export const setStoryLocations = locations => {
   };
 };
 
-export const fetchLocations = () => {
-
+export const fetchWorldLocations = world => {
   let user = JSON.parse(localStorage.getItem("user"));
+  console.log("running fetchWorldLocations. current world: ", world);
 
   return dispatch => {
-    console.log('in fetchLocations fetching locations')
+    console.log("running fetchWorldLocations dispatch. current world: ", world);
+
     return fetch(BASE_URL + "getlocations", {
       method: "POST",
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ user: user })
+      body: JSON.stringify({
+        user: user,
+        world: world
+      })
     })
       .then(res => res.json())
       .then(locations => dispatch(setLocations(locations)));
@@ -35,31 +39,32 @@ export const fetchLocations = () => {
 };
 
 export const fetchStoryLocations = story => {
+  console.log("in fetchStoryLocations fetching locations for a story");
+
   let user = JSON.parse(localStorage.getItem("user"));
-  console.log('in fetchStoryLocations fetching locations for a story')
+
   return dispatch => {
     return fetch(BASE_URL + "getstorylocations", {
       method: "POST",
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ 
-        user: user, 
+      body: JSON.stringify({
+        user: user,
         story: story
       })
     })
       .then(res => res.json())
       .then(locations => dispatch(setStoryLocations(locations)));
   };
-}
+};
 
-export const currentLocation = (location) =>
-{
-  console.log('set location')
+export const currentLocation = location => {
+  console.log("set location");
   return {
-    type: 'CURRENT_LOCATION',
+    type: "CURRENT_LOCATION",
     payload: location
-  }
-}
+  };
+};

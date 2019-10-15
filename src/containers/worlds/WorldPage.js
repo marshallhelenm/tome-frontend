@@ -5,13 +5,16 @@ import {
   fetchStories,
   fetchWorldStories
 } from "../../actions/storiesActions.js";
+import { fetchWorldCharacters } from "../../actions/charactersActions.js";
 import Display from "../../components/Display.js";
 
 const BASE_URL = "http://localhost:3000/";
 
 class WorldPage extends Component {
   componentDidMount() {
+    console.log("WorldPage props: ", this.props);
     this.props.fetchWorldStories(this.props.world);
+    this.props.fetchWorldCharacters(this.props.world);
   }
   handleDeleteWorld = () => {
     this.deleteWorld(this.props.world);
@@ -33,8 +36,6 @@ class WorldPage extends Component {
   };
 
   render() {
-    console.log("WorldPage props: ", this.props);
-
     return (
       <Display
         {...this.props}
@@ -61,7 +62,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchStories: () => dispatch(fetchStories()),
-    fetchWorldStories: world => dispatch(fetchWorldStories(world))
+    fetchWorldStories: world => dispatch(fetchWorldStories(world)),
+    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world))
   };
 };
 export default connect(

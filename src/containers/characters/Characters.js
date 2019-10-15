@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Gallery from "../Gallery.js";
 import {
-  fetchCharacters,
+  fetchWorldCharacters,
   currentCharacter,
   fetchStoryCharacters
 } from "../../actions/charactersActions.js";
-import { connect } from "react-redux";
+import { connect } from "react-redux"; 
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 
 const IMG =
@@ -13,8 +13,9 @@ const IMG =
 
 class Characters extends Component {
   componentDidMount() {
+    console.log('Characters props: ', this.props)
     this.props.stories.story ? this.props.fetchStoryCharacters(this.props.stories.story) :
-    this.props.fetchCharacters(this.props);
+    this.props.fetchWorldCharacters(this.props.worlds.world);
   }
 
   render() {
@@ -40,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCharacters: () => dispatch(fetchCharacters()),
+    fetchWorldCharacters: (world) => dispatch(fetchWorldCharacters(world)),
     fetchStoryCharacters: () => dispatch(fetchStoryCharacters()),
     currentCharacter: character => dispatch(currentCharacter(character))
   };

@@ -33,10 +33,10 @@ export const fetchStories = () => {
 };
 
 export const fetchWorldStories = world => {
-  console.log('running fetchWorldStories. world: ', world)
   let user = JSON.parse(localStorage.getItem("user"));
-
+  
   return dispatch => {
+    console.log('running fetchWorldStories. world: ', world)
     return fetch(BASE_URL + "getworldstories", {
       method: "POST",
       headers: {

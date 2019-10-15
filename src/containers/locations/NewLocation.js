@@ -3,26 +3,26 @@ import { connect } from "react-redux";
 import "../../css/2018_notebook/css/coda-slider.css";
 import "../../css/2018_notebook/tooplate_style.css";
 import {
-  fetchWorldCharacters,
-  currentCharacter
-} from "../../actions/charactersActions.js";
+  fetchWorldLocations,
+  currentLocation
+} from "../../actions/locationsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 
 const BASE_URL = "http://localhost:3000/";
 
 
-class NewCharacter extends Component {
-  createCharacter = e => {
+class NewLocation extends Component {
+  createLocation = e => {
     e.preventDefault();
-    console.log("creating character");
-    let character = {
+    console.log("creating location");
+    let location = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
       user: JSON.parse(localStorage.getItem("user")),
       world: this.props.worlds.world
     };
-    fetch(BASE_URL + "characters/new", {
+    fetch(BASE_URL + "locations/new", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -30,40 +30,40 @@ class NewCharacter extends Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        character
+        location
       })
     })
       .then(response => response.json())
-      .then(newCharacter => {
-        console.log("newCharacter: ", newCharacter);
-        this.props.currentCharacter(newCharacter);
-        this.props.fetchWorldCharacters(this.props);
-        this.props.history.push(`/tome/characters/${newCharacter.id}`);
+      .then(newLocation => {
+        console.log("newLocation: ", newLocation);
+        this.props.currentLocation(newLocation);
+        this.props.fetchWorldLocations(this.props);
+        this.props.history.push(`/tome/locations/${newLocation.id}`);
       });
   };
 
   render() {
-    console.log("NewCharacter props: ", this.props);
-    return <NewForm type="characters" handleNew={this.createCharacter} />;
+    console.log("NewLocation props: ", this.props);
+    return <NewForm type="locations" handleNew={this.createLocation} />;
   }
 }
 
 const mapStateToProps = state => {
   return {
     ...state,
-    characters: state.characters.characters,
+    locations: state.locations.locations,
     logged_in: state.auth.logged_in
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchWorldCharacters: () => dispatch(fetchWorldCharacters()),
-    currentCharacter: character => dispatch(currentCharacter(character))
+    fetchWorldLocations: () => dispatch(fetchWorldLocations()),
+    currentLocation: location => dispatch(currentLocation(location))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(composedAuthHOC(NewCharacter));
+)(composedAuthHOC(NewLocation));
