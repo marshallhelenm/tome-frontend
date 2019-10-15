@@ -15,6 +15,7 @@ import CharacterPage from "./characters/CharacterPage.js";
 import Locations from "./locations/Locations.js";
 import LocationPage from "./locations/LocationPage.js";
 import { Route } from "react-router-dom";
+import EditCharacter from "./characters/EditCharacter.js";
 import NewCharacter from "./characters/NewCharacter";
 import EditWorld from "./worlds/EditWorld";
 
@@ -91,6 +92,10 @@ class Page extends Component {
                 <Route
                   path="/tome/new/characters"
                   render={props => <NewCharacter {...props} />}
+                />
+                <Route
+                  path="/tome/edit/characters/:id"
+                  render={props => <EditCharacter {...props} />}
                 />
               </>
               <>

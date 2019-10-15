@@ -2,42 +2,41 @@ import React from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
-import { currentStory } from "../../actions/storiesActions.js";
+import { currentCharacter } from "../../actions/charactersActions.js";
 
 const BASE_URL = "http://localhost:3000/";
 
-
-const EditStory = props => {
-    console.log('Edit Story Form props: ', props)
-  const editStory = e => {
+const EditCharacter = props => {
+    console.log('Edit Character Form props: ', props)
+  const editCharacter = e => {
     e.preventDefault();
-    console.log("saving changes to story");
+    console.log("saving changes to character");
 
-    fetch(BASE_URL+`stories/${props.story.id}`, {
-        method: "PATCH",
+    fetch(BASE_URL + `characters/${props.character.id}`, {
+      method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
         Accept: "application/json"
       },
       body: JSON.stringify({
-        title: document.getElementById("name").value,
+        name: document.getElementById("name").value,
         description: document.getElementById("description").value,
         user: JSON.parse(localStorage.getItem("user")),
-        currentStory: props.story
+        character: props.character
       })
     })
       .then(response => response.json())
-      .then(story => {
-        console.log("story: ", story);
-        props.currentStory(story);
-        props.history.push(`/tome/stories/${story.id}`);
+      .then(character => {
+        console.log("character: ", character);
+        props.currentCharacter(character);
+        props.history.push(`/tome/characters/${character.id}`);
       });
   };
 
   return (
     <>
-      <EditForm {...props} item={props.story} handleEdit={editStory} />
+      <EditForm {...props} item={props.character} handleEdit={editCharacter} />
     </>
   );
 };
@@ -46,17 +45,17 @@ const mapStateToProps = state => {
   return {
     ...state,
     logged_in: state.auth.logged_in,
-    story: state.stories.story
+    character: state.characters.character
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    currentStory: story => dispatch(currentStory(story))
+    currentCharacter: character => dispatch(currentCharacter(character))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(composedAuthHOC(EditStory));
+)(composedAuthHOC(EditCharacter));
