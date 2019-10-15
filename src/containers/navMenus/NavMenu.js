@@ -5,6 +5,7 @@ import { setLoggedOut } from "../../actions/authActions";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import LogOutButton from "../../components/navButtons/LogOutButton";
+import HomeButton from "../../components/navButtons/HomeButton";
 import WorldNavMenu from "./WorldNavMenu";
 import StoriesNavMenu from "./StoriesNavMenu";
 import CharactersNavMenu from "./CharactersNavMenu";
@@ -17,6 +18,8 @@ class NavMenu extends Component {
     return (
       <div id="menu">
         <ul className="navigation">
+          <Route path="/tome" render={props => <HomeButton {...props} />} />
+
           <Route path="/tome/worlds/:id" render={props => <WorldNavMenu />} />
           <Route path="/tome/stories" render={props => <StoriesNavMenu />} />
           <Route
@@ -26,6 +29,16 @@ class NavMenu extends Component {
           <Route
             path="/tome/locations"
             render={props => <LocationsNavMenu />}
+          />
+          <Route path="/tome/new/worlds" render={props => <WorldNavMenu />} />
+          <Route path="/tome/edit/worlds" render={props => <WorldNavMenu />} />
+          <Route
+            path="/tome/new/stories"
+            render={props => <StoriesNavMenu />}
+          />
+          <Route
+            path="/tome/new/characters"
+            render={props => <CharactersNavMenu />}
           />
           <Route path="/tome" render={props => <LogOutButton {...props} />} />
           {/* <Route path="/stories" render={props => <StoriesButton {...props} />} /> */}

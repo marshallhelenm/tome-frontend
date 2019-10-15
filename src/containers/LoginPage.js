@@ -62,9 +62,7 @@ class LoginPage extends Component {
               placeholder="Password"
               className="input_field"
             />
-            <button type="submit" className={"submit_btn"}>
-              Log In
-            </button>
+            <input type="submit" value='Log In' id='submit' name='submit' className={"submit_btn"}/>
           </form>
         </div>
       </div>

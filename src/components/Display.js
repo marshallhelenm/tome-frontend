@@ -2,6 +2,7 @@ import React from "react";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
 import "../css/tome.css";
+import DeleteModal from "./DeleteModal.js";
 
 
 const IMG =
@@ -9,16 +10,34 @@ const IMG =
 
 const Display = props => {
   console.log("Display props: ", props);
+
+  const clickEdit = () => {
+    props.history.push(`/tome/edit/${props.category}/${props.item.id}`);
+  };
+
   return (
     <>
       <div className="content_section">
-        <img src={props.IMG ? props.IMG : IMG} alt={props.img_alt ? props.img_alt : "an antique map"} className={'image_wrapper image_fl display_img'} />
+        <img
+          src={props.IMG ? props.IMG : IMG}
+          alt={props.img_alt ? props.img_alt : "an antique map"}
+          className={"image_wrapper image_fl display_img"}
+        />
         {/* <img src={src} alt={alt} /> */}
         <h2>{props.title}</h2>
       </div>
       <div className="content_section last_section">
         <p>{props.text}</p>
       </div>
+      <input
+        type="submit"
+        value="Edit"
+        id="edit-btn"
+        name="submit"
+        className="submit_btn"
+        onClick={clickEdit}
+      />
+      <DeleteModal handleDelete={props.handleDelete} name={props.title ? props.title : props.name} />
     </>
   );
 };

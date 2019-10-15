@@ -30,7 +30,9 @@ body {
   box-sizing: border-box;
 }
 .item {
-  width: 30%;
+  width: 50%;
+  align-content: center;
+  justify-content: center;
   display: inline-block;
   margin-top: 2rem;
   filter: grayscale(100%);

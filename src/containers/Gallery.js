@@ -6,12 +6,7 @@ import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 
 class Gallery extends Component {
-  // componentDidMount() {
-  //   // console.log("fetching stories");
-  //   this.props.fetchItems(this.props);
-  // }
   generateCards = () => {
-    // console.log("cards!", this.props.stories);
     return this.props.items.map(item => {
       return (
         <Polaroid
@@ -30,10 +25,8 @@ class Gallery extends Component {
 
   clickCard = e => {
     e.preventDefault();
-    // set current story in state
     let item;
     this.props.items.forEach(s => {
-      // console.log(s.id, e.currentTarget.id);
       if (`${s.id}` === `${e.currentTarget.id}`) {
         item = s;
       }
@@ -43,6 +36,11 @@ class Gallery extends Component {
     this.props.currentItem(item);
     this.props.history.push(`/tome/${this.props.type}/${e.currentTarget.id}`);
   };
+
+  newItem = () => {
+    this.props.history.push(`/tome/new/${this.props.type}`);
+  };
+
   render() {
     console.log("gallery props: ", this.props);
     return (
@@ -50,15 +48,15 @@ class Gallery extends Component {
         <div className="content_section">
           <h2>{this.props.title}</h2>
         </div>
-        <div className="content_section last_section gallery_box">
-          {this.generateCards()}
+        <div className="scroll content_section last_section gallery_box">
           <Polaroid
-            handleClick={this.clickCard}
+            handleClick={this.newItem}
             id="new"
             key="new"
             img={this.props.defaultIMG}
             caption="New"
           />
+          {this.generateCards()}
         </div>
       </>
     );

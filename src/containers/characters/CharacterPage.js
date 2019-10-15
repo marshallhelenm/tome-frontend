@@ -12,6 +12,8 @@ class CharacterPage extends Component {
 
     return (
       <Display
+        {...this.props}
+        category='characters'
         IMG={this.props.character.img ? this.props.character.img : IMG}
         img_alt={this.props.character.name}
         item={this.props.character}

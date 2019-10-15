@@ -5,13 +5,18 @@ import LoginPage from "./LoginPage.js";
 import SignUpPage from "./SignUpPage.js";
 import Worlds from "./worlds/Worlds.js";
 import WorldPage from "./worlds/WorldPage.js";
+import NewWorld from "./worlds/NewWorld.js";
 import Stories from "./stories/Stories.js";
 import StoryPage from "./stories/StoryPage.js";
+import NewStory from "./stories/NewStory.js";
+import EditStory from "./stories/EditStory.js";
 import Characters from "./characters/Characters.js";
 import CharacterPage from "./characters/CharacterPage.js";
 import Locations from "./locations/Locations.js";
 import LocationPage from "./locations/LocationPage.js";
 import { Route } from "react-router-dom";
+import NewCharacter from "./characters/NewCharacter";
+import EditWorld from "./worlds/EditWorld";
 
 class Page extends Component {
   render() {
@@ -19,54 +24,88 @@ class Page extends Component {
     return (
       <div id="content">
         <div className="scroll">
-          <div className="scrollContainer">
-    <div className="panel" >
-
-            <Route path="/" exact render={props => <LoginPage {...props} />} />
-            <Route path="/" exact render={props => <SignUpPage {...props} />} />
-
-            <Route
-              path="/tome/worlds"
-              exact
-              render={props => <Worlds {...props} />}
-            />
-            <Route
-              path="/tome/worlds/:id"
-              render={props => <WorldPage {...props} />}
-            />
-
-            <Route
-              path="/tome/stories"
-              exact
-              render={props => <Stories {...props} />}
-            />
-            <Route
-              path="/tome/stories/:id"
-              exact
-              render={props => <StoryPage {...props} />}
-            />
-
-            <Route
-              path="/tome/characters"
-              exact
-              render={props => <Characters {...props} />}
-            />
-            <Route
-              path="/tome/characters/:id"
-              exact
-              render={props => <CharacterPage {...props} />}
-            />
-            <Route
-              path="/tome/locations"
-              exact
-              render={props => <Locations {...props} />}
-            />
-            <Route
-              path="/tome/locations/:id"
-              exact
-              render={props => <LocationPage {...props} />}
-            />
-          </div>
+          <div class="scrollContainer">
+            <div className="panel">
+              <>
+                <Route
+                  path="/"
+                  exact
+                  render={props => <LoginPage {...props} />}
+                />
+                <Route
+                  path="/"
+                  exact
+                  render={props => <SignUpPage {...props} />}
+                />
+              </>
+              <>
+                <Route
+                  path="/tome/worlds"
+                  exact
+                  render={props => <Worlds {...props} />}
+                />
+                <Route
+                  path="/tome/new/worlds"
+                  render={props => <NewWorld {...props} />}
+                />
+                <Route
+                  path="/tome/worlds/:id"
+                  render={props => <WorldPage {...props} />}
+                />
+                <Route
+                  path="/tome/edit/worlds/:id"
+                  render={props => <EditWorld {...props} />}
+                />
+              </>
+              <>
+                <Route
+                  path="/tome/stories"
+                  exact
+                  render={props => <Stories {...props} />}
+                />
+                <Route
+                  path="/tome/stories/:id"
+                  exact
+                  render={props => <StoryPage {...props} />}
+                />
+                <Route
+                  path="/tome/new/stories"
+                  render={props => <NewStory {...props} />}
+                />
+                <Route
+                  path="/tome/edit/stories/:id"
+                  render={props => <EditStory {...props} />}
+                />
+              </>
+              <>
+                <Route
+                  path="/tome/characters"
+                  exact
+                  render={props => <Characters {...props} />}
+                />
+                <Route
+                  path="/tome/characters/:id"
+                  exact
+                  render={props => <CharacterPage {...props} />}
+                />
+                <Route
+                  path="/tome/new/characters"
+                  render={props => <NewCharacter {...props} />}
+                />
+              </>
+              <>
+                <Route
+                  path="/tome/locations"
+                  exact
+                  render={props => <Locations {...props} />}
+                />
+                <Route
+                  path="/tome/locations/:id"
+                  exact
+                  render={props => <LocationPage {...props} />}
+                />
+              </>
+            </div>
           </div>
         </div>
       </div>

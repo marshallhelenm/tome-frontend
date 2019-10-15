@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
-import { fetchStories, fetchWorldStories } from "../../actions/storiesActions.js";
+import {
+  fetchStories,
+  fetchWorldStories
+} from "../../actions/storiesActions.js";
 import { fetchStoryCharacters } from "../../actions/charactersActions.js";
 import { fetchStoryLocations } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 
 class StoryPage extends Component {
   componentDidMount() {
-    console.log('StoryPage props: ', this.props)
+    console.log("StoryPage props: ", this.props);
     this.props.fetchStoryCharacters(this.props.stories.story);
     // this.props.fetchStoryLocations(this.props.story);
   }
@@ -19,6 +22,8 @@ class StoryPage extends Component {
 
     return (
       <Display
+        {...this.props}
+        category="stories"
         IMG={this.props.story.img}
         img_alt={this.props.story.title}
         item={this.props.story}

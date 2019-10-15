@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
-import { fetchLocations, fetchStoryLocations } from "../../actions/locationsActions.js";
+import {
+  fetchLocations,
+  fetchStoryLocations
+} from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 
 class LocationPage extends Component {
@@ -15,6 +18,8 @@ class LocationPage extends Component {
 
     return (
       <Display
+        {...this.props}
+        category="locations"
         IMG={this.props.location.img}
         img_alt={this.props.location.name}
         item={this.props.location}
