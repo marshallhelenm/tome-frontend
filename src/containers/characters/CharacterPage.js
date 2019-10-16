@@ -1,16 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
-import { deleteCharacter } from "../../actions/charactersActions.js";
+import {
+  deleteCharacter,
+  fetchStoryCharacters,
+  fetchWorldCharacters
+} from "../../actions/charactersActions.js";
 import Display from "../../components/Display.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
 
 class CharacterPage extends Component {
-  handleDeleteCharacter = () => {
-    this.props.deleteCharacter(this.props.character);
+  redirectOnDelete = () => {
     this.props.history.push(`/tome/characters`);
+  };
+  handleDeleteCharacter = () => {
+    this.props.deleteCharacter(
+      this.props.character,
+      this.props.stories.story,
+      this.props.worlds.world,
+      this.redirectOnDelete
+    );
   };
 
   render() {
@@ -41,7 +52,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    deleteCharacter: character => dispatch(deleteCharacter(character))
+    deleteCharacter: (character, story, world, redirect) => dispatch(deleteCharacter(character, story, world, redirect)),
+    fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
+    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world))
   };
 };
 export default connect(

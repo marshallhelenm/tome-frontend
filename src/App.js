@@ -4,7 +4,7 @@ import Notebook from "./containers/Notebook";
 import './css/tome.css'
 
 const App = props => {
-  console.log("App props: ", props);
+  // console.log("App props: ", props);
   return (
     <div className="App">
       {/* conditionally route based on logged in flag in store or use a higher order component */}

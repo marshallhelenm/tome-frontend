@@ -25,7 +25,7 @@ import StoryNote from './story_notes/StoryNote'
 
 class Page extends Component {
   render() {
-    console.log("Page props: ", this.props);
+    // console.log("Page props: ", this.props);
     return (
       <div id="content">
         <div className="scroll">

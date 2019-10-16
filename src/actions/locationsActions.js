@@ -22,7 +22,7 @@ export const currentLocation = location => {
   };
 };
 
-export const deleteLocation = location => {
+export const deleteLocation = (location, story, world, redirect) => {
   console.log("deleting this location!");
   return dispatch => {
     return fetch(BASE_URL + `locations/${location.id}`, {
@@ -33,6 +33,10 @@ export const deleteLocation = location => {
         Accept: "application/json"
       },
       body: JSON.stringify({ location })
+    }).then(() => {
+      fetchStoryLocations(story);
+      fetchWorldLocations(world);
+      redirect();
     });
   };
 };

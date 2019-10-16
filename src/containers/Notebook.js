@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 class Notebook extends Component {
   render() {
-    console.log("Notebook props: ", this.props);
+    // console.log("Notebook props: ", this.props);
     return (
       <div id="slider">
         <div id="tooplate_wrapper">

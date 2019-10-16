@@ -4,7 +4,7 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { fetchStoryCharacters } from "../../actions/charactersActions.js";
 import { fetchStoryLocations } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
-import {deleteStory}from '../../actions/storiesActions'
+import { deleteStory } from "../../actions/storiesActions";
 
 class StoryPage extends Component {
   componentDidMount() {
@@ -12,13 +12,17 @@ class StoryPage extends Component {
     this.props.fetchStoryCharacters(this.props.stories.story);
     this.props.fetchStoryLocations(this.props.stories.story);
   }
-
-  handleDeleteStory = () => {
-    this.props.deleteStory(this.props.story);
+  redirectOnDelete = () => {
     this.props.history.push(`/tome/stories`);
   };
-  
-  
+
+  handleDeleteStory = () => {
+    this.props.deleteStory(
+      this.props.stories.story,
+      this.props.worlds.world,
+      this.redirectOnDelete
+    );
+  };
 
   render() {
     console.log("StoryPage props: ", this.props);
@@ -40,14 +44,15 @@ class StoryPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    ...state,
+    ...state
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
     fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
-    deleteStory: story => dispatch(deleteStory(story))
+    deleteStory: (story, world, redirect) =>
+      dispatch(deleteStory(story, world, redirect))
   };
 };
 export default connect(

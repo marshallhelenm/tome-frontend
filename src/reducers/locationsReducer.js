@@ -15,7 +15,6 @@ const reducer = (state = initialState, action) => {
         story_locations: action.payload
       };
     case "CURRENT_LOCATION":
-      console.log("in current location", { ...state, location: action.payload });
       return {
         ...state,
         location: action.payload

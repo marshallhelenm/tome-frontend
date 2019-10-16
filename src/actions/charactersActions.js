@@ -22,8 +22,14 @@ export const currentCharacter = character => {
   };
 };
 
-export const deleteCharacter = character => {
+export const deleteCharacter = (
+  character,
+  story,
+  world,
+  redirect
+) => {
   console.log("deleting this character!");
+  console.log('redirect: ', redirect, world, story)
   return dispatch => {
     return fetch(BASE_URL + `characters/${character.id}`, {
       method: "DELETE",
@@ -33,6 +39,10 @@ export const deleteCharacter = character => {
         Accept: "application/json"
       },
       body: JSON.stringify({ character })
+    }).then(() => {
+      fetchStoryCharacters(story);
+      fetchWorldCharacters(world);
+      redirect()
     });
   };
 };
@@ -67,7 +77,10 @@ export const fetchWorldCharacters = world => {
 };
 
 export const fetchStoryCharacters = story => {
-  console.log("in fetchStoryCharacters fetching characters for a story. story: ", story);
+  console.log(
+    "in fetchStoryCharacters fetching characters for a story. story: ",
+    story
+  );
 
   return dispatch => {
     return fetch(BASE_URL + "getstorycharacters", {

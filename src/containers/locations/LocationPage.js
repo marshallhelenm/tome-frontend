@@ -2,15 +2,27 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import Display from "../../components/Display.js";
-import { deleteLocation } from "../../actions/locationsActions.js";
+import {
+  deleteLocation,
+  fetchStoryLocations,
+  fetchWorldLocations
+} from "../../actions/locationsActions.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
 
 class LocationPage extends Component {
-  handleDeleteLocation = () => {
-    this.props.deleteLocation(this.props.location);
+  redirectOnDelete = () => {
     this.props.history.push(`/tome/locations`);
+  };
+
+  handleDeleteLocation = () => {
+    this.props.deleteLocation(
+      this.props.location,
+      this.props.stories.story,
+      this.props.worlds.world,
+      this.redirectOnDelete
+    );
   };
 
   render() {
@@ -41,7 +53,10 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    deleteLocation: location => dispatch(deleteLocation(location))
+    deleteLocation: (location, story, world, redirect) =>
+      dispatch(deleteLocation(location, story, world, redirect)),
+    fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
+    fetchWorldLocations: world => dispatch(fetchWorldLocations(world))
   };
 };
 export default connect(

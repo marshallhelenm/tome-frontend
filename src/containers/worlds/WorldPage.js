@@ -28,9 +28,12 @@ class WorldPage extends Component {
     this.props.currentLocation(null);
   }
 
-  handleDeleteWorld = () => {
-    this.props.deleteWorld(this.props.world);
+  redirectOnDelete = () => {
     this.props.history.push(`/tome/worlds`);
+  };
+
+  handleDeleteWorld = () => {
+    this.props.deleteWorld(this.props.world, this.redirectOnDelete);
   };
 
   render() {
@@ -66,7 +69,7 @@ const mapDispatchToProps = dispatch => {
     fetchWorldStories: world => dispatch(fetchWorldStories(world)),
     fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
     fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
-    deleteWorld: world => dispatch(deleteWorld(world))
+    deleteWorld: (world, redirect) => dispatch(deleteWorld(world, redirect))
   };
 };
 export default connect(

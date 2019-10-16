@@ -22,8 +22,9 @@ export const currentStory = story => {
   };
 };
 
-export const deleteStory = story => {
+export const deleteStory = (story, world, redirect) => {
   console.log("deleting this story!");
+  console.log('redirect: ', redirect, world, story)
   return dispatch => {
     return fetch(BASE_URL + `stories/${story.id}`, {
       method: "DELETE",
@@ -33,6 +34,9 @@ export const deleteStory = story => {
         Accept: "application/json"
       },
       body: JSON.stringify({ story })
+    }).then(() => {
+      fetchWorldStories(world);
+      redirect()
     });
   };
 };

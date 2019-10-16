@@ -15,7 +15,7 @@ export const currentWorld = world => {
   };
 };
 
-export const deleteWorld = world => {
+export const deleteWorld = (world, redirect) => {
   console.log("deleting this world!");
   return dispatch => {
     return fetch(BASE_URL + `worlds/${world.id}`, {
@@ -26,6 +26,9 @@ export const deleteWorld = world => {
         Accept: "application/json"
       },
       body: JSON.stringify({ world })
+    }).then(() => {
+      fetchWorlds();
+      redirect()
     });
   };
 };
