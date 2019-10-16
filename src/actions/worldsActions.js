@@ -7,15 +7,36 @@ export const setWorlds = worlds => {
   };
 };
 
+export const currentWorld = world => {
+  console.log("set world");
+  return {
+    type: "CURRENT_WORLD",
+    payload: world
+  };
+};
+
+export const deleteWorld = world => {
+  console.log("deleting this world!");
+
+  fetch(BASE_URL + `worlds/${world.id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({ world })
+  });
+};
+
 export const fetchWorlds = () => {
   let user = JSON.parse(localStorage.getItem("user"));
 
   return dispatch => {
-      
     return fetch(BASE_URL + "getworlds", {
       method: "POST",
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
         Accept: "application/json"
       },
@@ -25,12 +46,3 @@ export const fetchWorlds = () => {
       .then(worlds => dispatch(setWorlds(worlds)));
   };
 };
-
-export const currentWorld = (world) =>
-{
-  console.log('set world')
-  return {
-    type: 'CURRENT_WORLD',
-    payload: world
-  }
-}

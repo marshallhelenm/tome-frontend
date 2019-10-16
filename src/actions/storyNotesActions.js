@@ -15,6 +15,21 @@ export const currentStoryNote = story_note => {
   };
 };
 
+export const deleteStoryNote = story_note => {
+  console.log("deleting story_note");
+  return dispatch => {
+    return fetch(BASE_URL + `story_notes/${story_note.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ story_note })
+    })
+  };
+};
+
 export const fetchStoryNotes = story => {
   console.log("running fetchStoryNotes. story: ", story);
 

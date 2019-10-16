@@ -2,32 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import Display from "../../components/Display.js";
+import { deleteLocation } from "../../actions/locationsActions.js";
 
-const BASE_URL = "http://localhost:3000/";
 const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
 
 class LocationPage extends Component {
-
   handleDeleteLocation = () => {
-    this.deleteLocation(this.props.location);
+    this.props.deleteLocation(this.props.location);
+    this.props.history.push(`/tome/locations`);
   };
-  deleteLocation = location => {
-    console.log("deleting this location!");
-
-    fetch(BASE_URL + `locations/${location.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({ location })
-    }).then(() => {
-      this.props.history.push(`/tome/locations`);
-    });
-  };
-
 
   render() {
     console.log("LocationPage props: ", this.props);
@@ -35,7 +19,7 @@ class LocationPage extends Component {
     return (
       <Display
         {...this.props}
-        category='locations'
+        category="locations"
         handleDelete={this.handleDeleteLocation}
         IMG={this.props.location.img ? this.props.location.img : IMG}
         img_alt={this.props.location.name}
@@ -55,7 +39,11 @@ const mapStateToProps = state => {
     location: state.locations.location
   };
 };
-const mapDispatchToProps = dispatch => {};
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteLocation: location => dispatch(deleteLocation(location))
+  };
+};
 export default connect(
   mapStateToProps,
   mapDispatchToProps

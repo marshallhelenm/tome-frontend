@@ -3,7 +3,7 @@ import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import NewForm from "../NewForm";
 import { connect } from "react-redux";
-import { currentStoryNote } from "../../actions/storyNotesActions.js";
+import { currentStoryNote, deleteStoryNote } from "../../actions/storyNotesActions.js";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -33,14 +33,20 @@ const StoryNote = props => {
       .then(note => {
         console.log("new note: ", note);
         props.currentStoryNote(note);
-        props.history.push(`tome/story_notes/${note.id}`);
+        props.history.push(`/tome/story_notes/${note.id}`);
       });
   };
 
+  const handleDeleteNote = ()=>{
+    props.deleteStoryNote(props.story_notes.story_note)
+    props.history.push('/tome/story_notes')
+  }
+
   const editNote = e => {
     e.preventDefault();
+    console.log('saving changes to story_note')
 
-    fetch(BASE_URL + `story_notes/${props.story_note.id}`, {
+    fetch(BASE_URL + `story_notes/${props.story_notes.story_note.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -50,19 +56,20 @@ const StoryNote = props => {
       body: JSON.stringify({
         title: document.getElementById("name").value,
         content: document.getElementById("description").value,
-        user: JSON.parse(localStorage.getItem("user"))
+        note: props.story_notes.story_note
       })
     });
-    // .then(response => response.json())
-    // .then(note => {
-    //   console.log("note: ", note);
-    // });
   };
 
   return props.new === true ? (
     <NewForm {...props} type="Note" handleNew={createNote} />
   ) : (
-    <EditForm {...props} item={props.story} handleEdit={editNote} />
+    <EditForm
+      {...props}
+      handleDelete={handleDeleteNote}
+      item={props.story_notes.story_note}
+      handleEdit={editNote}
+    />
   );
 };
 
@@ -73,7 +80,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return { currentStoryNote: note => dispatch(currentStoryNote(note)) };
+  return { currentStoryNote: note => dispatch(currentStoryNote(note)), deleteStoryNote: note => dispatch(deleteStoryNote(note)) };
 };
 
 export default connect(

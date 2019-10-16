@@ -2,12 +2,17 @@ import React from "react";
 import EditForm from "../EditForm.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
-import {currentWorld}from "../../actions/worldsActions.js"
+import { currentWorld, deleteWorld } from "../../actions/worldsActions.js";
 
 const BASE_URL = "http://localhost:3000/";
 
 const EditWorld = props => {
   console.log("EditWorld props: ", props);
+
+  const handleDeleteWorld = () => {
+    this.props.deleteWorld(this.props.world);
+    this.props.history.push(`/tome/worlds`);
+  };
 
   const editWorld = e => {
     e.preventDefault();
@@ -37,7 +42,12 @@ const EditWorld = props => {
 
   return (
     <>
-      <EditForm {...props} item={props.world} handleEdit={editWorld} />
+      <EditForm
+        {...props}
+        item={props.world}
+        handleEdit={editWorld}
+        handleDelete={handleDeleteWorld}
+      />
     </>
   );
 };
@@ -51,20 +61,13 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-      currentWorld: world => dispatch(currentWorld(world))
-    };
+  return {
+    currentWorld: world => dispatch(currentWorld(world)),
+    deleteWorld: world => dispatch(deleteWorld(world))
   };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(composedAuthHOC(EditWorld));
-
-
-
-
-
-
-
-
-
-
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(composedAuthHOC(EditWorld));

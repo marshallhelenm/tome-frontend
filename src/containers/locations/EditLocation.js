@@ -2,12 +2,21 @@ import React from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
-import { currentLocation } from "../../actions/locationsActions.js";
+import {
+  currentLocation,
+  deleteLocation
+} from "../../actions/locationsActions.js";
 
 const BASE_URL = "http://localhost:3000/";
 
 const EditLocation = props => {
-    console.log('Edit Location Form props: ', props)
+  console.log("Edit Location Form props: ", props);
+
+  const handleDeleteLocation = () => {
+    this.props.deleteLocation(this.props.location);
+    this.props.history.push(`/tome/locations`);
+  };
+
   const editLocation = e => {
     e.preventDefault();
     console.log("saving changes to location");
@@ -36,7 +45,12 @@ const EditLocation = props => {
 
   return (
     <>
-      <EditForm {...props} item={props.location} handleEdit={editLocation} />
+      <EditForm
+        {...props}
+        item={props.location}
+        handleEdit={editLocation}
+        handleDelete={handleDeleteLocation}
+      />
     </>
   );
 };
@@ -51,7 +65,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    currentLocation: location => dispatch(currentLocation(location))
+    currentLocation: location => dispatch(currentLocation(location)),
+    deleteLocation: location => dispatch(deleteLocation(location))
   };
 };
 

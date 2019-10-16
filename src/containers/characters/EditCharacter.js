@@ -2,12 +2,21 @@ import React from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
-import { currentCharacter } from "../../actions/charactersActions.js";
+import {
+  currentCharacter,
+  deleteCharacter
+} from "../../actions/charactersActions.js";
 
 const BASE_URL = "http://localhost:3000/";
 
 const EditCharacter = props => {
-    console.log('Edit Character Form props: ', props)
+  console.log("Edit Character Form props: ", props);
+
+  const handleDeleteCharacter = () => {
+    this.props.deleteCharacter(this.props.character);
+    this.props.history.push(`/tome/characters`);
+  };
+
   const editCharacter = e => {
     e.preventDefault();
     console.log("saving changes to character");
@@ -36,7 +45,12 @@ const EditCharacter = props => {
 
   return (
     <>
-      <EditForm {...props} item={props.character} handleEdit={editCharacter} />
+      <EditForm
+        {...props}
+        item={props.character}
+        handleEdit={editCharacter}
+        handleDelete={handleDeleteCharacter}
+      />
     </>
   );
 };
@@ -51,7 +65,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    currentCharacter: character => dispatch(currentCharacter(character))
+    currentCharacter: character => dispatch(currentCharacter(character)),
+    deleteCharacter: character => dispatch(deleteCharacter(character))
   };
 };
 

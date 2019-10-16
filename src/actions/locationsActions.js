@@ -22,6 +22,20 @@ export const currentLocation = location => {
   };
 };
 
+export const deleteLocation = location => {
+  console.log("deleting this location!");
+
+  fetch(BASE_URL + `locations/${location.id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({ location })
+  });
+};
+
 export const fetchWorldLocations = world => {
   let user = JSON.parse(localStorage.getItem("user"));
   console.log("running fetchWorldLocations. current world: ", world);

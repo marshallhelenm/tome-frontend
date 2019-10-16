@@ -6,11 +6,16 @@ import {
   fetchWorldStories,
   currentStory
 } from "../../actions/storiesActions.js";
-import { fetchWorldCharacters, currentCharacter } from "../../actions/charactersActions.js";
-import { currentLocation, fetchWorldLocations } from "../../actions/locationsActions.js";
+import {
+  fetchWorldCharacters,
+  currentCharacter
+} from "../../actions/charactersActions.js";
+import {
+  currentLocation,
+  fetchWorldLocations
+} from "../../actions/locationsActions.js";
+import { deleteWorld } from "../../actions/worldsActions.js";
 import Display from "../../components/Display.js";
-
-const BASE_URL = "http://localhost:3000/";
 
 class WorldPage extends Component {
   componentDidMount() {
@@ -22,23 +27,10 @@ class WorldPage extends Component {
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
   }
-  handleDeleteWorld = () => {
-    this.deleteWorld(this.props.world);
-  };
-  deleteWorld = world => {
-    console.log("deleting this world!");
 
-    fetch(BASE_URL + `worlds/${world.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({ world })
-    }).then(() => {
-      this.props.history.push(`/tome/worlds`);
-    });
+  handleDeleteWorld = () => {
+    this.props.deleteWorld(this.props.world);
+    this.props.history.push(`/tome/worlds`);
   };
 
   render() {
@@ -73,7 +65,8 @@ const mapDispatchToProps = dispatch => {
     currentLocation: location => dispatch(currentLocation(location)),
     fetchWorldStories: world => dispatch(fetchWorldStories(world)),
     fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
-    fetchWorldLocations: world => dispatch(fetchWorldLocations(world))
+    fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
+    deleteWorld: world => dispatch(deleteWorld(world))
   };
 };
 export default connect(

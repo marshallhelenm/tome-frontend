@@ -22,6 +22,20 @@ export const currentCharacter = character => {
   };
 };
 
+export const deleteCharacter = character => {
+  console.log("deleting this character!");
+
+  fetch(BASE_URL + `characters/${character.id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({ character })
+  })
+}
+
 export const fetchWorldCharacters = world => {
   let user = JSON.parse(localStorage.getItem("user"));
   console.log("running fetchWorldCharacters. current world: ", world);

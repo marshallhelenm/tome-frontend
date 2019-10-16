@@ -4,8 +4,7 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { fetchStoryCharacters } from "../../actions/charactersActions.js";
 import { fetchStoryLocations } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
-
-const BASE_URL = "http://localhost:3000/";
+import {deleteStory}from '../../actions/storiesActions'
 
 class StoryPage extends Component {
   componentDidMount() {
@@ -15,24 +14,11 @@ class StoryPage extends Component {
   }
 
   handleDeleteStory = () => {
-    this.deleteStory(this.props.story);
+    this.props.deleteStory(this.props.story);
+    this.props.history.push(`/tome/stories`);
   };
   
-  deleteStory = story => {
-    console.log("deleting this story!");
-
-    fetch(BASE_URL + `stories/${story.id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({ story })
-    }).then(() => {
-      this.props.history.push(`/tome/stories`);
-    });
-  };
+  
 
   render() {
     console.log("StoryPage props: ", this.props);
@@ -60,7 +46,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
-    fetchStoryLocations: story => dispatch(fetchStoryLocations(story))
+    fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
+    deleteStory: story => dispatch(deleteStory(story))
   };
 };
 export default connect(
