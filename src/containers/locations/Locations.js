@@ -14,7 +14,7 @@ const IMG =
 class Locations extends Component {
   componentDidMount() {
     console.log('Locations props: ', this.props)
-    this.props.stories.story ? this.props.fetchStoryLocations(this.props.stories.story) :
+    // this.props.stories.story ? this.props.fetchStoryLocations(this.props.stories.story) :
     this.props.fetchWorldLocations(this.props.worlds.world);
   }
 

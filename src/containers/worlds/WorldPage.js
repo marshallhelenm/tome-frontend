@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import {
   fetchStories,
-  fetchWorldStories
+  fetchWorldStories,
+  currentStory
 } from "../../actions/storiesActions.js";
-import { fetchWorldCharacters } from "../../actions/charactersActions.js";
+import { fetchWorldCharacters, currentCharacter } from "../../actions/charactersActions.js";
+import { currentLocation, fetchWorldLocations } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 
 const BASE_URL = "http://localhost:3000/";
@@ -15,6 +17,10 @@ class WorldPage extends Component {
     console.log("WorldPage props: ", this.props);
     this.props.fetchWorldStories(this.props.world);
     this.props.fetchWorldCharacters(this.props.world);
+    this.props.fetchWorldLocations(this.props.world);
+    this.props.currentStory(null);
+    this.props.currentCharacter(null);
+    this.props.currentLocation(null);
   }
   handleDeleteWorld = () => {
     this.deleteWorld(this.props.world);
@@ -42,7 +48,7 @@ class WorldPage extends Component {
         handleDelete={this.handleDeleteWorld}
         IMG={this.props.world ? this.props.world.img : null}
         img_alt={this.props.world.name}
-        category="worlds"
+        category={"worlds"}
         item={this.props.world}
         title={this.props.world.name}
         text={this.props.world.description}
@@ -62,8 +68,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchStories: () => dispatch(fetchStories()),
+    currentStory: story => dispatch(currentStory(story)),
+    currentCharacter: character => dispatch(currentCharacter(character)),
+    currentLocation: location => dispatch(currentLocation(location)),
     fetchWorldStories: world => dispatch(fetchWorldStories(world)),
-    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world))
+    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
+    fetchWorldLocations: world => dispatch(fetchWorldLocations(world))
   };
 };
 export default connect(

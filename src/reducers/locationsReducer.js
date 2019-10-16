@@ -4,7 +4,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_LOCATION":
+    case "SET_LOCATIONS":
       return {
         ...state,
         locations: action.payload

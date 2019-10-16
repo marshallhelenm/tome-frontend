@@ -9,7 +9,8 @@ class Sidebar extends Component {
             <div id='tooplate_sidebar'>
 
                 <div id='header'>
-                    <h1><a href='http://localhost:3001/tome'>Image Here</a> </h1>
+                  <h3>The World Builder's</h3>
+                    <h1>Tome</h1>
                 </div>
 
                 <NavMenu />

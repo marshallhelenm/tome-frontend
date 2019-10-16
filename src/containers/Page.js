@@ -14,10 +14,14 @@ import Characters from "./characters/Characters.js";
 import CharacterPage from "./characters/CharacterPage.js";
 import Locations from "./locations/Locations.js";
 import LocationPage from "./locations/LocationPage.js";
+import NewLocation from "./locations/NewLocation.js";
+import EditLocation from "./locations/EditLocation.js";
 import { Route } from "react-router-dom";
 import EditCharacter from "./characters/EditCharacter.js";
 import NewCharacter from "./characters/NewCharacter";
 import EditWorld from "./worlds/EditWorld";
+import StoryNotes from './story_notes/StoryNotes'
+import StoryNote from './story_notes/StoryNote'
 
 class Page extends Component {
   render() {
@@ -25,7 +29,7 @@ class Page extends Component {
     return (
       <div id="content">
         <div className="scroll">
-          <div class="scrollContainer">
+          <div className="scrollContainer">
             <div className="panel">
               <>
                 <Route
@@ -108,6 +112,31 @@ class Page extends Component {
                   path="/tome/locations/:id"
                   exact
                   render={props => <LocationPage {...props} />}
+                />
+                <Route
+                  path="/tome/new/locations"
+                  render={props => <NewLocation {...props} />}
+                />
+                <Route
+                  path="/tome/edit/locations/:id"
+                  render={props => <EditLocation {...props} />}
+                />
+              </>
+              <>
+                <Route
+                  path="/tome/story_notes"
+                  exact
+                  render={props => <StoryNotes {...props} />}
+                />
+                <Route
+                  path="/tome/story_notes/:id"
+                  exact
+                  render={props => <StoryNote {...props} />}
+                />
+                <Route
+                  path="/tome/new/story_notes"
+                  exact
+                  render={props => <StoryNote new={true} {...props} />}
                 />
               </>
             </div>

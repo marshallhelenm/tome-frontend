@@ -15,8 +15,8 @@ body {
 	background-repeat: repeat;
 }
 
-a, a:link, a:visited { color: #de6d19; text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* a, a:link, a:visited { color: #de6d19; text-decoration: none; }
+a:hover { text-decoration: underline; } */
 
 p { margin: 0 0 15px 0; padding: 0; }
 img { border: none; }

@@ -37,7 +37,7 @@ class NewCharacter extends Component {
       .then(newCharacter => {
         console.log("newCharacter: ", newCharacter);
         this.props.currentCharacter(newCharacter);
-        this.props.fetchWorldCharacters(this.props);
+        // this.props.fetchWorldCharacters(this.props);
         this.props.history.push(`/tome/characters/${newCharacter.id}`);
       });
   };

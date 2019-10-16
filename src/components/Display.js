@@ -3,7 +3,7 @@ import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
 import "../css/tome.css";
 import DeleteModal from "./DeleteModal.js";
-
+import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
@@ -26,6 +26,11 @@ const Display = props => {
         {/* <img src={src} alt={alt} /> */}
         <h2>{props.title}</h2>
       </div>
+      {props.category === "stories" ? (
+        <div>
+          <StoryPageButtons {...props} />
+        </div>
+      ) : null}
       <div className="content_section last_section">
         <p>{props.text}</p>
       </div>
@@ -37,7 +42,10 @@ const Display = props => {
         className="submit_btn"
         onClick={clickEdit}
       />
-      <DeleteModal handleDelete={props.handleDelete} name={props.title ? props.title : props.name} />
+      <DeleteModal
+        handleDelete={props.handleDelete}
+        name={props.title ? props.title : props.name}
+      />
     </>
   );
 };

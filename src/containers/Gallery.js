@@ -45,9 +45,13 @@ class Gallery extends Component {
     console.log("gallery props: ", this.props);
     return (
       <>
-        <div className="content_section">
-          <h2>{this.props.title}</h2>
-        </div>
+        {this.props.stories.story ? (
+          <h1>{this.props.stories.story.title}</h1>
+        ) : (
+          <div className="content_section">
+            <h2>{this.props.title}</h2>
+          </div>
+        )}
         <div className="scroll content_section last_section gallery_box">
           <Polaroid
             handleClick={this.newItem}

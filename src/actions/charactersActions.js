@@ -14,12 +14,23 @@ export const setStoryCharacters = characters => {
   };
 };
 
+export const currentCharacter = character => {
+  console.log("set character");
+  return {
+    type: "CURRENT_CHARACTER",
+    payload: character
+  };
+};
+
 export const fetchWorldCharacters = world => {
   let user = JSON.parse(localStorage.getItem("user"));
   console.log("running fetchWorldCharacters. current world: ", world);
 
   return dispatch => {
-    console.log("running fetchWorldCharacters dispatch. current world: ", world);
+    console.log(
+      "running fetchWorldCharacters dispatch. current world: ",
+      world
+    );
 
     return fetch(BASE_URL + "getcharacters", {
       method: "POST",
@@ -58,13 +69,5 @@ export const fetchStoryCharacters = story => {
     })
       .then(res => res.json())
       .then(characters => dispatch(setStoryCharacters(characters)));
-  };
-};
-
-export const currentCharacter = character => {
-  console.log("set character");
-  return {
-    type: "CURRENT_CHARACTER",
-    payload: character
   };
 };

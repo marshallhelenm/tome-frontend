@@ -12,10 +12,13 @@ const reducer = (state = initialState, action) => {
     case "SET_STORY_CHARACTERS":
       return {
         ...state,
-        story_characters: action.payload
+          story_characters: action.payload
       };
     case "CURRENT_CHARACTER":
-      console.log("in current character", { ...state, character: action.payload });
+      console.log("in current character", {
+        ...state,
+        character: action.payload
+      });
       return {
         ...state,
         character: action.payload

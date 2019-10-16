@@ -5,7 +5,7 @@ import {
   currentCharacter,
   fetchStoryCharacters
 } from "../../actions/charactersActions.js";
-import { connect } from "react-redux"; 
+import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 
 const IMG =
@@ -13,7 +13,7 @@ const IMG =
 
 class Characters extends Component {
   componentDidMount() {
-    console.log('Characters props: ', this.props)
+    console.log("Characters props: ", this.props);
     this.props.stories.story ? this.props.fetchStoryCharacters(this.props.stories.story) :
     this.props.fetchWorldCharacters(this.props.worlds.world);
   }
@@ -25,7 +25,11 @@ class Characters extends Component {
         {...this.props}
         currentItem={this.props.currentCharacter}
         defaultIMG={IMG}
-        items={this.props.characters.story_characters ? this.props.characters.story_characters : this.props.characters.characters}
+        items={
+          this.props.characters.story_characters
+            ? this.props.characters.story_characters
+            : this.props.characters.characters
+        }
         type="characters"
         title={"Characters"}
       />
@@ -41,7 +45,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchWorldCharacters: (world) => dispatch(fetchWorldCharacters(world)),
+    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
     fetchStoryCharacters: () => dispatch(fetchStoryCharacters()),
     currentCharacter: character => dispatch(currentCharacter(character))
   };

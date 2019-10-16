@@ -14,13 +14,19 @@ export const setStoryLocations = locations => {
   };
 };
 
+export const currentLocation = location => {
+  console.log("set location");
+  return {
+    type: "CURRENT_LOCATION",
+    payload: location
+  };
+};
+
 export const fetchWorldLocations = world => {
   let user = JSON.parse(localStorage.getItem("user"));
   console.log("running fetchWorldLocations. current world: ", world);
 
   return dispatch => {
-    console.log("running fetchWorldLocations dispatch. current world: ", world);
-
     return fetch(BASE_URL + "getlocations", {
       method: "POST",
       headers: {
@@ -34,7 +40,10 @@ export const fetchWorldLocations = world => {
       })
     })
       .then(res => res.json())
-      .then(locations => dispatch(setLocations(locations)));
+      .then(locations => {
+        console.log("what fetchWorldLocations returned: ", locations);
+        dispatch(setLocations(locations));
+      });
   };
 };
 
@@ -57,14 +66,9 @@ export const fetchStoryLocations = story => {
       })
     })
       .then(res => res.json())
-      .then(locations => dispatch(setStoryLocations(locations)));
-  };
-};
-
-export const currentLocation = location => {
-  console.log("set location");
-  return {
-    type: "CURRENT_LOCATION",
-    payload: location
+      .then(locations => {
+        console.log("what fetchStoryLocations returned: ", locations);
+        dispatch(setStoryLocations(locations));
+      });
   };
 };
