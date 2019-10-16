@@ -6,12 +6,12 @@ import WorldsButton from "../../components/navButtons/WorldsButton";
 import StoryButton from "../../components/navButtons/StoryButton";
 import { connect } from "react-redux";
 
-const CharacterNavMenu = props => {
+const StoryNotesNavMenu = props => {
   return (
     <>
       <WorldsButton />
       <StoriesButton />
-      {props.stories.story ? <StoryButton story={props.stories.story} /> : null}
+      <StoryButton story={props.stories.story} />
       <CharactersButton />
       <LocationsButton />
     </>
@@ -24,4 +24,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(CharacterNavMenu);
+export default connect(mapStateToProps)(StoryNotesNavMenu);

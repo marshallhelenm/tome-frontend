@@ -24,16 +24,17 @@ export const currentStory = story => {
 
 export const deleteStory = story => {
   console.log("deleting this story!");
-
-  fetch(BASE_URL + `stories/${story.id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({ story })
-  })
+  return dispatch => {
+    return fetch(BASE_URL + `stories/${story.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ story })
+    });
+  };
 };
 
 export const fetchStories = () => {

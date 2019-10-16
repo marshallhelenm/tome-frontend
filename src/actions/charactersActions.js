@@ -24,17 +24,18 @@ export const currentCharacter = character => {
 
 export const deleteCharacter = character => {
   console.log("deleting this character!");
-
-  fetch(BASE_URL + `characters/${character.id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({ character })
-  })
-}
+  return dispatch => {
+    return fetch(BASE_URL + `characters/${character.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ character })
+    });
+  };
+};
 
 export const fetchWorldCharacters = world => {
   let user = JSON.parse(localStorage.getItem("user"));
@@ -59,14 +60,14 @@ export const fetchWorldCharacters = world => {
       })
     })
       .then(res => res.json())
-      .then(characters => dispatch(setCharacters(characters)));
+      .then(characters => {
+        dispatch(setCharacters(characters));
+      });
   };
 };
 
 export const fetchStoryCharacters = story => {
-  console.log("in fetchStoryCharacters fetching characters for a story");
-
-  let user = JSON.parse(localStorage.getItem("user"));
+  console.log("in fetchStoryCharacters fetching characters for a story. story: ", story);
 
   return dispatch => {
     return fetch(BASE_URL + "getstorycharacters", {
@@ -77,11 +78,12 @@ export const fetchStoryCharacters = story => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        user: user,
         story: story
       })
     })
       .then(res => res.json())
-      .then(characters => dispatch(setStoryCharacters(characters)));
+      .then(story_characters => {
+        dispatch(setStoryCharacters(story_characters));
+      });
   };
 };

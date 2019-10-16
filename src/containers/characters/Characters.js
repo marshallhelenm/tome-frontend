@@ -14,8 +14,10 @@ const IMG =
 class Characters extends Component {
   componentDidMount() {
     console.log("Characters props: ", this.props);
-    this.props.stories.story ? this.props.fetchStoryCharacters(this.props.stories.story) :
-    this.props.fetchWorldCharacters(this.props.worlds.world);
+    console.log("story: ", this.props.stories.story);
+    this.props.stories.story
+      ? this.props.fetchStoryCharacters(this.props.stories.story)
+      : this.props.fetchWorldCharacters(this.props.worlds.world);
   }
 
   render() {
@@ -26,7 +28,7 @@ class Characters extends Component {
         currentItem={this.props.currentCharacter}
         defaultIMG={IMG}
         items={
-          this.props.characters.story_characters
+          this.props.stories.story
             ? this.props.characters.story_characters
             : this.props.characters.characters
         }
@@ -46,7 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
-    fetchStoryCharacters: () => dispatch(fetchStoryCharacters()),
+    fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
     currentCharacter: character => dispatch(currentCharacter(character))
   };
 };

@@ -10,3 +10,7 @@
 .gallery_box > div {
   flex: 0 0 50%;
 }
+
+#story_id{
+  display: none;
+}

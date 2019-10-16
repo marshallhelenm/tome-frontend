@@ -17,16 +17,17 @@ export const currentWorld = world => {
 
 export const deleteWorld = world => {
   console.log("deleting this world!");
-
-  fetch(BASE_URL + `worlds/${world.id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({ world })
-  });
+  return dispatch => {
+    return fetch(BASE_URL + `worlds/${world.id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ world })
+    });
+  };
 };
 
 export const fetchWorlds = () => {

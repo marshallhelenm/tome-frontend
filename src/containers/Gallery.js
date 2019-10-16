@@ -46,7 +46,10 @@ class Gallery extends Component {
     return (
       <>
         {this.props.stories.story ? (
-          <h1>{this.props.stories.story.title}</h1>
+          <div className="content_section">
+            <h1>{this.props.stories.story.title}</h1>
+            <h2>{this.props.title}</h2>
+          </div>
         ) : (
           <div className="content_section">
             <h2>{this.props.title}</h2>

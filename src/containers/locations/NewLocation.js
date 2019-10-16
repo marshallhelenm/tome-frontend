@@ -19,8 +19,8 @@ class NewLocation extends Component {
     let location = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      user: JSON.parse(localStorage.getItem("user")),
-      world: this.props.worlds.world
+      world: this.props.worlds.world,
+      story_id: document.getElementById("story_id").innerText
     };
     fetch(BASE_URL + "locations/new", {
       method: "POST",

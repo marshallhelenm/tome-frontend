@@ -25,7 +25,7 @@ class Stories extends Component {
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
-    this.props.setStoryCharacters(null);
+    this.props.setStoryCharacters([]);
   }
 
   render() {

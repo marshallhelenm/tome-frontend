@@ -25,7 +25,7 @@ class Worlds extends Component {
     this.props.currentWorld(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
-    this.props.setStoryCharacters(null);
+    this.props.setStoryCharacters([]);
   }
   render() {
     console.log("Worlds props: ", this.props);
@@ -45,8 +45,7 @@ class Worlds extends Component {
 
 const mapStateToProps = state => {
   return {
-    worlds: state.worlds.worlds,
-    logged_in: state.auth.logged_in
+    ...state
   };
 };
 

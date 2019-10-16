@@ -5,7 +5,6 @@ import { setLoggedOut } from "../../actions/authActions";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import LogOutButton from "../../components/navButtons/LogOutButton";
-import HomeButton from "../../components/navButtons/HomeButton";
 import WorldNavMenu from "./WorldNavMenu";
 import StoriesNavMenu from "./StoriesNavMenu";
 import StoryNavMenu from "./StoryNavMenu";
@@ -13,73 +12,89 @@ import CharactersNavMenu from "./CharactersNavMenu";
 import CharacterNavMenu from "./CharacterNavMenu";
 import LocationsNavMenu from "./LocationsNavMenu";
 import LocationNavMenu from "./LocationNavMenu";
+import StoryNotesNavMenu from "./StoryNotesNavMenu";
 import StoryNotesButton from "../../components/navButtons/StoryNotesButton";
+import WorldsButton from "../../components/navButtons/WorldsButton";
 
 class NavMenu extends Component {
   // Will create methods etc to make sure that menu shows correct things at the correct times
-
   render() {
+    // console.log("navmenu props: ", this.props);
     return (
       <div id="menu">
         <ul className="navigation">
-          <Route path="/tome" render={props => <HomeButton {...props} />} />
+          <Route path="/tome" render={props => <WorldsButton {...props} />} />
           <>
-            <Route path="/tome/worlds/:id" render={props => <WorldNavMenu />} />
-            <Route path="/tome/new/worlds" render={props => <WorldNavMenu />} />
+            <Route
+              path="/tome/worlds/:id"
+              render={props => <WorldNavMenu {...props} />}
+            />
+            <Route
+              path="/tome/new/worlds"
+              render={props => <WorldNavMenu {...props} />}
+            />
             <Route
               path="/tome/edit/worlds"
-              render={props => <WorldNavMenu />}
+              render={props => <WorldNavMenu {...props} />}
             />
           </>
           <>
             <Route
               path="/tome/stories/:id"
-              render={props => <StoryNavMenu />}
+              render={props => <StoryNavMenu {...props} />}
             />
             <Route
               path="/tome/stories"
               exact
-              render={props => <StoriesNavMenu />}
+              render={props => <StoriesNavMenu {...props} />}
             />
             <Route
               path="/tome/edit/stories"
-              render={props => <StoriesNavMenu />}
+              render={props => <StoriesNavMenu {...props} />}
             />
             <Route
               path="/tome/new/stories"
-              render={props => <StoriesNavMenu />}
+              render={props => <StoriesNavMenu {...props} />}
             />
           </>
           <>
             <Route
               path="/tome/characters/:id"
-              render={props => <CharacterNavMenu />}
+              render={props => <CharacterNavMenu {...props} />}
             />
             <Route
               path="/tome/characters"
-              render={props => <CharactersNavMenu />}
+              exact
+              render={props => <CharactersNavMenu {...props} />}
             />
             <Route
               path="/tome/new/characters"
-              render={props => <CharactersNavMenu />}
+              render={props => <CharactersNavMenu {...props} />}
             />
           </>
           <>
             <Route
               path="/tome/locations/:id"
-              render={props => <LocationNavMenu />}
+              render={props => <LocationNavMenu {...props} />}
             />
             <Route
               path="/tome/locations"
-              render={props => <LocationsNavMenu />}
+              exact
+              render={props => <LocationsNavMenu {...props} />}
             />
             <Route
               path="/tome/new/locations"
-              render={props => <LocationsNavMenu />}
+              render={props => <LocationsNavMenu {...props} />}
             />
           </>
-          <Route path="/tome/story_notes" render={props => <StoryNavMenu />} />
-          <Route path='/tome/story_notes/:id' render={props => <StoryNotesButton /> } />
+          <Route
+            path="/tome/story_notes"
+            render={props => <StoryNotesNavMenu {...props} />}
+          />
+          <Route
+            path="/tome/story_notes/:id"
+            render={props => <StoryNotesButton />}
+          />
           <Route path="/tome" render={props => <LogOutButton {...props} />} />
           {/* <Route path="/stories" render={props => <StoriesButton {...props} />} /> */}
         </ul>

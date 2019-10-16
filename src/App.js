@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Notebook from "./containers/Notebook";
+import './css/tome.css'
 
 const App = props => {
   console.log("App props: ", props);

@@ -15,10 +15,6 @@ const reducer = (state = initialState, action) => {
           story_characters: action.payload
       };
     case "CURRENT_CHARACTER":
-      console.log("in current character", {
-        ...state,
-        character: action.payload
-      });
       return {
         ...state,
         character: action.payload
