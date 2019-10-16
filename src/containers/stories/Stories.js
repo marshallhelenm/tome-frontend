@@ -22,6 +22,7 @@ const IMG =
 
 class Stories extends Component {
   componentDidMount() {
+    this.props.fetchWorldStories(this.props.worlds.world);
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
