@@ -20,12 +20,12 @@ import Display from "../../components/Display.js";
 class WorldPage extends Component {
   componentDidMount() {
     console.log("WorldPage props: ", this.props);
-    this.props.fetchWorldStories(this.props.world);
-    this.props.fetchWorldCharacters(this.props.world);
-    this.props.fetchWorldLocations(this.props.world);
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
+    this.props.fetchWorldStories(this.props.world);
+    this.props.fetchWorldCharacters(this.props.world);
+    this.props.fetchWorldLocations(this.props.world);
   }
 
   redirectOnDelete = () => {

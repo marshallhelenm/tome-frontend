@@ -14,8 +14,10 @@ const IMG =
 class Locations extends Component {
   componentDidMount() {
     console.log("Locations props: ", this.props);
-    // this.props.stories.story ? this.props.fetchStoryLocations(this.props.stories.story) :
-    this.props.fetchWorldLocations(this.props.worlds.world);
+    console.log("story: ", this.props.stories.story);
+    this.props.stories.story
+      ? this.props.fetchStoryLocations(this.props.stories.story)
+      : this.props.fetchWorldLocations(this.props.worlds.world);
   }
 
   render() {
@@ -26,7 +28,7 @@ class Locations extends Component {
         currentItem={this.props.currentLocation}
         defaultIMG={IMG}
         items={
-          this.props.locations.story_locations
+          this.props.stories.story
             ? this.props.locations.story_locations
             : this.props.locations.locations
         }

@@ -70,7 +70,6 @@ const mapStateToProps = state => {
   return {
     ...state,
     characters: state.characters.characters,
-    logged_in: state.auth.logged_in,
     character: state.characters.character
   };
 };
