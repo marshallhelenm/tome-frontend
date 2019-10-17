@@ -39,7 +39,12 @@ class CharacterPage extends Component {
         character_id: this.props.character.id,
         story_id: story_id
       })
-    }).then(fetchStoryCharacters(this.props.stories.story))
+    })
+    .then(response=>response.json())
+    .then(story => {
+      console.log(story);
+      fetchStoryCharacters(story);
+    });
   };
 
   render() {
