@@ -87,14 +87,20 @@ class NavMenu extends Component {
               render={props => <LocationsNavMenu {...props} />}
             />
           </>
-          <Route
-            path="/tome/story_notes"
-            render={props => <StoryNotesNavMenu {...props} />}
-          />
-          <Route
-            path="/tome/story_notes/:id"
-            render={props => <StoryNotesButton />}
-          />
+          <>
+            <Route
+              path="/tome/story_notes"
+              render={props => <StoryNotesNavMenu {...props} />}
+            />
+            <Route
+              path="/tome/new/story_notes"
+              render={props => <StoryNotesNavMenu {...props} />}
+            />
+            <Route
+              path="/tome/story_notes/:id"
+              render={props => <StoryNotesButton />}
+            />
+          </>
           <Route path="/tome" render={props => <LogOutButton {...props} />} />
           {/* <Route path="/stories" render={props => <StoriesButton {...props} />} /> */}
         </ul>

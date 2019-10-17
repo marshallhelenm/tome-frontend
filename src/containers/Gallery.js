@@ -32,7 +32,7 @@ class Gallery extends Component {
       }
       return item;
     });
-    console.log("item: ", item);
+    // console.log("item: ", item);
     this.props.currentItem(item);
     this.props.history.push(`/tome/${this.props.type}/${e.currentTarget.id}`);
   };

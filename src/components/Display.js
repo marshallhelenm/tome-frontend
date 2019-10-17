@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "../css/tome.css";
 import DeleteModal from "./DeleteModal.js";
 import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
+import AddToStory from "./AddToStory.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
@@ -46,6 +47,7 @@ const Display = props => {
         handleDelete={props.handleDelete}
         name={props.title ? props.title : props.name}
       />
+      {props.addItem ? <AddToStory addItem={props.addItem} /> : null}
     </>
   );
 };

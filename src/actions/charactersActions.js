@@ -1,6 +1,7 @@
 const BASE_URL = "http://localhost:3000/";
 
 export const setCharacters = characters => {
+  console.log("setting these characters: ", characters);
   return {
     type: "SET_CHARACTERS",
     payload: characters
@@ -8,6 +9,7 @@ export const setCharacters = characters => {
 };
 
 export const setStoryCharacters = characters => {
+  console.log("setting these story_characters: ", characters);
   return {
     type: "SET_STORY_CHARACTERS",
     payload: characters
@@ -22,14 +24,9 @@ export const currentCharacter = character => {
   };
 };
 
-export const deleteCharacter = (
-  character,
-  story,
-  world,
-  redirect
-) => {
+export const deleteCharacter = (character, story, world, redirect) => {
   console.log("deleting this character!");
-  console.log('redirect: ', redirect, world, story)
+  console.log("redirect: ", redirect, world, story);
   return dispatch => {
     return fetch(BASE_URL + `characters/${character.id}`, {
       method: "DELETE",
@@ -42,7 +39,7 @@ export const deleteCharacter = (
     }).then(() => {
       fetchStoryCharacters(story);
       fetchWorldCharacters(world);
-      redirect()
+      redirect();
     });
   };
 };
@@ -97,6 +94,7 @@ export const fetchStoryCharacters = story => {
       .then(res => res.json())
       .then(story_characters => {
         dispatch(setStoryCharacters(story_characters));
+        console.log('found these story_characters: ', story_characters)
       });
   };
 };
