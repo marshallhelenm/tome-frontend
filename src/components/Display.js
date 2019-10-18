@@ -29,7 +29,7 @@ const Display = props => {
       </div>
       {props.category === "stories" ? (
         <div>
-          <StoryPageButtons {...props} />
+          <StoryPageButtons {...props} addItem={props.addItem} deleteItem={props.deleteItem} />
         </div>
       ) : null}
       <div className="content_section last_section">

@@ -27,7 +27,7 @@ class Page extends Component {
   render() {
     // console.log("Page props: ", this.props);
     return (
-      <div id="content">
+      <div id="page">
         <div className="scroll">
           <div className="scrollContainer">
             <div className="panel">

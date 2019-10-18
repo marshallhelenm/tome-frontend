@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
     case "SET_STORY_LOCATIONS":
       return {
         ...state,
-        story_locations: action.payload
+          story_locations: action.payload
       };
     case "CURRENT_LOCATION":
       return {

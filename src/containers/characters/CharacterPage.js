@@ -47,6 +47,7 @@ class CharacterPage extends Component {
     });
   };
 
+
   render() {
     console.log("CharacterPage props: ", this.props);
 

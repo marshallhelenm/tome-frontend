@@ -17,6 +17,7 @@ export const setStoryCharacters = characters => {
 };
 
 export const currentCharacter = character => {
+  console.log("setting this character: ", character);
   console.log("set character");
   return {
     type: "CURRENT_CHARACTER",
@@ -25,8 +26,7 @@ export const currentCharacter = character => {
 };
 
 export const deleteCharacter = (character, story, world, redirect) => {
-  console.log("deleting this character!");
-  console.log("redirect: ", redirect, world, story);
+  console.log("deleting this character: ", character);
   return dispatch => {
     return fetch(BASE_URL + `characters/${character.id}`, {
       method: "DELETE",
@@ -49,10 +49,6 @@ export const fetchWorldCharacters = world => {
   console.log("running fetchWorldCharacters. current world: ", world);
 
   return dispatch => {
-    console.log(
-      "running fetchWorldCharacters dispatch. current world: ",
-      world
-    );
 
     return fetch(BASE_URL + "getcharacters", {
       method: "POST",
@@ -68,6 +64,7 @@ export const fetchWorldCharacters = world => {
     })
       .then(res => res.json())
       .then(characters => {
+        console.log('fetchWorldCharacters found these characters: ', characters)
         dispatch(setCharacters(characters));
       });
   };
@@ -94,7 +91,7 @@ export const fetchStoryCharacters = story => {
       .then(res => res.json())
       .then(story_characters => {
         dispatch(setStoryCharacters(story_characters));
-        console.log('found these story_characters: ', story_characters)
+        console.log('fetchStoryCharacters found these story characters: ', story_characters)
       });
   };
 };

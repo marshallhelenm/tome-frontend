@@ -21,8 +21,8 @@ class NavMenu extends Component {
   render() {
     // console.log("navmenu props: ", this.props);
     return (
-      <div id="menu">
-        <ul className="navigation">
+      <div id="tabs">
+        <ul className="tabs">
           <Route path="/tome" render={props => <WorldsButton {...props} />} />
           <>
             <Route

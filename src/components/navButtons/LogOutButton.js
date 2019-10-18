@@ -5,7 +5,7 @@ const LogOutButton = () => {
   
 
   return (
-    <Link to={"/"} className="menu_02">
+    <Link to={"/"} className="menu_04">
       <li >Log Out</li>
     </Link>
   );
