@@ -15,9 +15,10 @@ class NewWorld extends Component {
     let world = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      user: JSON.parse(localStorage.getItem("user"))
+      user_id: JSON.parse(localStorage.getItem("user")).user.id
+      // photo: document.getElementById('photo').value
     };
-    
+
     fetch(BASE_URL + "worlds/new", {
       method: "POST",
       headers: {
