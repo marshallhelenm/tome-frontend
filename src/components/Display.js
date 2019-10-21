@@ -44,20 +44,20 @@ const Display = props => {
       ) : null}
       <div className="content_section last_section">
         <p>{props.text}</p>
+        <input
+          type="submit"
+          value="Edit"
+          id="edit-btn"
+          name="submit"
+          className="submit_btn"
+          onClick={clickEdit}
+        />
+        <DeleteModal
+          handleDelete={props.handleDelete}
+          name={props.title ? props.title : props.name}
+        />
+        {props.addItem ? <AddToStory addItem={props.addItem} /> : null}
       </div>
-      <input
-        type="submit"
-        value="Edit"
-        id="edit-btn"
-        name="submit"
-        className="submit_btn"
-        onClick={clickEdit}
-      />
-      <DeleteModal
-        handleDelete={props.handleDelete}
-        name={props.title ? props.title : props.name}
-      />
-      {props.addItem ? <AddToStory addItem={props.addItem} /> : null}
     </>
   );
 };

@@ -55,7 +55,7 @@ class Gallery extends Component {
             <h2>{this.props.title}</h2>
           </div>
         )}
-        <div className="scroll content_section last_section gallery_box">
+        <div className="content_section last_section gallery_box">
           <Polaroid
             handleClick={this.newItem}
             id="new"

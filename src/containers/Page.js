@@ -34,8 +34,7 @@ class Page extends Component {
         <div id="breadcrumbs">
           <Route path="/" render={props => <BreadCrumb />} />
         </div>
-        <div id="inner-page">
-          <div className="panel">
+        <div className="inner-page">
             <>
               <Route
                 path="/"
@@ -144,8 +143,8 @@ class Page extends Component {
                 render={props => <StoryNote new={true} {...props} />}
               />
             </>
-          </div>
         </div>
+        <div id="bottom-border" ></div>
       </div>
     );
   }
