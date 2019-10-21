@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
-import { fetchStoryCharacters, setStoryCharacters } from "../../actions/charactersActions.js";
-import { fetchStoryLocations, setStoryLocations } from "../../actions/locationsActions.js";
+import {
+  fetchStoryCharacters,
+  setStoryCharacters
+} from "../../actions/charactersActions.js";
+import {
+  fetchStoryLocations,
+  setStoryLocations
+} from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 import { deleteStory } from "../../actions/storiesActions";
+import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -13,6 +20,19 @@ class StoryPage extends Component {
     console.log("StoryPage props: ", this.props);
     this.props.fetchStoryCharacters(this.props.stories.story);
     this.props.fetchStoryLocations(this.props.stories.story);
+    this.props.assignCrumbs([
+      ["/tome", "Home"],
+      ["/tome/worlds", "Worlds"],
+      [
+        `/tome/worlds/${this.props.worlds.world.id}`,
+        this.props.worlds.world.name
+      ],
+      ["/tome/stories", "Stories"],
+      [
+        `/tome/stories/${this.props.stories.story.id}`,
+        this.props.stories.story.title
+      ]
+    ]);
   }
   redirectOnDelete = () => {
     this.props.history.push(`/tome/stories`);
@@ -27,7 +47,7 @@ class StoryPage extends Component {
   };
 
   deleteItemFromStory = (item_id, type) => {
-    console.log('item_id: ', item_id)
+    console.log("item_id: ", item_id);
     if (type === "character") {
       fetch(BASE_URL + `story_characters/${item_id}`, {
         method: "DELETE",
@@ -93,11 +113,14 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
-    setStoryCharacters: story_characters => dispatch(setStoryCharacters(story_characters)),
+    setStoryCharacters: story_characters =>
+      dispatch(setStoryCharacters(story_characters)),
     fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
-    setStoryLocations: story_locations => dispatch(setStoryLocations(story_locations)),
+    setStoryLocations: story_locations =>
+      dispatch(setStoryLocations(story_locations)),
     deleteStory: (story, world, redirect) =>
-      dispatch(deleteStory(story, world, redirect))
+      dispatch(deleteStory(story, world, redirect)),
+    assignCrumbs: trail => dispatch(assignCrumbs(trail))
   };
 };
 export default connect(

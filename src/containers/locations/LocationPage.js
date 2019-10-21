@@ -7,6 +7,7 @@ import {
   fetchWorldLocations
 } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
+import { addBreadCrumb } from "../../actions/breadcrumbActions";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -14,6 +15,10 @@ const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
 
 class LocationPage extends Component {
+  componentDidMount() {
+    this.props.addBreadCrumb(`/tome/characters/${this.props.locations.location.id}`, this.props.locations.location.name);
+  }
+
   redirectOnDelete = () => {
     this.props.history.push(`/tome/locations`);
   };
@@ -78,7 +83,9 @@ const mapDispatchToProps = dispatch => {
     deleteLocation: (location, story, world, redirect) =>
       dispatch(deleteLocation(location, story, world, redirect)),
     fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
-    fetchWorldLocations: world => dispatch(fetchWorldLocations(world))
+    fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
+    addBreadCrumb: (path, displayName) =>
+      dispatch(addBreadCrumb(path, displayName))
   };
 };
 export default connect(

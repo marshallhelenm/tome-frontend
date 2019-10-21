@@ -39,10 +39,10 @@ class NavMenu extends Component {
             />
           </>
           <>
-            <Route
+            {/* <Route
               path="/tome/stories/:id"
               render={props => <StoryNavMenu {...props} />}
-            />
+            /> */}
             <Route
               path="/tome/stories"
               exact

@@ -50,6 +50,7 @@ const EditLocation = props => {
         item={props.location}
         handleEdit={editLocation}
         handleDelete={handleDeleteLocation}
+        item_type='locations'
       />
     </>
   );

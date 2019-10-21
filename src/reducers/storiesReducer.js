@@ -15,7 +15,6 @@ const reducer = (state = initialState, action) => {
         world_stories: action.payload
       };
     case "CURRENT_STORY":
-      console.log("in current story", { ...state, story: action.payload });
       return {
         ...state,
         story: action.payload

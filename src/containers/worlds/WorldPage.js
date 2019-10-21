@@ -16,16 +16,25 @@ import {
 } from "../../actions/locationsActions.js";
 import { deleteWorld } from "../../actions/worldsActions.js";
 import Display from "../../components/Display.js";
+import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 class WorldPage extends Component {
   componentDidMount() {
-    console.log("WorldPage props: ", this.props);
+    // console.log("WorldPage props: ", this.props);
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
     this.props.fetchWorldStories(this.props.world);
     this.props.fetchWorldCharacters(this.props.world);
     this.props.fetchWorldLocations(this.props.world);
+    this.props.assignCrumbs([
+      ["/tome", "Home"],
+      ["/tome/worlds", "Worlds"],
+      [
+        `/tome/worlds/${this.props.worlds.world.id}`,
+        this.props.worlds.world.name
+      ]
+    ]);
   }
 
   redirectOnDelete = () => {
@@ -69,7 +78,8 @@ const mapDispatchToProps = dispatch => {
     fetchWorldStories: world => dispatch(fetchWorldStories(world)),
     fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
     fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
-    deleteWorld: (world, redirect) => dispatch(deleteWorld(world, redirect))
+    deleteWorld: (world, redirect) => dispatch(deleteWorld(world, redirect)),
+    assignCrumbs: trail => dispatch(assignCrumbs(trail))
   };
 };
 export default connect(

@@ -7,6 +7,7 @@ import {
   fetchWorldCharacters
 } from "../../actions/charactersActions.js";
 import Display from "../../components/Display.js";
+import { assignCrumbs, addBreadCrumb } from "../../actions/breadcrumbActions";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -14,6 +15,10 @@ const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
 
 class CharacterPage extends Component {
+  componentDidMount() {
+    this.props.addBreadCrumb(`/tome/characters/${this.props.characters.character.id}`, this.props.characters.character.name);
+  }
+
   redirectOnDelete = () => {
     this.props.history.push(`/tome/characters`);
   };
@@ -40,13 +45,12 @@ class CharacterPage extends Component {
         story_id: story_id
       })
     })
-    .then(response=>response.json())
-    .then(story => {
-      console.log(story);
-      fetchStoryCharacters(story);
-    });
+      .then(response => response.json())
+      .then(story => {
+        console.log(story);
+        fetchStoryCharacters(story);
+      });
   };
-
 
   render() {
     console.log("CharacterPage props: ", this.props);
@@ -79,7 +83,10 @@ const mapDispatchToProps = dispatch => {
     deleteCharacter: (character, story, world, redirect) =>
       dispatch(deleteCharacter(character, story, world, redirect)),
     fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
-    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world))
+    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
+    assignCrumbs: trail => dispatch(assignCrumbs(trail)),
+    addBreadCrumb: (path, displayName) =>
+      dispatch(addBreadCrumb(path, displayName))
   };
 };
 export default connect(

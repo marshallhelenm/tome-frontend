@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "../css/2018_notebook/css/coda-slider.css";
 import "../css/2018_notebook/tooplate_style.css";
-import LoginPage from "./LoginPage.js";
-import SignUpPage from "./SignUpPage.js";
+// import LoginPage from "./LoginPage.js";
+// import SignUpPage from "./SignUpPage.js";
 import Worlds from "./worlds/Worlds.js";
 import WorldPage from "./worlds/WorldPage.js";
 import NewWorld from "./worlds/NewWorld.js";
@@ -20,8 +20,11 @@ import { Route } from "react-router-dom";
 import EditCharacter from "./characters/EditCharacter.js";
 import NewCharacter from "./characters/NewCharacter";
 import EditWorld from "./worlds/EditWorld";
-import StoryNotes from './story_notes/StoryNotes'
-import StoryNote from './story_notes/StoryNote'
+import StoryNotes from "./story_notes/StoryNotes";
+import StoryNote from "./story_notes/StoryNote";
+import LoginPageMaterial from "./LoginPageMaterial";
+import SignUpMaterial from "./SignUpMaterial";
+import BreadCrumb from "../components/BreadCrumb";
 
 class Page extends Component {
   render() {
@@ -32,15 +35,16 @@ class Page extends Component {
           <div className="scrollContainer">
             <div className="panel">
               <>
+                <Route path="/" render={props => <BreadCrumb />} />
                 <Route
                   path="/"
                   exact
-                  render={props => <LoginPage {...props} />}
+                  render={props => <LoginPageMaterial {...props} />}
                 />
                 <Route
-                  path="/"
+                  path="/signup"
                   exact
-                  render={props => <SignUpPage {...props} />}
+                  render={props => <SignUpMaterial {...props} />}
                 />
               </>
               <>

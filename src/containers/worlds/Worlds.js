@@ -15,6 +15,7 @@ import {
 import { fetchWorlds, currentWorld } from "../../actions/worldsActions.js";
 import { currentStory } from "../../actions/storiesActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
+import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
@@ -28,9 +29,10 @@ class Worlds extends Component {
     this.props.currentLocation(null);
     this.props.setStoryCharacters([]);
     this.props.setStoryLocations([]);
+    this.props.assignCrumbs([["/tome", "Home"], ["/tome/worlds", "Worlds"]]);
   }
   render() {
-    console.log("Worlds props: ", this.props);
+    // console.log("Worlds props: ", this.props);
     return (
       <Gallery
         {...this.props}
@@ -60,7 +62,9 @@ const mapDispatchToProps = dispatch => {
     currentCharacter: character => dispatch(currentCharacter(character)),
     currentLocation: location => dispatch(currentLocation(location)),
     setStoryCharacters: characters => dispatch(setStoryCharacters(characters)),
-    setStoryLocations: locations => dispatch(setStoryLocations(locations))
+    setStoryLocations: locations => dispatch(setStoryLocations(locations)),
+    assignCrumbs: (trail) =>
+      dispatch(assignCrumbs(trail))
   };
 };
 

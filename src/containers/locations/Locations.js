@@ -7,6 +7,7 @@ import {
 } from "../../actions/locationsActions.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
+import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
@@ -18,6 +19,15 @@ class Locations extends Component {
     this.props.stories.story
       ? this.props.fetchStoryLocations(this.props.stories.story)
       : this.props.fetchWorldLocations(this.props.worlds.world);
+    this.props.assignCrumbs([
+      ["/tome", "Home"],
+      ["/tome/worlds", "Worlds"],
+      [
+        `/tome/worlds/${this.props.worlds.world.id}`,
+        this.props.worlds.world.name
+      ],
+      [`/tome/locations`, "Locations"]
+    ]);
   }
 
   render() {
@@ -49,7 +59,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
     fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
-    currentLocation: location => dispatch(currentLocation(location))
+    currentLocation: location => dispatch(currentLocation(location)),
+    assignCrumbs: trail => dispatch(assignCrumbs(trail))
   };
 };
 

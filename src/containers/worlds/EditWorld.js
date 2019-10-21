@@ -47,6 +47,7 @@ const EditWorld = props => {
         item={props.world}
         handleEdit={editWorld}
         handleDelete={handleDeleteWorld}
+        item_type='worlds'
       />
     </>
   );

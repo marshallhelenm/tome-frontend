@@ -42,7 +42,7 @@ class Gallery extends Component {
   };
 
   render() {
-    console.log("gallery props: ", this.props);
+    // console.log("gallery props: ", this.props);
     return (
       <>
         {this.props.stories.story ? (

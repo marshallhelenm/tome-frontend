@@ -15,7 +15,7 @@ export const setWorldStories = stories => {
 };
 
 export const currentStory = story => {
-  console.log("set story");
+  // console.log("set story");
   return {
     type: "CURRENT_STORY",
     payload: story
@@ -23,7 +23,7 @@ export const currentStory = story => {
 };
 
 export const deleteStory = (story, world, redirect) => {
-  console.log("deleting this story!");
+  // console.log("deleting this story!");
   console.log("redirect: ", redirect, world, story);
   return dispatch => {
     return fetch(BASE_URL + `stories/${story.id}`, {
@@ -63,7 +63,7 @@ export const fetchWorldStories = world => {
   let user = JSON.parse(localStorage.getItem("user"));
 
   return dispatch => {
-    console.log("running fetchWorldStories. world: ", world);
+    // console.log("running fetchWorldStories. world: ", world);
     return fetch(BASE_URL + "getworldstories", {
       method: "POST",
       headers: {

@@ -16,21 +16,32 @@ import {
   fetchWorldLocations,
   currentLocation
 } from "../../actions/locationsActions.js";
+import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
 
 class Stories extends Component {
   componentDidMount() {
+    console.log("Stories props: ", this.props);
     this.props.fetchWorldStories(this.props.worlds.world);
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
     this.props.setStoryCharacters([]);
+    this.props.assignCrumbs([
+      ["/tome", "Home"],
+      ["/tome/worlds", "Worlds"],
+      [
+        `/tome/worlds/${this.props.worlds.world.id}`,
+        this.props.worlds.world.name
+      ],
+      ["/tome/stories", "Stories"]
+    ]);
   }
 
   render() {
-    console.log("stories props: ", this.props);
+    // console.log("stories props: ", this.props);
     return (
       <Gallery
         {...this.props}
@@ -59,7 +70,8 @@ const mapDispatchToProps = dispatch => {
     currentLocation: location => dispatch(currentLocation(location)),
     fetchWorldCharacters: story => dispatch(fetchWorldCharacters(story)),
     fetchWorldLocations: story => dispatch(fetchWorldLocations(story)),
-    setStoryCharacters: characters => dispatch(setStoryCharacters(characters))
+    setStoryCharacters: characters => dispatch(setStoryCharacters(characters)),
+    assignCrumbs: trail => dispatch(assignCrumbs(trail))
   };
 };
 

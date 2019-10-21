@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, Button, Card, Image } from "semantic-ui-react";
 import composedAuthHOC from "../HOC/AuthHOC";
-import AddToStory from "../components/AddToStory";
 import { fetchStoryCharacters } from "../actions/charactersActions";
 import { fetchStoryLocations } from "../actions/locationsActions";
 
@@ -75,7 +74,7 @@ class ItemModal extends Component {
   };
 
   render() {
-    console.log("ItemModal props: ", this.props);
+    // console.log("ItemModal props: ", this.props);
     return (
       <Modal
         trigger={

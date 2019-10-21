@@ -5,6 +5,7 @@ import stories from "./storiesReducer.js";
 import characters from "./charactersReducer.js";
 import locations from "./locationsReducer.js";
 import story_notes from "./storyNotesReducer.js";
+import breadcrumb from "./breadcrumbReducer.js";
 
 export default combineReducers({
   worlds,
@@ -12,5 +13,6 @@ export default combineReducers({
   stories,
   characters,
   locations,
-  story_notes
+  story_notes,
+  breadcrumb
 });

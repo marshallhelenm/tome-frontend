@@ -50,6 +50,7 @@ const EditCharacter = props => {
         item={props.character}
         handleEdit={editCharacter}
         handleDelete={handleDeleteCharacter}
+        item_type='characters'
       />
     </>
   );

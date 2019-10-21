@@ -46,6 +46,7 @@ const EditStory = props => {
         item={props.story}
         handleEdit={editStory}
         handleDelete={handleDeleteStory}
+        item_type='stories'
       />
     </>
   );
