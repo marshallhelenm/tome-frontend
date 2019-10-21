@@ -22,7 +22,7 @@ class ItemModal extends Component {
     this.setState({ open: true });
   };
   close = () => {
-    fetchStoryCharacters(this.props.story)
+    fetchStoryCharacters(this.props.story);
     this.setState({ open: false });
   };
   handleDeleteItem = item_id => {
