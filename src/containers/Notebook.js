@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../css/2018_notebook/css/coda-slider.css";
-import "../css/2018_notebook/tooplate_style.css";
+import "../css/coda-slider.css";
+import "../css/tooplate_style.css";
 import Sidebar from "./Sidebar.js";
 import Page from "./Page.js";
 import {BrowserRouter as Router, } from 'react-router-dom'

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setLoggedIn, setLoggedOut } from "../actions/authActions";
-import "../css/2018_notebook/css/coda-slider.css";
-import "../css/2018_notebook/tooplate_style.css";
+import "../css/coda-slider.css";
+import "../css/tooplate_style.css";
 const BASE_URL = "http://localhost:3000/";
 
 class LoginPage extends Component {

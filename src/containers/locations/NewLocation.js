@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../../css/2018_notebook/css/coda-slider.css";
-import "../../css/2018_notebook/tooplate_style.css";
+import "../../css/coda-slider.css";
+import "../../css/tooplate_style.css";
 import {
   fetchWorldLocations,
   currentLocation
@@ -19,7 +19,7 @@ class NewLocation extends Component {
     let location = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      world: this.props.worlds.world,
+      world_id: this.props.worlds.world.id,
       story_id: document.getElementById("story_id").innerText
     };
     fetch(BASE_URL + "locations/new", {

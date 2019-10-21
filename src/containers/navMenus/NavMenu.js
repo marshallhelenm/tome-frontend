@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../../css/2018_notebook/css/coda-slider.css";
-import "../../css/2018_notebook/tooplate_style.css";
+import "../../css/coda-slider.css";
+import "../../css/tooplate_style.css";
 import { setLoggedOut } from "../../actions/authActions";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";

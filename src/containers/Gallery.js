@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../css/2018_notebook/css/coda-slider.css";
-import "../css/2018_notebook/tooplate_style.css";
+import "../css/coda-slider.css";
+import "../css/tooplate_style.css";
 import Polaroid from "../components/Polaroid";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";

@@ -45,9 +45,10 @@ const SignUpMaterial = props => {
 
   const handleSignUp = e => {
     e.preventDefault();
-    let username = e.target.email.value;
+    let username = e.target.username.value;
     let password = e.target.password.value;
-    signUp({ username, password });
+    let confirm_password = e.target.confirm_password.value;
+    signUp({ username, password, confirm_password });
   };
 
   const signUp = userHash => {
@@ -64,7 +65,7 @@ const SignUpMaterial = props => {
       .then(response => response.json())
       .then(user => {
         if (user.error) {
-          alert("Looks like that didn't work... please try again!");
+          alert("Either that username is already taken, or your passwords didn't match. Please try again.");
         } else {
           console.log("user: ", user);
           localStorage.setItem("user", JSON.stringify(user));
@@ -95,10 +96,10 @@ const SignUpMaterial = props => {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="Username"
+                name="username"
+                autoComplete="username"
               />
             </Grid>
             <Grid item xs={12}>
@@ -110,6 +111,18 @@ const SignUpMaterial = props => {
                 label="Password"
                 type="password"
                 id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="confirm_password"
+                label="Confirm Password"
+                type="password"
+                id="confirm_password"
                 autoComplete="current-password"
               />
             </Grid>
