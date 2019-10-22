@@ -9,15 +9,19 @@ import NewForm from "../NewForm";
 const BASE_URL = "http://localhost:3000/";
 
 class NewWorld extends Component {
+
+
   createWorld = e => {
     e.preventDefault();
     console.log("creating world");
     let world = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      user_id: JSON.parse(localStorage.getItem("user")).user.id
+      user_id: JSON.parse(localStorage.getItem("user")).user.id,
+      img_url: document.getElementById("secret_url_collection").textContent
       // photo: document.getElementById('photo').value
     };
+    console.log(world)
 
     fetch(BASE_URL + "worlds/new", {
       method: "POST",

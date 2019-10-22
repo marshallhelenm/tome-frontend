@@ -20,7 +20,7 @@ import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 class WorldPage extends Component {
   componentDidMount() {
-    // console.log("WorldPage props: ", this.props);
+    console.log("WorldPage props: ", this.props);
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
@@ -44,13 +44,13 @@ class WorldPage extends Component {
   handleDeleteWorld = () => {
     this.props.deleteWorld(this.props.world, this.redirectOnDelete);
   };
-
+ 
   render() {
     return (
       <Display
         {...this.props}
         handleDelete={this.handleDeleteWorld}
-        IMG={this.props.world ? this.props.world.img : null}
+        IMG={this.props.world ? this.props.world.images[0].url : null}
         img_alt={this.props.world.name}
         category={"worlds"}
         item={this.props.world}

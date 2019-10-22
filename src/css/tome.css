@@ -14,3 +14,15 @@
 #story_id{
   display: none;
 }
+
+#secret_url_collection{
+  display: none;
+}
+
+#text_area{
+  font-size: 20px;
+	line-height: 24px;
+  resize: none;
+	overflow: auto;
+	height: auto
+}
