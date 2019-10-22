@@ -3,9 +3,25 @@ import { connect } from "react-redux";
 import { setLoggedIn, setLoggedOut } from "../actions/authActions";
 import "../css/coda-slider.css";
 import "../css/tooplate_style.css";
+import { assignCrumbs } from "../actions/breadcrumbActions";
+import {
+  Segment,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Button,
+  Message
+} from "semantic-ui-react";
+import { Link } from "react-router-dom";
+
 const BASE_URL = "http://localhost:3000/";
 
 class LoginPage extends Component {
+  componentDidMount() {
+    this.props.assignCrumbs([]);
+  }
+
   // console.log('props in LoginPage: ', props)
   handleLogOut = () => {
     this.props.setLoggedOut();
@@ -47,24 +63,43 @@ class LoginPage extends Component {
   render() {
     return (
       <div className={"content_section"}>
-        <h1>Log In</h1>
-        <div className={"col_380 float_l"}>
-          <form onSubmit={this.handleLogIn}>
-            <input
-              id="username"
-              type="text"
-              placeholder="Username"
-              className="input_field"
-            />
-            <input
-              id="password"
-              type="password"
-              placeholder="Password"
-              className="input_field"
-            />
-            <input type="submit" value='Log In' id='submit' name='submit' className={"submit_btn"}/>
-          </form>
-        </div>
+        <Grid
+          textAlign="center"
+          style={{ height: "100vh" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" color="teal" textAlign="center">
+              <Image src="/logo.png" /> Log-in to your account
+            </Header>
+            <Form size="large" onSubmit={this.handleLogIn}>
+              <Segment stacked>
+                <Form.Input
+                  icon="user"
+                  fluid
+                  iconPosition="left"
+                  id="username"
+                  placeholder="Username"
+                />
+                <Form.Input
+                  id="password"
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  type="password"
+                />
+
+                <Button color="teal" fluid size="large">
+                  Login
+                </Button>
+              </Segment>
+            </Form>
+            <Message>
+              New to us? <Link to="/signup">Sign Up</Link>
+            </Message>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }
@@ -80,7 +115,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setLoggedIn: () => dispatch(setLoggedIn()),
-    setLoggedOut: () => dispatch(setLoggedOut())
+    setLoggedOut: () => dispatch(setLoggedOut()),
+    assignCrumbs: trail => dispatch(assignCrumbs(trail))
   };
 };
 

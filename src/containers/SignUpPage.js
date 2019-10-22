@@ -3,15 +3,28 @@ import { connect } from "react-redux";
 import { setLoggedIn } from "../actions/authActions";
 import "../css/coda-slider.css";
 import "../css/tooplate_style.css";
+import { assignCrumbs } from "../actions/breadcrumbActions";
+import {
+  Segment,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Button,
+  Message
+} from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const BASE_URL = "http://localhost:3000/";
 
 const SignUpPage = props => {
+
   const handleSignUp = e => {
     e.preventDefault();
     let username = e.target.username.value;
     let password = e.target.password.value;
-    signUp({ username, password });
+    let confirm_password = e.target.confirm_password.value;
+    signUp({ username, password, confirm_password });
   };
 
   const signUp = userHash => {
@@ -28,11 +41,13 @@ const SignUpPage = props => {
       .then(response => response.json())
       .then(user => {
         if (user.error) {
-          alert("Looks like that didn't work... please try again!");
+          alert(
+            "Either that username is already taken, or your passwords didn't match. Please try again."
+          );
         } else {
           console.log("user: ", user);
-          localStorage.setItem('user', JSON.stringify(user));
-          localStorage.setItem('token', user.token);
+          localStorage.setItem("user", JSON.stringify(user));
+          localStorage.setItem("token", user.token);
           console.log("props in signup fetch: ", props);
 
           props.setLoggedIn();
@@ -43,20 +58,59 @@ const SignUpPage = props => {
   };
 
   return (
-    <div className="content_section" >
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSignUp}>
-        <input id="username" type="text" placeholder="Username" className='input_field' />
-        <input id="password" type="text" placeholder="Password" className='input_field' />
-        <button type="submit">Sign Up</button>
-      </form>
+    <div className={"content_section"}>
+      <Grid
+        textAlign="center"
+        style={{ height: "100vh" }}
+        verticalAlign="middle"
+      >
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as="h2" color="teal" textAlign="center">
+            <Image src="/logo.png" /> Sign Up
+          </Header>
+          <Form size="large" onSubmit={handleSignUp}>
+            <Segment stacked>
+              <Form.Input
+                icon="user"
+                fluid
+                iconPosition="left"
+                id="username"
+                placeholder="Username"
+              />
+              <Form.Input
+                id="password"
+                fluid
+                icon="lock"
+                iconPosition="left"
+                placeholder="Password"
+                type="password"
+              />
+              <Form.Input
+                id="confirm_password"
+                fluid
+                icon="lock"
+                name="confirm_password"
+                iconPosition="left"
+                placeholder="Confirm Password"
+                type="password"
+              />
+
+              <Button color="teal" fluid size="large">
+                Sign Up
+              </Button>
+            </Segment>
+          </Form>
+          <Message>
+            Already have an account? <Link to="/">Log In</Link>
+          </Message>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    logged_in: state.auth.logged_in,
     token: state.auth.token
   };
 };
@@ -67,4 +121,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUpPage);

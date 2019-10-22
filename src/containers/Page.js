@@ -22,9 +22,9 @@ import NewCharacter from "./characters/NewCharacter";
 import EditWorld from "./worlds/EditWorld";
 import StoryNotes from "./story_notes/StoryNotes";
 import StoryNote from "./story_notes/StoryNote";
-import LoginPageMaterial from "./LoginPageMaterial";
-import SignUpMaterial from "./SignUpMaterial";
 import BreadCrumb from "../components/BreadCrumb";
+import LoginPage from "./LoginPage";
+import SignUpPage from "./SignUpPage";
 
 class Page extends Component {
   render() {
@@ -35,116 +35,112 @@ class Page extends Component {
           <Route path="/" render={props => <BreadCrumb />} />
         </div>
         <div className="inner-page">
-            <>
-              <Route
-                path="/"
-                exact
-                render={props => <LoginPageMaterial {...props} />}
-              />
-              <Route
-                path="/signup"
-                exact
-                render={props => <SignUpMaterial {...props} />}
-              />
-            </>
-            <>
-              <Route
-                path="/tome/worlds"
-                exact
-                render={props => <Worlds {...props} />}
-              />
-              <Route
-                path="/tome/new/worlds"
-                render={props => <NewWorld {...props} />}
-              />
-              <Route
-                path="/tome/worlds/:id"
-                render={props => <WorldPage {...props} />}
-              />
-              <Route
-                path="/tome/edit/worlds/:id"
-                render={props => <EditWorld {...props} />}
-              />
-            </>
-            <>
-              <Route
-                path="/tome/stories"
-                exact
-                render={props => <Stories {...props} />}
-              />
-              <Route
-                path="/tome/stories/:id"
-                exact
-                render={props => <StoryPage {...props} />}
-              />
-              <Route
-                path="/tome/new/stories"
-                render={props => <NewStory {...props} />}
-              />
-              <Route
-                path="/tome/edit/stories/:id"
-                render={props => <EditStory {...props} />}
-              />
-            </>
-            <>
-              <Route
-                path="/tome/characters"
-                exact
-                render={props => <Characters {...props} />}
-              />
-              <Route
-                path="/tome/characters/:id"
-                exact
-                render={props => <CharacterPage {...props} />}
-              />
-              <Route
-                path="/tome/new/characters"
-                render={props => <NewCharacter {...props} />}
-              />
-              <Route
-                path="/tome/edit/characters/:id"
-                render={props => <EditCharacter {...props} />}
-              />
-            </>
-            <>
-              <Route
-                path="/tome/locations"
-                exact
-                render={props => <Locations {...props} />}
-              />
-              <Route
-                path="/tome/locations/:id"
-                exact
-                render={props => <LocationPage {...props} />}
-              />
-              <Route
-                path="/tome/new/locations"
-                render={props => <NewLocation {...props} />}
-              />
-              <Route
-                path="/tome/edit/locations/:id"
-                render={props => <EditLocation {...props} />}
-              />
-            </>
-            <>
-              <Route
-                path="/tome/story_notes"
-                exact
-                render={props => <StoryNotes {...props} />}
-              />
-              <Route
-                path="/tome/story_notes/:id"
-                exact
-                render={props => <StoryNote {...props} />}
-              />
-              <Route
-                path="/tome/new/story_notes"
-                exact
-                render={props => <StoryNote new={true} {...props} />}
-              />
-            </>
+          <>
+            <Route path="/" exact render={props => <LoginPage {...props} />} />
+            <Route
+              path="/signup"
+              exact
+              render={props => <SignUpPage {...props} />}
+            />
+          </>
+          <>
+            <Route
+              path="/tome/worlds"
+              exact
+              render={props => <Worlds {...props} />}
+            />
+            <Route
+              path="/tome/new/worlds"
+              render={props => <NewWorld {...props} />}
+            />
+            <Route
+              path="/tome/worlds/:id"
+              render={props => <WorldPage {...props} />}
+            />
+            <Route
+              path="/tome/edit/worlds/:id"
+              render={props => <EditWorld {...props} />}
+            />
+          </>
+          <>
+            <Route
+              path="/tome/stories"
+              exact
+              render={props => <Stories {...props} />}
+            />
+            <Route
+              path="/tome/stories/:id"
+              exact
+              render={props => <StoryPage {...props} />}
+            />
+            <Route
+              path="/tome/new/stories"
+              render={props => <NewStory {...props} />}
+            />
+            <Route
+              path="/tome/edit/stories/:id"
+              render={props => <EditStory {...props} />}
+            />
+          </>
+          <>
+            <Route
+              path="/tome/characters"
+              exact
+              render={props => <Characters {...props} />}
+            />
+            <Route
+              path="/tome/characters/:id"
+              exact
+              render={props => <CharacterPage {...props} />}
+            />
+            <Route
+              path="/tome/new/characters"
+              render={props => <NewCharacter {...props} />}
+            />
+            <Route
+              path="/tome/edit/characters/:id"
+              render={props => <EditCharacter {...props} />}
+            />
+          </>
+          <>
+            <Route
+              path="/tome/locations"
+              exact
+              render={props => <Locations {...props} />}
+            />
+            <Route
+              path="/tome/locations/:id"
+              exact
+              render={props => <LocationPage {...props} />}
+            />
+            <Route
+              path="/tome/new/locations"
+              render={props => <NewLocation {...props} />}
+            />
+            <Route
+              path="/tome/edit/locations/:id"
+              render={props => <EditLocation {...props} />}
+            />
+          </>
+          <>
+            <Route
+              path="/tome/story_notes"
+              exact
+              render={props => <StoryNotes {...props} />}
+            />
+            <Route
+              path="/tome/story_notes/:id"
+              exact
+              render={props => <StoryNote {...props} />}
+            />
+            <Route
+              path="/tome/new/story_notes"
+              exact
+              render={props => <StoryNote new={true} {...props} />}
+            />
+          </>
         </div>
-        <div id="bottom-border" ></div>
+        <div id="bottom-border"></div>
       </div>
     );
   }
