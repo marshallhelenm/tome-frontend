@@ -19,7 +19,6 @@ class NewWorld extends Component {
       description: document.getElementById("description").value,
       user_id: JSON.parse(localStorage.getItem("user")).user.id,
       img_url: document.getElementById("secret_url_collection").textContent
-      // photo: document.getElementById('photo').value
     };
     console.log(world)
 

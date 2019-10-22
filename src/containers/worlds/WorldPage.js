@@ -44,13 +44,16 @@ class WorldPage extends Component {
   handleDeleteWorld = () => {
     this.props.deleteWorld(this.props.world, this.redirectOnDelete);
   };
- 
+
   render() {
+    console.log("WorldPage props: ", this.props);
     return (
       <Display
         {...this.props}
         handleDelete={this.handleDeleteWorld}
-        IMG={this.props.world ? this.props.world.images[0].url : null}
+        IMG={
+          this.props.world.images.length === 0 ? null : this.props.world.images[0].url
+        }
         img_alt={this.props.world.name}
         category={"worlds"}
         item={this.props.world}

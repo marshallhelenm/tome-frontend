@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import EditForm from "../EditForm.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
@@ -6,52 +6,54 @@ import { currentWorld, deleteWorld } from "../../actions/worldsActions.js";
 
 const BASE_URL = "http://localhost:3000/";
 
-const EditWorld = props => {
-  console.log("EditWorld props: ", props);
-
-  const handleDeleteWorld = () => {
+class EditWorld extends Component {
+  handleDeleteWorld = () => {
     this.props.deleteWorld(this.props.world);
     this.props.history.push(`/tome/worlds`);
   };
 
-  const editWorld = e => {
+  editWorld = e => {
     e.preventDefault();
     console.log("saving changes to world");
+    let world = {
+      name: document.getElementById("name").value,
+      description: document.getElementById("description").value,
+      user_id: JSON.parse(localStorage.getItem("user")).user.id,
+      currentWorld: this.props.worlds.world.id,
+      img_url: document.getElementById("secret_url_collection").textContent
+    };
 
-    fetch(BASE_URL + `worlds/${props.world.id}`, {
+    fetch(BASE_URL + `worlds/${this.props.world.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        user: JSON.parse(localStorage.getItem("user")),
-        currentWorld: props.world
-      })
+      body: JSON.stringify({ world })
     })
       .then(response => response.json())
       .then(world => {
         console.log("world: ", world);
-        props.currentWorld(world);
-        props.history.push(`/tome/worlds/${world.id}`);
+        this.props.currentWorld(world);
+        this.props.history.push(`/tome/worlds/${world.id}`);
       });
   };
-
-  return (
-    <>
-      <EditForm
-        {...props}
-        item={props.world}
-        handleEdit={editWorld}
-        handleDelete={handleDeleteWorld}
-        item_type='worlds'
-      />
-    </>
-  );
-};
+  render() {
+    console.log("EditWorld props: ", this.props);
+    return (
+      <>
+        <EditForm
+          {...this.props}
+          item={this.props.world}
+          handleEdit={this.editWorld}
+          handleDelete={this.handleDeleteWorld}
+          item_type="worlds"
+        />
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

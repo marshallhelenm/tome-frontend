@@ -8,9 +8,6 @@ import AddToStory from "./AddToStory.js";
 import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
 import { Segment, Input, Button } from "semantic-ui-react";
 
-const IMG =
-  "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
-
 const Display = props => {
   // console.log("Display props: ", props);
 
@@ -21,11 +18,13 @@ const Display = props => {
   return (
     <>
       <div className="content_section">
-        <img
-          src={props.IMG ? props.IMG : IMG}
-          alt={props.img_alt ? props.img_alt : "an antique map"}
-          className={"image_wrapper image_fl display_img"}
-        />
+        {props.IMG ? (
+          <img
+            src={props.IMG}
+            alt={props.img_alt ? props.img_alt : "an antique map"}
+            className={"image_wrapper image_fl display_img"}
+          />
+        ) : null}
         {/* <img src={src} alt={alt} /> */}
         <h2>{props.title}</h2>
       </div>
@@ -52,7 +51,9 @@ const Display = props => {
           name="submit"
           className="submit_btn"
           onClick={clickEdit}
-        >Edit</Button>
+        >
+          Edit
+        </Button>
         <DeleteModal
           handleDelete={props.handleDelete}
           name={props.title ? props.title : props.name}

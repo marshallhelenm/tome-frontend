@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { addBreadCrumb } from "../actions/breadcrumbActions";
 import { Form, Button, TextArea } from "semantic-ui-react";
 import ResizableTextarea from "../components/ResizableTextArea.js";
+import URLInputs from "../components/URLInputs.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
@@ -28,13 +29,7 @@ class EditForm extends Component {
             className={"image_wrapper image_fl display_img"}
           />
           <Form onSubmit={this.props.handleEdit}>
-            <h3>[Image Upload Stuff Will Go Here]</h3>
             <Form.Field>
-              {/* <label>
-                {this.props.type === "story" || this.props.type === "Note"
-                  ? "Title:"
-                  : "Name:"}
-              </label> */}
               <input
                 id="name"
                 type="text"
@@ -63,6 +58,7 @@ class EditForm extends Component {
                     : this.props.item.content
                 }
               />
+              <URLInputs />
             </Form.Field>
             <Button
               type="submit"
