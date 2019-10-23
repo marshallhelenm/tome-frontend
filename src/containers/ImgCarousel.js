@@ -9,15 +9,55 @@ import {
   ButtonNext
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import { Image } from "semantic-ui-react";
+import ImgDelete from "../components/ImgDelete";
+
+const BASE_URL = "http://localhost:3000/";
 
 class ImgCarousel extends Component {
-  generateImgDivs = urls => {
-    return urls.map((url, i) => {
+  generateImgDivs = images => {
+    return images.map((image, i) => {
       return (
-        <Slide index={i}>
-          <img src={url} />{" "}
+        <Slide index={i} key={`slide-${i}`} id={`slide-${image.id}`}>
+          <div className="slide_container">
+            <Image src={image.url} className="slide_img" rounded />
+            <div className="overlay">
+              <div id="overlay_content">
+                <div id="img-delete">
+                  <ImgDelete
+                    handleDelete={this.deletePhoto}
+                    img_id={image.id}
+                  />
+                </div>
+                <div id="img-nav">
+                  <div>
+                    <ButtonBack>{"<"}</ButtonBack>
+                  </div>
+                  <div>
+                    <ButtonNext>{">"}</ButtonNext>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </Slide>
       );
+    });
+  };
+
+  deletePhoto = img_id => {
+    console.log("deleting this photo", img_id);
+    fetch(BASE_URL + `/images/${img_id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ image: { img_id: img_id } })
+    }).then(() => {
+      this.props.refreshItem();
+      document.getElementById(`slide-${img_id}`).style.display = "none";
     });
   };
 
@@ -30,8 +70,6 @@ class ImgCarousel extends Component {
         totalSlides={this.props.images.length}
       >
         <Slider>{this.generateImgDivs(this.props.images)}</Slider>
-        <ButtonBack>{'<'}</ButtonBack>
-        <ButtonNext>{'>'}</ButtonNext>
       </CarouselProvider>
     );
   }

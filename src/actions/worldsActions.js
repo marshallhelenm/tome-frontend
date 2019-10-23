@@ -50,3 +50,19 @@ export const fetchWorlds = () => {
       .then(worlds => dispatch(setWorlds(worlds)));
   };
 };
+
+export const fetchWorld = id => {
+  return dispatch => {
+    return fetch(BASE_URL + `getworld`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ world: {id: id} })
+    })
+      .then(res => res.json())
+      .then(world => dispatch(currentWorld(world)));
+  };
+};

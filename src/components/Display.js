@@ -12,11 +12,6 @@ import ImgCarousel from "../containers/ImgCarousel.js";
 const Display = props => {
   console.log("Display props: ", props);
 
-  const URLS = props.item.images.map(img => {
-    return img.url;
-  });
-
-  console.log("URLS: ", URLS);
 
   const clickEdit = () => {
     props.history.push(`/tome/edit/${props.category}/${props.item.id}`);
@@ -36,7 +31,7 @@ const Display = props => {
         <h2>{props.title}</h2>
       </div>
       <div className="content_section">
-        <ImgCarousel images={URLS} />
+        <ImgCarousel images={props.item.images} item={props.item} refreshItem={props.refreshItem} />
       </div>
       {props.category === "stories" ? (
         <div className="content_section">
