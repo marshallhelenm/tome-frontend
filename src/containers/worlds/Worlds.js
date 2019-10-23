@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../../css/coda-slider.css";
+import "../../css/notebook.css";
 import "../../css/tooplate_style.css";
 import Gallery from "../Gallery.js";
 import {

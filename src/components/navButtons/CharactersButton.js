@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 const CharactersButton = () => {
   return (
-    <Link to={"/tome/characters"} className="menu_04">
-      <li>Characters</li>
-    </Link>
+    <div>
+      <Link to={"/tome/characters"} className="menu_04">
+        Characters
+      </Link>
+    </div>
   );
 };
 

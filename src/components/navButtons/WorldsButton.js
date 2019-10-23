@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const WorldsButton = props => {
-
   return (
-    <Link to={`/tome/worlds`} className="menu_04">
-      <li>Worlds</li>
-    </Link>
+    <div>
+      <Link to={`/tome/worlds`} className="menu_04">
+        Worlds
+      </Link>
+    </div>
   );
 };
 

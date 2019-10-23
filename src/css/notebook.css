@@ -6,15 +6,17 @@
 }
 
 #tooplate_sidebar {
+  display: flex;
+  flex-flow: column;
   float: left;
   width: 31.1%;
-  padding: 80px 0 0;
+  min-height: 100%;
+  padding: 8% 0 0;
 }
 
 #logo {
-  padding: 0 36px;
   text-align: center;
-  margin-bottom: 100px;
+  padding-bottom: 15%;
 }
 
 #logo h1 {
@@ -22,11 +24,41 @@
   padding: 0;
   height: 60px;
   display: block;
-  /* text-indent: -10000px; */
+}
+
+#logo h3 {
+  margin: 0;
+  padding: 0;
 }
 
 #tabs {
-  padding-left: 60px;
+  display: flex;
+  padding-left: 20.5%;
+  padding-bottom: 30%;
+  flex: 1;
+}
+
+.tabs{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+
+}
+
+div.tabs {
+  min-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+div.tabs a {
+  display: flex;
+  height: 47px;
+  padding: 12px 0 0 20px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
 }
 
 #page {
@@ -92,28 +124,6 @@
   padding-top: 1%;
 }
 
-ul.tabs {
-  list-style: none;
-  margin: 0 auto;
-  padding: 0;
-}
-
-ul.tabs li {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
-ul.tabs a {
-  display: block;
-  height: 47px;
-  padding: 12px 0 0 20px;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 400;
-  text-decoration: none;
-}
-
 .menu_01 {
   background: url(./images/tooplate_menu_01.png);
 }
@@ -130,12 +140,12 @@ ul.tabs a {
   background: url(./images/tooplate_menu_05.png);
 }
 
-ul.tabs a:hover,
-ul.tabs a.selected {
+div.tabs a:hover,
+div.tabs a.selected {
   color: #412810;
 }
 
-ul.tabs a:focus {
+div.tabs a:focus {
   outline: none;
 }
 

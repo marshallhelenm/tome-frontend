@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../css/coda-slider.css";
+import "../css/notebook.css";
 import "../css/tooplate_style.css";
 // import LoginPage from "./LoginPage.js";
 // import SignUpPage from "./SignUpPage.js";

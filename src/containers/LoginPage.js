@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setLoggedIn, setLoggedOut } from "../actions/authActions";
-import "../css/coda-slider.css";
+import "../css/notebook.css";
 import "../css/tooplate_style.css";
 import { assignCrumbs } from "../actions/breadcrumbActions";
 import {

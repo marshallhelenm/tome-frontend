@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../css/coda-slider.css";
+import "../../css/notebook.css";
 import "../../css/tooplate_style.css";
 import { setLoggedOut } from "../../actions/authActions";
 import { connect } from "react-redux";
@@ -16,7 +16,7 @@ class NavMenu extends Component {
     // console.log("navmenu props: ", this.props);
     return (
       <div id="tabs">
-        <ul className="tabs">
+        <div className="tabs">
           <Route
             path="/tome"
             render={props => {
@@ -51,7 +51,7 @@ class NavMenu extends Component {
           />
           <Route path="/tome" render={props => <LogOutButton {...props} />} />
           {/* <Route path="/stories" render={props => <StoriesButton {...props} />} /> */}
-        </ul>
+        </div>
       </div>
     );
   }

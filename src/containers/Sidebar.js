@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../css/coda-slider.css'
+import '../css/notebook.css'
 import '../css/tooplate_style.css'
 import NavMenu from './navMenus/NavMenu.js'
 
