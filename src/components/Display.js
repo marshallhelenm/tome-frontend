@@ -7,9 +7,16 @@ import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
 import AddToStory from "./AddToStory.js";
 import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
 import { Segment, Button } from "semantic-ui-react";
+import ImgCarousel from "../containers/ImgCarousel.js";
 
 const Display = props => {
-  // console.log("Display props: ", props);
+  console.log("Display props: ", props);
+
+  const URLS = props.item.images.map(img => {
+    return img.url;
+  });
+
+  console.log("URLS: ", URLS);
 
   const clickEdit = () => {
     props.history.push(`/tome/edit/${props.category}/${props.item.id}`);
@@ -18,15 +25,18 @@ const Display = props => {
   return (
     <>
       <div className="content_section">
-        {props.IMG ? (
+        {/* {props.IMG ? (
           <img
             src={props.IMG}
             alt={props.img_alt ? props.img_alt : "an antique map"}
             className={"image_wrapper image_fl display_img"}
           />
-        ) : null}
+        ) : null} */}
         {/* <img src={src} alt={alt} /> */}
         <h2>{props.title}</h2>
+      </div>
+      <div className="content_section">
+        <ImgCarousel images={URLS} />
       </div>
       {props.category === "stories" ? (
         <div className="content_section">

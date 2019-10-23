@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CharactersButton = () => {
   return (
-    <div>
+    <div className="tab">
       <Link to={"/tome/characters"} className="menu_04">
         Characters
       </Link>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const LogOutButton = () => {
   return (
-    <div>
+    <div className="tab">
       <Link to={"/"} className="menu_04">
         Log Out
       </Link>

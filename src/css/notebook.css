@@ -38,6 +38,10 @@
   flex: 1;
 }
 
+.tab{
+  /* border-radius: 10%; */
+}
+
 .tabs{
   display: flex;
   flex-flow: column;
@@ -53,7 +57,8 @@ div.tabs {
 
 div.tabs a {
   display: flex;
-  height: 47px;
+  /* height: 47px; */
+  height: 58px;
   padding: 12px 0 0 20px;
   color: #fff;
   font-size: 18px;
