@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
@@ -9,19 +9,25 @@ import {
 
 const BASE_URL = "http://localhost:3000/";
 
-const EditLocation = props => {
-  console.log("Edit Location Form props: ", props);
-
-  const handleDeleteLocation = () => {
+class EditLocation extends Component {
+  handleDeleteLocation = () => {
     this.props.deleteLocation(this.props.location);
     this.props.history.push(`/tome/locations`);
   };
 
-  const editLocation = e => {
+  editLocation = e => {
     e.preventDefault();
     console.log("saving changes to location");
 
-    fetch(BASE_URL + `locations/${props.location.id}`, {
+    let location = {
+      name: document.getElementById("name").value,
+      description: document.getElementById("description").value,
+      user: JSON.parse(localStorage.getItem("user")).id,
+      location_id: this.props.location.id,
+      img_url: document.getElementById("secret_url_collection").textContent
+    };
+
+    fetch(BASE_URL + `locations/${this.props.location.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -29,32 +35,31 @@ const EditLocation = props => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        user: JSON.parse(localStorage.getItem("user")),
-        location: props.location
+        location
       })
     })
       .then(response => response.json())
       .then(location => {
         console.log("location: ", location);
-        props.currentLocation(location);
-        props.history.push(`/tome/locations/${location.id}`);
+        this.props.currentLocation(location);
+        this.props.history.push(`/tome/locations/${location.id}`);
       });
   };
-
-  return (
-    <>
-      <EditForm
-        {...props}
-        item={props.location}
-        handleEdit={editLocation}
-        handleDelete={handleDeleteLocation}
-        item_type='locations'
-      />
-    </>
-  );
-};
+  render() {
+    console.log("Edit Location Form props: ", this.props);
+    return (
+      <>
+        <EditForm
+          {...this.props}
+          item={this.props.location}
+          handleEdit={this.editLocation}
+          handleDelete={this.handleDeleteLocation}
+          item_type="locations"
+        />
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

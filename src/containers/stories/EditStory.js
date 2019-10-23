@@ -18,6 +18,13 @@ const EditStory = props => {
     e.preventDefault();
     console.log("saving changes to story");
 
+    let story = {
+      title: document.getElementById("name").value,
+      description: document.getElementById("description").value,
+      currentStory: props.story.id,
+      img_url: document.getElementById("secret_url_collection").textContent
+    };
+
     fetch(BASE_URL + `stories/${props.story.id}`, {
       method: "PATCH",
       headers: {
@@ -25,11 +32,7 @@ const EditStory = props => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({
-        title: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        currentStory: props.story
-      })
+      body: JSON.stringify({ story })
     })
       .then(response => response.json())
       .then(story => {
@@ -46,7 +49,7 @@ const EditStory = props => {
         item={props.story}
         handleEdit={editStory}
         handleDelete={handleDeleteStory}
-        item_type='stories'
+        item_type="stories"
       />
     </>
   );

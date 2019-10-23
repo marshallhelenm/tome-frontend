@@ -5,10 +5,9 @@ class ResizableTextarea extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.defaultValue ? this.props.defaultValue : "",
-      rows: 5,
-      minRows: 5,
-      maxRows: 50
+      rows: 20,
+      minRows: 20,
+      maxRows: 37
     };
   }
 
@@ -42,10 +41,10 @@ class ResizableTextarea extends React.PureComponent {
         id="description"
         name="description"
         rows={this.state.rows}
-        value={this.state.value}
         placeholder={
           this.props.placeholder ? this.props.placeholder : "Description"
         }
+        defaultValue={this.props.defaultValue}
         className={"text_area"}
         onChange={this.handleChange}
       />

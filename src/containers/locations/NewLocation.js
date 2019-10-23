@@ -11,17 +11,18 @@ import NewForm from "../NewForm";
 
 const BASE_URL = "http://localhost:3000/";
 
-
 class NewLocation extends Component {
   createLocation = e => {
     e.preventDefault();
     console.log("creating location");
+
     let location = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
       world_id: this.props.worlds.world.id,
-      story_id: document.getElementById("story_id").innerText
+      img_url: document.getElementById("secret_url_collection").textContent
     };
+
     fetch(BASE_URL + "locations/new", {
       method: "POST",
       headers: {
@@ -29,15 +30,14 @@ class NewLocation extends Component {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({
-        location
-      })
+      body: JSON.stringify({ location })
     })
       .then(response => response.json())
       .then(newLocation => {
         console.log("newLocation: ", newLocation);
         this.props.currentLocation(newLocation);
-        this.props.fetchWorldLocations(this.props);
+
+        // this.props.fetchWorldLocations(this.props);
         this.props.history.push(`/tome/locations/${newLocation.id}`);
       });
   };

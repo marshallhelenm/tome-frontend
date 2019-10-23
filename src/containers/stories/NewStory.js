@@ -8,18 +8,16 @@ import NewForm from "../NewForm";
 
 const BASE_URL = "http://localhost:3000/";
 
-
 class NewStory extends Component {
-
-
   createStory = e => {
     e.preventDefault();
     console.log("creating story");
     let story = {
       title: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      user: JSON.parse(localStorage.getItem("user")),
-      world: this.props.worlds.world
+      user: JSON.parse(localStorage.getItem("user")).id,
+      world: this.props.worlds.world.id,
+      img_url: document.getElementById("secret_url_collection").textContent
     };
     fetch(BASE_URL + "stories/new", {
       method: "POST",
@@ -34,8 +32,8 @@ class NewStory extends Component {
     })
       .then(response => response.json())
       .then(newStory => {
-          console.log('newStory: ', newStory)
-        this.props.currentStory(newStory)
+        console.log("newStory: ", newStory);
+        this.props.currentStory(newStory);
         this.props.history.push(`/tome/stories/${newStory.id}`);
       });
   };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, TextArea, Input } from "semantic-ui-react";
+import { Form, Button, Input } from "semantic-ui-react";
 
 
 class URLInputs extends Component {
@@ -42,9 +42,10 @@ class URLInputs extends Component {
   };
 
   handleURLChange = e => {
-    let urls = [...this.state.urls];
-    urls.push(e.target.value);
-    this.setState({ urls });
+    // let urls = [...this.state.urls];
+    // urls.push(e.target.value);
+    
+    this.setState({ urls: [...this.state.urls, e.target.value] });
   };
 
   render() {

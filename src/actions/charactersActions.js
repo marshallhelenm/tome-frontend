@@ -35,7 +35,7 @@ export const deleteCharacter = (character, story, world, redirect) => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ character })
+      body: JSON.stringify({ character: {character_id: character.id} })
     }).then(() => {
       fetchStoryCharacters(story);
       fetchWorldCharacters(world);
@@ -58,7 +58,7 @@ export const fetchWorldCharacters = world => {
       },
       body: JSON.stringify({
         user: user,
-        world: world
+        world_id: world.id
       })
     })
       .then(res => res.json())
@@ -87,7 +87,7 @@ export const fetchStoryCharacters = story => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        story: story
+        story_character: {story_id: story.id}
       })
     })
       .then(res => res.json())

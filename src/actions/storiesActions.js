@@ -72,8 +72,7 @@ export const fetchWorldStories = world => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        user: user,
-        world: world
+        story: { user_id: user, world_id: world.id }
       })
     })
       .then(res => res.json())

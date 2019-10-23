@@ -6,7 +6,7 @@ import DeleteModal from "./DeleteModal.js";
 import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
 import AddToStory from "./AddToStory.js";
 import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
-import { Segment, Input, Button } from "semantic-ui-react";
+import { Segment, Button } from "semantic-ui-react";
 
 const Display = props => {
   // console.log("Display props: ", props);

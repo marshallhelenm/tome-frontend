@@ -11,9 +11,6 @@ import { assignCrumbs, addBreadCrumb } from "../../actions/breadcrumbActions";
 
 const BASE_URL = "http://localhost:3000/";
 
-const IMG =
-  "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
-
 class CharacterPage extends Component {
   componentDidMount() {
     this.props.addBreadCrumb(`/tome/characters/${this.props.characters.character.id}`, this.props.characters.character.name);
@@ -61,7 +58,7 @@ class CharacterPage extends Component {
         category="characters"
         handleDelete={this.handleDeleteCharacter}
         addItem={this.addItemToStory}
-        IMG={this.props.character.img ? this.props.character.img : IMG}
+        IMG={this.props.character.images.length === 0 ? null : this.props.character.images[0].url }
         img_alt={this.props.character.name}
         item={this.props.character}
         title={this.props.character.name}

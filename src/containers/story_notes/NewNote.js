@@ -1,6 +1,6 @@
 import React from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
-import EditForm from "../EditForm";
+import NewForm from "../NewForm";
 import { connect } from "react-redux";
 import {
   currentStoryNote,
@@ -9,17 +9,12 @@ import {
 
 const BASE_URL = "http://localhost:3000/";
 
-const StoryNote = props => {
-  console.log("Story Note page props: ", props);
+const NewNote = props => {
+  console.log("New Note page props: ", props);
 
-  const handleDeleteNote = () => {
-    props.deleteStoryNote(props.story_notes.story_note);
-    props.history.push("/tome/story_notes");
-  };
-
-  const editNote = e => {
+  const createNote = e => {
     e.preventDefault();
-    console.log("saving changes to story_note");
+    console.log("creating note");
 
     let note = {
       title: document.getElementById("name").value,
@@ -28,27 +23,24 @@ const StoryNote = props => {
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
-    fetch(BASE_URL + `story_notes/${props.story_notes.story_note.id}`, {
-      method: "PATCH",
+    fetch(BASE_URL + `story_notes/new`, {
+      method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({
-        note: { ...note, note_id: props.story_notes.story_note }
-      })
-    });
+      body: JSON.stringify({ note })
+    })
+      .then(resp => resp.json())
+      .then(note => {
+        console.log("new note: ", note);
+        props.currentStoryNote(note);
+        props.history.push(`/tome/story_notes/${note.id}`);
+      });
   };
 
-  return (
-    <EditForm
-      {...props}
-      handleDelete={handleDeleteNote}
-      item={props.story_notes.story_note}
-      handleEdit={editNote}
-    />
-  );
+  return <NewForm {...props} type="Note" handleNew={createNote} />;
 };
 
 const mapStateToProps = state => {
@@ -67,4 +59,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(composedAuthHOC(StoryNote));
+)(composedAuthHOC(NewNote));

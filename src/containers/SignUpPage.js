@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setLoggedIn } from "../actions/authActions";
 import "../css/coda-slider.css";
 import "../css/tooplate_style.css";
-import { assignCrumbs } from "../actions/breadcrumbActions";
 import {
   Segment,
   Form,

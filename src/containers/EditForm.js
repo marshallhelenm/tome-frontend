@@ -3,12 +3,9 @@ import composedAuthHOC from "../HOC/AuthHOC.js";
 import DeleteModal from "../components/DeleteModal.js";
 import { connect } from "react-redux";
 import { addBreadCrumb } from "../actions/breadcrumbActions";
-import { Form, Button, TextArea } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 import ResizableTextarea from "../components/ResizableTextArea.js";
 import URLInputs from "../components/URLInputs.js";
-
-const IMG =
-  "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
 
 class EditForm extends Component {
   componentDidMount() {
@@ -24,7 +21,7 @@ class EditForm extends Component {
       <>
         <div className={"content_section last_section"} id="NewForm">
           <img
-            src={this.props.IMG ? this.props.IMG : IMG}
+            src={this.props.IMG ? this.props.IMG : null}
             alt={this.props.img_alt ? this.props.img_alt : "an antique map"}
             className={"image_wrapper image_fl display_img"}
           />

@@ -25,7 +25,7 @@ export const deleteStoryNote = story_note => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ story_note })
+      body: JSON.stringify({ note: {note_id: story_note.id} })
     })
   };
 };
@@ -41,7 +41,7 @@ export const fetchStoryNotes = story => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ story })
+      body: JSON.stringify({ note: {story_id: story.id} })
     })
       .then(res => res.json())
       .then(notes => dispatch(setStoryNotes(notes)));

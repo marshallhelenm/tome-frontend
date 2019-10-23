@@ -16,6 +16,13 @@ class NewCharacter extends Component {
     e.preventDefault();
     console.log("creating character");
 
+    let character = {
+      name: document.getElementById("name").value,
+      description: document.getElementById("description").value,
+      world_id: this.props.worlds.world.id,
+      img_url: document.getElementById("secret_url_collection").textContent
+    };
+
     fetch(BASE_URL + "characters/new", {
       method: "POST",
       headers: {
@@ -23,18 +30,13 @@ class NewCharacter extends Component {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        world: this.props.worlds.world,
-        story_id: document.getElementById("story_id").innerText
-      })
+      body: JSON.stringify({ character })
     })
       .then(response => response.json())
       .then(newCharacter => {
         console.log("newCharacter: ", newCharacter);
         this.props.currentCharacter(newCharacter);
-        
+
         // this.props.fetchWorldCharacters(this.props);
         this.props.history.push(`/tome/characters/${newCharacter.id}`);
       });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC";
 import { addBreadCrumb } from "../actions/breadcrumbActions";
 import { connect } from "react-redux";
-import { Form, Button, TextArea, Input } from "semantic-ui-react";
+import { Form, Input } from "semantic-ui-react";
 import ResizableTextarea from "../components/ResizableTextArea";
 import URLInputs from "../components/URLInputs";
 
@@ -12,6 +12,7 @@ class NewForm extends Component {
   }
 
   render() {
+    console.log('handleNew: ', this.props.handleNew)
     const storyItem = () => {
       return this.props.stories.story;
     };

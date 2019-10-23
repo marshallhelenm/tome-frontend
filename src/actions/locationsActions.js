@@ -17,6 +17,7 @@ export const setStoryLocations = locations => {
 };
 
 export const currentLocation = location => {
+  // console.log("setting this location: ", location);
   // console.log("set location");
   return {
     type: "CURRENT_LOCATION",
@@ -25,8 +26,7 @@ export const currentLocation = location => {
 };
 
 export const deleteLocation = (location, story, world, redirect) => {
-  // console.log("deleting this location!");
-  console.log("redirect: ", redirect, world, story);
+  // console.log("deleting this location: ", location);
   return dispatch => {
     return fetch(BASE_URL + `locations/${location.id}`, {
       method: "DELETE",
@@ -35,7 +35,7 @@ export const deleteLocation = (location, story, world, redirect) => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ location })
+      body: JSON.stringify({ location: {location_id: location.id} })
     }).then(() => {
       fetchStoryLocations(story);
       fetchWorldLocations(world);
@@ -49,8 +49,6 @@ export const fetchWorldLocations = world => {
   // console.log("running fetchWorldLocations. current world: ", world);
 
   return dispatch => {
-    // console.log("running fetchWorldLocations dispatch. current world: ", world);
-
     return fetch(BASE_URL + "getlocations", {
       method: "POST",
       headers: {
@@ -60,11 +58,15 @@ export const fetchWorldLocations = world => {
       },
       body: JSON.stringify({
         user: user,
-        world: world
+        world_id: world.id
       })
     })
       .then(res => res.json())
       .then(locations => {
+        // console.log(
+        //   "fetchWorldLocations found these locations: ",
+        //   locations
+        // );
         dispatch(setLocations(locations));
       });
   };
@@ -85,13 +87,16 @@ export const fetchStoryLocations = story => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        story: story
+        story_location: {story_id: story.id}
       })
     })
       .then(res => res.json())
       .then(story_locations => {
         dispatch(setStoryLocations(story_locations));
-        // console.log("found these story_locations: ", story_locations);
+        console.log(
+          "fetchStoryLocations found these story locations: ",
+          story_locations
+        );
       });
   };
 };

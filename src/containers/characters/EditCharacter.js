@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
@@ -9,19 +9,25 @@ import {
 
 const BASE_URL = "http://localhost:3000/";
 
-const EditCharacter = props => {
-  console.log("Edit Character Form props: ", props);
-
-  const handleDeleteCharacter = () => {
+class EditCharacter extends Component {
+  handleDeleteCharacter = () => {
     this.props.deleteCharacter(this.props.character);
     this.props.history.push(`/tome/characters`);
   };
 
-  const editCharacter = e => {
+  editCharacter = e => {
     e.preventDefault();
     console.log("saving changes to character");
 
-    fetch(BASE_URL + `characters/${props.character.id}`, {
+    let character = {
+      name: document.getElementById("name").value,
+      description: document.getElementById("description").value,
+      user: JSON.parse(localStorage.getItem("user")).id,
+      character_id: this.props.character.id,
+      img_url: document.getElementById("secret_url_collection").textContent
+    };
+
+    fetch(BASE_URL + `characters/${this.props.character.id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -29,32 +35,31 @@ const EditCharacter = props => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        name: document.getElementById("name").value,
-        description: document.getElementById("description").value,
-        user: JSON.parse(localStorage.getItem("user")),
-        character: props.character
+        character
       })
     })
       .then(response => response.json())
       .then(character => {
         console.log("character: ", character);
-        props.currentCharacter(character);
-        props.history.push(`/tome/characters/${character.id}`);
+        this.props.currentCharacter(character);
+        this.props.history.push(`/tome/characters/${character.id}`);
       });
   };
-
-  return (
-    <>
-      <EditForm
-        {...props}
-        item={props.character}
-        handleEdit={editCharacter}
-        handleDelete={handleDeleteCharacter}
-        item_type='characters'
-      />
-    </>
-  );
-};
+  render() {
+    console.log("Edit Character Form props: ", this.props);
+    return (
+      <>
+        <EditForm
+          {...this.props}
+          item={this.props.character}
+          handleEdit={this.editCharacter}
+          handleDelete={this.handleDeleteCharacter}
+          item_type="characters"
+        />
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
