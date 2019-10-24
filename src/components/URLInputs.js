@@ -49,8 +49,8 @@ class URLInputs extends Component {
   render() {
     return (
       <>
-        <Button onClick={this.addUrlField}>Add an Image</Button>
           {this.generateURLFields()}
+        <Button onClick={this.addUrlField}>Add another Image</Button>
         <div id="secret_url_collection">{this.printUrls()}</div>
       </>
     );
