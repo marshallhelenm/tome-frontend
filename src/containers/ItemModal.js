@@ -77,6 +77,9 @@ class ItemModal extends Component {
     // console.log("ItemModal props: ", this.props);
     return (
       <Modal
+        id="item-modal"
+        size='small'
+        closeIcon
         trigger={
           <Button color="brown" onClick={this.open}>
             {this.props.itemType}
@@ -89,12 +92,9 @@ class ItemModal extends Component {
           {/* Characters in {this.props.story} */}
           Characters
         </Modal.Header>
-        <Modal.Content>
+        <Modal.Content scrolling >
           <Card.Group>{this.generateItemCards()}</Card.Group>
 
-          <Modal.Actions>
-            <Button color="brown" content="Done" onClick={this.close} />
-          </Modal.Actions>
         </Modal.Content>
       </Modal>
     );

@@ -1,3 +1,4 @@
+
 .display_img {
   max-width: 100%;
 }
@@ -88,4 +89,61 @@
 
 #img_carousel{
   max-height: 300px;
+}
+
+#img-slide{
+  max-height: 300px;
+}
+
+
+.carousel-btn{
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0.0);
+  height: 50px;
+}
+
+#img-delete-btn{
+  border: 0px;
+  margin-right: 2%;
+  margin-top: 2%;
+}
+
+.button-bar{
+  display: flex;
+  justify-content: space-around;
+}
+
+#carousel-slider{
+  max-height: 300px;
+}
+
+#login-img{
+  max-height: 350px;
+  margin-bottom: 3%;
+}
+
+#signup-img{
+  max-height: 250px;
+  margin-bottom: 3%;
+}
+
+.login-link{
+  color: brown;
+  margin-top: 10px;
+}
+
+.login-link:hover{
+  color: black;
+}
+
+.login-page{
+  border: none;
+}
+h2 {
+  text-align: center;
+}
+
+#item-modal: {
+  display: flex;
+  align-content: center;
 }

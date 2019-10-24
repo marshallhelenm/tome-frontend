@@ -26,8 +26,8 @@ class DeleteModal extends Component {
     return (
       <Modal
         trigger={
-          <Button size='small' circular icon onClick={this.open}>
-            <Icon name="delete" />
+          <Button id='img-delete-btn' basic size='small' circular icon onClick={this.open}>
+            <Icon name="delete" color='black' />
           </Button>
         }
         open={this.state.open}

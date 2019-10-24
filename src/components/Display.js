@@ -12,7 +12,6 @@ import ImgCarousel from "../containers/ImgCarousel.js";
 const Display = props => {
   console.log("Display props: ", props);
 
-
   const clickEdit = () => {
     props.history.push(`/tome/edit/${props.category}/${props.item.id}`);
   };
@@ -31,7 +30,11 @@ const Display = props => {
         <h2>{props.title}</h2>
       </div>
       <div className="content_section">
-        <ImgCarousel images={props.item.images} item={props.item} refreshItem={props.refreshItem} />
+        <ImgCarousel
+          images={props.item.images}
+          item={props.item}
+          refreshItem={props.refreshItem}
+        />
       </div>
       {props.category === "stories" ? (
         <div className="content_section">
@@ -49,21 +52,23 @@ const Display = props => {
       ) : null}
       <div className="content_section last_section">
         {props.text ? <Segment>{props.text}</Segment> : null}
-        <Button
-          type="submit"
-          value="Edit"
-          id="edit-btn"
-          name="submit"
-          className="submit_btn"
-          onClick={clickEdit}
-        >
-          Edit
-        </Button>
-        <DeleteModal
-          handleDelete={props.handleDelete}
-          name={props.title ? props.title : props.name}
-        />
-        {props.addItem ? <AddToStory addItem={props.addItem} /> : null}
+        <div className="button-bar">
+          <Button
+            type="submit"
+            value="Edit"
+            id="edit-btn"
+            name="submit"
+            className="submit_btn"
+            onClick={clickEdit}
+          >
+            Edit
+          </Button>
+          <DeleteModal
+            handleDelete={props.handleDelete}
+            name={props.title ? props.title : props.name}
+          />
+          {props.addItem ? <AddToStory addItem={props.addItem} /> : null}
+        </div>
       </div>
     </>
   );

@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const StoryPageButtons = props => {
   console.log("StoryPageButtons Props: ", props);
   return (
-    <>
+    <div className='button-bar' >
       <Button as={Link} to="/tome/stories" color="brown" content="Stories" />
       <Button
         as={Link}
@@ -21,7 +21,7 @@ const StoryPageButtons = props => {
         color="brown"
         content="Locations"
       />
-    </>
+    </div>
   );
 };
 

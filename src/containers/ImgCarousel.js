@@ -18,7 +18,7 @@ class ImgCarousel extends Component {
   generateImgDivs = images => {
     return images.map((image, i) => {
       return (
-        <Slide index={i} key={`slide-${i}`}>
+        <Slide id='img-slide' index={i} key={`slide-${i}`}>
           <div id="slide_container">
             <Image
               id='slide_img'
@@ -35,13 +35,13 @@ class ImgCarousel extends Component {
                 </div>
                 <div id="img-nav">
                   <div>
-                    <ButtonBack>
-                      <Icon name="angle left" />
+                    <ButtonBack className='carousel-btn' >
+                      <Icon name="angle left" size='big'/>
                     </ButtonBack>
                   </div>
                   <div>
-                    <ButtonNext>
-                      <Icon name="angle right" />
+                    <ButtonNext className='carousel-btn'>
+                      <Icon name="angle right" size='big' />
                     </ButtonNext>
                   </div>
                 </div>
@@ -65,7 +65,6 @@ class ImgCarousel extends Component {
       body: JSON.stringify({ image: { img_id: img_id } })
     }).then(() => {
       this.props.refreshItem();
-      document.getElementById(`slide-${img_id}`).style.display = "none";
     });
   };
 
@@ -78,7 +77,7 @@ class ImgCarousel extends Component {
         naturalSlideHeight={100}
         totalSlides={this.props.images.length}
       >
-        <Slider>{this.generateImgDivs(this.props.images)}</Slider>
+        <Slider id='carousel-slider'>{this.generateImgDivs(this.props.images)}</Slider>
       </CarouselProvider>
     );
   }

@@ -8,7 +8,7 @@ import ItemModal from "../ItemModal";
 const StoryPageButtons = props => {
   console.log('StoryPageButtons Props: ', props)
   return (
-    <>
+    <div className='button-bar'>
       <Button as={Link} to="/tome/story_notes" color="brown" content="Notes" />
       {/* <Button
         as={Link}
@@ -34,7 +34,7 @@ const StoryPageButtons = props => {
         deleteItem={props.deleteItem}
         story={props.stories.story}
       />
-    </>
+    </div>
   );
 };
 

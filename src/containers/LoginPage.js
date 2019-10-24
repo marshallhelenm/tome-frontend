@@ -63,18 +63,16 @@ class LoginPage extends Component {
   render() {
     return (
       <>
-      <div className='content_section'>
-        <Image src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg" rounded />
-      </div>
-      <div className={"content_section"}>
+        
+      <div className={"content_section login-page"}>
         <Grid
           textAlign="center"
-          // style={{ height: "100vh" }}
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
-              <Image src="/logo.png" /> Log-in to your account
+            <Image id='login-img' src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg" rounded />
+            <Header as="h3" color="brown" textAlign="center">
+              Log-in to your account
             </Header>
             <Form size="large" onSubmit={this.handleLogIn}>
               <Segment stacked>
@@ -94,14 +92,12 @@ class LoginPage extends Component {
                   type="password"
                 />
 
-                <Button color="teal" fluid size="large">
+                <Button color="brown" fluid size="large">
                   Login
                 </Button>
               </Segment>
             </Form>
-            <Message>
-              New to us? <Link to="/signup">Sign Up</Link>
-            </Message>
+              <Link className='login-link' to="/signup">New? Sign Up</Link>
           </Grid.Column>
         </Grid>
       </div>
