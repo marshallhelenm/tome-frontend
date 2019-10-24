@@ -20,19 +20,7 @@ class StoryPage extends Component {
     console.log("StoryPage props: ", this.props);
     this.props.fetchStoryCharacters(this.props.stories.story);
     this.props.fetchStoryLocations(this.props.stories.story);
-    this.props.assignCrumbs([
-      ["/tome", "Home"],
-      ["/tome/worlds", "Worlds"],
-      [
-        `/tome/worlds/${this.props.worlds.world.id}`,
-        this.props.worlds.world.name
-      ],
-      ["/tome/stories", "Stories"],
-      [
-        `/tome/stories/${this.props.stories.story.id}`,
-        this.props.stories.story.title
-      ]
-    ]);
+    
   }
   redirectOnDelete = () => {
     this.props.history.push(`/tome/stories`);

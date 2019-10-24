@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
 import "../css/tome.css";
@@ -7,72 +7,114 @@ import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
 import AddToStory from "./AddToStory.js";
 import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
 import { Segment, Button } from "semantic-ui-react";
+import { assignCrumbs } from "../actions/breadcrumbActions";
 import ImgCarousel from "../containers/ImgCarousel.js";
 
-const Display = props => {
-  console.log("Display props: ", props);
+class Display extends Component {
+  componentDidMount() {
+    console.log("Display props: ", this.props);
+    if (this.props.item.category === "worlds") {
+      this.props.assignCrumbs([
+        ["/tome", "Home"],
+        ["/tome/worlds", "Worlds"],
+        [
+          `/tome/worlds/${this.props.worlds.world.id}`,
+          this.props.worlds.world.name
+        ]
+      ]);
+    } else if (this.props.category === "stories") {
+      this.props.assignCrumbs([
+        ["/tome", "Home"],
+        ["/tome/worlds", "Worlds"],
+        [
+          `/tome/worlds/${this.props.worlds.world.id}`,
+          this.props.worlds.world.name
+        ],
+        ["/tome/stories", "Stories"],
+        [
+          `/tome/stories/${this.props.stories.story.id}`,
+          this.props.stories.story.title
+        ]
+      ]);
+    } else {
+      this.props.assignCrumbs([
+        ["/tome", "Home"],
+        ["/tome/worlds", "Worlds"],
+        [
+          `/tome/worlds/${this.props.worlds.world.id}`,
+          this.props.worlds.world.name
+        ],
+        [`/tome/${this.props.category}`, `${this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)}`]
+      ]);
+    }
+  }
 
-  const clickEdit = () => {
-    props.history.push(`/tome/edit/${props.category}/${props.item.id}`);
+  clickEdit = () => {
+    this.props.history.push(
+      `/tome/edit/${this.props.category}/${this.props.item.id}`
+    );
   };
-
-  return (
-    <>
-      <div className="content_section">
-        {/* {props.IMG ? (
+  render() {
+    return (
+      <>
+        <div className="content_section">
+          {/* {this.props.IMG ? (
           <img
-            src={props.IMG}
-            alt={props.img_alt ? props.img_alt : "an antique map"}
+            src={this.props.IMG}
+            alt={this.props.img_alt ? this.props.img_alt : "an antique map"}
             className={"image_wrapper image_fl display_img"}
           />
         ) : null} */}
-        {/* <img src={src} alt={alt} /> */}
-        <h2>{props.title}</h2>
-      </div>
-      <div className="content_section">
-        <ImgCarousel
-          images={props.item.images}
-          item={props.item}
-          refreshItem={props.refreshItem}
-        />
-      </div>
-      {props.category === "stories" ? (
+          {/* <img src={src} alt={alt} /> */}
+          <h2>{this.props.title}</h2>
+        </div>
         <div className="content_section">
-          <StoryPageButtons
-            {...props}
-            addItem={props.addItem}
-            deleteItem={props.deleteItem}
+          <ImgCarousel
+            images={this.props.item.images}
+            item={this.props.item}
+            refreshItem={this.props.refreshItem}
           />
         </div>
-      ) : null}
-      {props.category === "worlds" ? (
-        <div className="content_section">
-          <WorldPageButtons {...props} />
+        {this.props.category === "stories" ? (
+          <div className="content_section">
+            <StoryPageButtons
+              {...this.props}
+              addItem={this.props.addItem}
+              deleteItem={this.props.deleteItem}
+            />
+          </div>
+        ) : null}
+        {this.props.category === "worlds" ? (
+          <div className="content_section">
+            <WorldPageButtons {...this.props} />
+          </div>
+        ) : null}
+        <div className="content_section last_section">
+          {this.props.text ? <Segment>{this.props.text}</Segment> : null}
+          <div className="button-bar">
+            <Button
+              type="submit"
+              value="Edit"
+              id="edit-btn"
+              name="submit"
+              className="submit_btn"
+              onClick={this.clickEdit}
+            >
+              Edit
+            </Button>
+            <DeleteModal
+              handleDelete={this.props.handleDelete}
+              name={this.props.title ? this.props.title : this.props.name}
+            />
+            {this.props.addItem ? (
+              <AddToStory addItem={this.props.addItem} />
+            ) : null}
+          </div>
         </div>
-      ) : null}
-      <div className="content_section last_section">
-        {props.text ? <Segment>{props.text}</Segment> : null}
-        <div className="button-bar">
-          <Button
-            type="submit"
-            value="Edit"
-            id="edit-btn"
-            name="submit"
-            className="submit_btn"
-            onClick={clickEdit}
-          >
-            Edit
-          </Button>
-          <DeleteModal
-            handleDelete={props.handleDelete}
-            name={props.title ? props.title : props.name}
-          />
-          {props.addItem ? <AddToStory addItem={props.addItem} /> : null}
-        </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -80,4 +122,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(composedAuthHOC(Display));
+const mapDispatchToProps = dispatch => {
+  return {
+    assignCrumbs: trail => dispatch(assignCrumbs(trail))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(composedAuthHOC(Display));

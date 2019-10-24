@@ -41,7 +41,9 @@ class ItemModal extends Component {
     this.props.itemType === "Characters"
       ? (items = this.props.characters.story_characters)
       : (items = this.props.locations.story_locations);
-
+    if (items.length === 0){
+      return <h2>There are no {this.props.itemType} attached to this story yet! Go to your world's {this.props.itemType} page to add some.</h2>
+    }
     return items.map(item => {
       let item_id = item.id;
       return (
@@ -94,7 +96,7 @@ class ItemModal extends Component {
       >
         <Modal.Header>
           {/* Characters in {this.props.story} */}
-          Characters
+          {this.props.itemType}
         </Modal.Header>
         <Modal.Content scrolling>
           <Card.Group centered>{this.generateItemCards()}</Card.Group>
