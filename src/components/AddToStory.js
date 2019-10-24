@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC";
 import { Button, Dropdown, Form } from "semantic-ui-react";
 import { connect } from "react-redux";
+import AddConfirm from "./AddConfirm";
 
 class AddToStory extends Component {
   constructor() {
@@ -52,7 +53,7 @@ class AddToStory extends Component {
             options={this.generateOptions()}
           />
 
-          <Button color="brown" content="Add to Story" />
+          <AddConfirm />
         </Form>
       </>
     );
