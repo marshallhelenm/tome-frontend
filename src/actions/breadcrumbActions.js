@@ -15,6 +15,14 @@ export const rollBackCrumb = destination => {
   };
 };
 
+export const removeOneCrumb = () => {
+  console.log("removing one breadcrumb");
+  return {
+    type: "REMOVE_CRUMB",
+    payload: 'one crumb'
+  };
+};
+
 export const assignCrumbs = trail => {
   // console.log("assigning breadcrumb trail");
   return {

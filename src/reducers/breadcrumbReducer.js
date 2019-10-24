@@ -15,6 +15,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         nav: state.nav.slice(0, action.payload + 1)
       };
+    case "REMOVE_CRUMB":
+      return {
+        ...state,
+        nav: state.nav.pop()
+      };
     case "ASSIGN_CRUMBS":
       console.log("assigning breadcrumbs in reducer: ", action.payload);
       return {

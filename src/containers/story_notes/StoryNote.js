@@ -38,7 +38,7 @@ const StoryNote = props => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        note: { ...note, note_id: props.story_notes.story_note }
+        note: { ...note, note_id: props.story_notes.story_note.id }
       })
     });
   };
@@ -56,6 +56,7 @@ const StoryNote = props => {
       />
       <EditForm
         {...props}
+        type='Note'
         handleDelete={handleDeleteNote}
         item={props.story_notes.story_note}
         handleEdit={editNote}

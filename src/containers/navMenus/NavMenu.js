@@ -6,9 +6,13 @@ import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import LogOutButton from "../../components/navButtons/LogOutButton";
 import WorldNavMenu from "./WorldNavMenu";
-import StandardNavMenu from "./StandardNavMenu";
+import StoriesNavMenu from "./StoriesNavMenu";
+import LocationsNavMenu from "./LocationsNavMenu";
+import CharactersNavMenu from "./CharactersNavMenu";
+import StoryNotesNavMenu from "./StoryNotesNavMenu";
 import WorldsButton from "../../components/navButtons/WorldsButton";
-import HomeButton from "../../components/navButtons/HomeButton";
+import WorldButton from "../../components/navButtons/WorldButton";
+import StoryButton from "../../components/navButtons/StoryButton";
 
 class NavMenu extends Component {
   // Will create methods etc to make sure that menu shows correct things at the correct times
@@ -17,17 +21,7 @@ class NavMenu extends Component {
     return (
       <div id="tabs">
         <div className="tabs">
-          <Route
-            path="/tome"
-            render={props => {
-              return (
-                <>
-                  {/* <HomeButton {...props} /> */}
-                  <WorldsButton {...props} />
-                </>
-              );
-            }}
-          />
+          <Route path="/tome" render={props => <WorldsButton {...props} />} />
           <Route
             path="/tome/worlds/:id"
             render={props => <WorldNavMenu {...props} />}
@@ -36,18 +30,39 @@ class NavMenu extends Component {
           <Route
             path="/tome/stories"
             exact
-            render={props => <StandardNavMenu {...props} />}
+            render={props => <StoriesNavMenu {...props} />}
           />
-
           <Route
             path="/tome/characters"
             exact
-            render={props => <StandardNavMenu {...props} />}
+            render={props => <CharactersNavMenu {...props} />}
+          />
+          <Route
+            path="/tome/story_notes"
+            exact
+            render={props => <StoryNotesNavMenu {...props} />}
           />
           <Route
             path="/tome/locations"
             exact
-            render={props => <StandardNavMenu {...props} />}
+            render={props => <LocationsNavMenu {...props} />}
+          />
+          <Route
+            path="/tome/new/stories"
+            render={props => (
+              <WorldButton {...props} world={this.props.worlds.world} />
+            )}
+          />
+          <Route
+            path="/tome/new/story_notes"
+            render={props => {
+              return (
+                <>
+                  <WorldButton {...props} world={this.props.worlds.world} />
+                  <StoryButton {...props} story={this.props.stories.story} />
+                </>
+              );
+            }}
           />
           <Route path="/tome" render={props => <LogOutButton {...props} />} />
           {/* <Route path="/stories" render={props => <StoriesButton {...props} />} /> */}

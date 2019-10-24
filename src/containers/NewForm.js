@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC";
-import { addBreadCrumb } from "../actions/breadcrumbActions";
+import { addBreadCrumb, removeOneCrumb } from "../actions/breadcrumbActions";
 import { connect } from "react-redux";
 import { Form, Input } from "semantic-ui-react";
 import ResizableTextarea from "../components/ResizableTextArea";
@@ -11,8 +11,14 @@ class NewForm extends Component {
     this.props.addBreadCrumb(`/tome/new/${this.props.type}`, "New");
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.props.handleNew(e);
+    // this.props.removeOneCrumb();
+  };
+
   render() {
-    console.log('handleNew: ', this.props.handleNew)
+    console.log("handleNew: ", this.props.handleNew);
     const storyItem = () => {
       return this.props.stories.story;
     };
@@ -20,7 +26,7 @@ class NewForm extends Component {
     return (
       <div className={"content_section last_section"} id="NewForm">
         <h1>New {this.props.type}</h1>
-        <Form onSubmit={this.props.handleNew}>
+        <Form onSubmit={this.handleSubmit}>
           <div id="story_id">
             {storyItem() ? this.props.stories.story.id : null}
           </div>
@@ -43,7 +49,7 @@ class NewForm extends Component {
               placeholder={this.props.type === "Note" ? "Content" : null}
             />
           </Form.Field>
-          <URLInputs />
+          {this.props.type === "Note" ? null : <URLInputs />}
           <Form.Button
             type="submit"
             value="Save"
@@ -68,7 +74,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addBreadCrumb: (path, displayName) =>
-      dispatch(addBreadCrumb(path, displayName))
+      dispatch(addBreadCrumb(path, displayName)),
+    removeOneCrumb: () => dispatch(removeOneCrumb())
   };
 };
 
