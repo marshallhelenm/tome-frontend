@@ -19,7 +19,7 @@ import {
 import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const IMG =
-  "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
+  "https://cdn.pixabay.com/photo/2016/09/10/17/18/book-1659717_1280.jpg";
 
 class Stories extends Component {
   componentDidMount() {

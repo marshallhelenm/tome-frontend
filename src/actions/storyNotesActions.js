@@ -47,3 +47,19 @@ export const fetchStoryNotes = story => {
       .then(notes => dispatch(setStoryNotes(notes)));
   };
 };
+
+export const fetchStoryNote = id => {
+  return dispatch => {
+    return fetch(BASE_URL + `getstory_note`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ story_note: {id: id} })
+    })
+      .then(res => res.json())
+      .then(story_note => dispatch(currentStoryNote(story_note)));
+  };
+};

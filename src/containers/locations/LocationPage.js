@@ -4,7 +4,8 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import {
   deleteLocation,
   fetchStoryLocations,
-  fetchWorldLocations
+  fetchWorldLocations,
+  fetchLocation
 } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 import { addBreadCrumb } from "../../actions/breadcrumbActions";
@@ -30,6 +31,10 @@ class LocationPage extends Component {
       this.redirectOnDelete
     );
   };
+
+  refreshLocation = ()=> {
+    this.props.fetchLocation(this.props.locations.location.id)
+  }
 
   addItemToStory = story_id => {
     console.log("adding story: ", story_id);
@@ -61,6 +66,7 @@ class LocationPage extends Component {
         category="locations"
         handleDelete={this.handleDeleteLocation}
         addItem={this.addItemToStory}
+        refreshItem={this.refreshLocation}
         IMG={this.props.location.img ? this.props.location.img : IMG}
         img_alt={this.props.location.name}
         item={this.props.location}
@@ -84,6 +90,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(deleteLocation(location, story, world, redirect)),
     fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
     fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
+    fetchLocation: id => dispatch(fetchLocation(id)),
     addBreadCrumb: (path, displayName) =>
       dispatch(addBreadCrumb(path, displayName))
   };

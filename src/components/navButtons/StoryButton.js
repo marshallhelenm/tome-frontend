@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const StoryButton = props => {
-
   return (
-    <Link to={`/tome/stories/${props.story.id}`} className="menu_04">
-      <li>{props.story.title}</li>
-    </Link>
+    <div className="tab">
+      <Link to={`/tome/stories/${props.story.id}`} className="menu_04">
+        {props.story.title}
+      </Link>
+    </div>
   );
 };
 

@@ -21,7 +21,7 @@ const EditStory = props => {
     let story = {
       title: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      currentStory: props.story.id,
+      id: props.story.id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 

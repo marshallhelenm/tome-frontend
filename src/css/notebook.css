@@ -40,12 +40,12 @@
 
 .tab{
   /* border-radius: 10%; */
+  margin-bottom: 10px;
 }
 
 .tabs{
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
 
 }
 

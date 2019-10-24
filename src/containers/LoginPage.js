@@ -62,10 +62,14 @@ class LoginPage extends Component {
 
   render() {
     return (
+      <>
+      <div className='content_section'>
+        <Image src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg" rounded />
+      </div>
       <div className={"content_section"}>
         <Grid
           textAlign="center"
-          style={{ height: "100vh" }}
+          // style={{ height: "100vh" }}
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
@@ -101,6 +105,7 @@ class LoginPage extends Component {
           </Grid.Column>
         </Grid>
       </div>
+      </>
     );
   }
 }

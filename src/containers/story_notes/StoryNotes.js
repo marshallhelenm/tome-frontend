@@ -8,7 +8,7 @@ import {
 } from "../../actions/storyNotesActions.js";
 
 const IMG =
-  "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
+  "https://cdn.pixabay.com/photo/2016/04/30/13/11/texture-1362877_1280.jpg";
 
 class StoryNotes extends Component {
 

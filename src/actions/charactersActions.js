@@ -100,3 +100,19 @@ export const fetchStoryCharacters = story => {
       });
   };
 };
+
+export const fetchCharacter = id => {
+  return dispatch => {
+    return fetch(BASE_URL + `getcharacter`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ character: {id: id} })
+    })
+      .then(res => res.json())
+      .then(character => dispatch(currentCharacter(character)));
+  };
+};

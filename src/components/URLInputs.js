@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Form, Button, Input } from "semantic-ui-react";
 
-
 class URLInputs extends Component {
   state = {
+    fields: 0,
     urls: [""]
   };
+
   printUrls = () => {
+    console.log("editform state: ", this.state);
     let urlstring = "";
     let urls = this.state.urls;
     urls.forEach(url => {
@@ -14,37 +16,33 @@ class URLInputs extends Component {
     });
     return urlstring;
   };
-
   generateURLFields = () => {
-    let { urls } = this.state;
-    return urls.map((val, idx) => {
-      let urlId = `urls-${idx}`;
-      return (
-        <Form.Field key={urlId}>
+    let i;
+    let fields = [];
+    for (i = 0; i <= this.state.fields; i++)
+      fields.push(
+        <Form.Field key={`img-field-${i}`}>
           <Input
             onChange={this.handleURLChange}
-            id={urlId}
             type="text"
             placeholder="Image URL"
             className="url_field"
-            data-id={idx}
           />
         </Form.Field>
       );
-    });
+    return fields;
   };
 
   addUrlField = e => {
     e.preventDefault();
+    let newfields = this.state.fields+1
+    console.log('----EditForm state: ', this.state)
     this.setState(prevState => ({
-      urls: [...prevState.urls, [""]]
+      fields: newfields
     }));
   };
 
   handleURLChange = e => {
-    // let urls = [...this.state.urls];
-    // urls.push(e.target.value);
-    
     this.setState({ urls: [...this.state.urls, e.target.value] });
   };
 
@@ -52,11 +50,7 @@ class URLInputs extends Component {
     return (
       <>
         <Button onClick={this.addUrlField}>Add an Image</Button>
-        <Form.Field>
-          {/* <label>Attach an Image:</label>
-            <Input id="img_url" type="text" placeholder="img_url" /> */}
           {this.generateURLFields()}
-        </Form.Field>
         <div id="secret_url_collection">{this.printUrls()}</div>
       </>
     );

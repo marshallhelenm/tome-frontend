@@ -100,3 +100,19 @@ export const fetchStoryLocations = story => {
       });
   };
 };
+
+export const fetchLocation = id => {
+  return dispatch => {
+    return fetch(BASE_URL + `getlocation`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ location: {id: id} })
+    })
+      .then(res => res.json())
+      .then(location => dispatch(currentLocation(location)));
+  };
+};

@@ -12,6 +12,7 @@ class Gallery extends Component {
         <Polaroid
           handleClick={this.clickCard}
           caption={item.name ? item.name : item.title}
+          img={item.images[0] ? item.images[0].url : this.props.defaultIMG}
           key={
             item.name
               ? item.name + "." + Math.random() * 10

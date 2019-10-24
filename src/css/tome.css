@@ -27,18 +27,20 @@
   height: auto;
 }
 
-.slide_container {
+#slide_container {
   position: relative;
-  /* width: 50%; */
+  max-height: 100%;
 }
 
-.slide_img {
+#slide_img {
   opacity: 1;
   display: block;
-  width: 100%;
-  height: auto;
+  width: auto;
+  max-height: 300px;
   transition: 0.5s ease;
   backface-visibility: hidden;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .overlay {
@@ -56,11 +58,11 @@
   text-align: center;
 }
 
-.slide_container:hover .slide_img {
+#slide_container:hover .slide_img {
   opacity: 0.3;
 }
 
-.slide_container:hover .overlay {
+#slide_container:hover .overlay {
   opacity: 1;
 }
 
@@ -81,4 +83,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+
+#img_carousel{
+  max-height: 300px;
 }

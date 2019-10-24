@@ -10,7 +10,7 @@ import {
   setStoryLocations
 } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
-import { deleteStory } from "../../actions/storiesActions";
+import { deleteStory, fetchStory } from "../../actions/storiesActions";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const BASE_URL = "http://localhost:3000/";
@@ -45,6 +45,10 @@ class StoryPage extends Component {
       this.redirectOnDelete
     );
   };
+
+  refreshStory = ()=> {
+    this.props.fetchStory(this.props.stories.story.id)
+  }
 
   deleteItemFromStory = (item_id, type) => {
     console.log("item_id: ", item_id);
@@ -94,6 +98,7 @@ class StoryPage extends Component {
         {...this.props}
         category="stories"
         handleDelete={this.handleDeleteStory}
+        refreshItem={this.refreshStory}
         deleteItem={this.deleteItemFromStory}
         IMG={this.props.stories.story.img}
         img_alt={this.props.stories.story.title}
@@ -116,6 +121,7 @@ const mapDispatchToProps = dispatch => {
     setStoryCharacters: story_characters =>
       dispatch(setStoryCharacters(story_characters)),
     fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
+    fetchStory: id => dispatch(fetchStory(id)),
     setStoryLocations: story_locations =>
       dispatch(setStoryLocations(story_locations)),
     deleteStory: (story, world, redirect) =>

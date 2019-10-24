@@ -9,7 +9,7 @@ import {
   ButtonNext
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
-import { Image } from "semantic-ui-react";
+import { Image, Icon } from "semantic-ui-react";
 import ImgDelete from "../components/ImgDelete";
 
 const BASE_URL = "http://localhost:3000/";
@@ -18,9 +18,13 @@ class ImgCarousel extends Component {
   generateImgDivs = images => {
     return images.map((image, i) => {
       return (
-        <Slide index={i} key={`slide-${i}`} id={`slide-${image.id}`}>
-          <div className="slide_container">
-            <Image src={image.url} className="slide_img" rounded />
+        <Slide index={i} key={`slide-${i}`}>
+          <div id="slide_container">
+            <Image
+              id='slide_img'
+              src={image.url}
+              rounded
+            />
             <div className="overlay">
               <div id="overlay_content">
                 <div id="img-delete">
@@ -31,10 +35,14 @@ class ImgCarousel extends Component {
                 </div>
                 <div id="img-nav">
                   <div>
-                    <ButtonBack>{"<"}</ButtonBack>
+                    <ButtonBack>
+                      <Icon name="angle left" />
+                    </ButtonBack>
                   </div>
                   <div>
-                    <ButtonNext>{">"}</ButtonNext>
+                    <ButtonNext>
+                      <Icon name="angle right" />
+                    </ButtonNext>
                   </div>
                 </div>
               </div>
@@ -65,8 +73,9 @@ class ImgCarousel extends Component {
     console.log("Carousel props: ", this.props);
     return (
       <CarouselProvider
+        id="img_carousel"
         naturalSlideWidth={100}
-        naturalSlideHeight={50}
+        naturalSlideHeight={100}
         totalSlides={this.props.images.length}
       >
         <Slider>{this.generateImgDivs(this.props.images)}</Slider>

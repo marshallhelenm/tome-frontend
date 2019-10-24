@@ -10,7 +10,7 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const IMG =
-  "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
+  "https://cdn.pixabay.com/photo/2017/05/15/01/02/travel-2313444_1280.jpg";
 
 class Locations extends Component {
   componentDidMount() {

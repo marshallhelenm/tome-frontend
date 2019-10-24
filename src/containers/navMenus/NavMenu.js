@@ -22,7 +22,7 @@ class NavMenu extends Component {
             render={props => {
               return (
                 <>
-                  <HomeButton {...props} />
+                  {/* <HomeButton {...props} /> */}
                   <WorldsButton {...props} />
                 </>
               );

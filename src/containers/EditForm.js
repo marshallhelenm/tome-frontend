@@ -3,7 +3,7 @@ import composedAuthHOC from "../HOC/AuthHOC.js";
 import DeleteModal from "../components/DeleteModal.js";
 import { connect } from "react-redux";
 import { addBreadCrumb } from "../actions/breadcrumbActions";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Input } from "semantic-ui-react";
 import ResizableTextarea from "../components/ResizableTextArea.js";
 import URLInputs from "../components/URLInputs.js";
 
@@ -14,20 +14,59 @@ class EditForm extends Component {
       "Edit"
     );
   }
+  // state = {
+  //   fields: 0,
+  //   urls: [""]
+  // };
+
+  // printUrls = () => {
+  //   console.log("editform state: ", this.state);
+  //   let urlstring = "";
+  //   let urls = this.state.urls;
+  //   urls.forEach(url => {
+  //     urlstring === "" ? (urlstring += url) : (urlstring += `, ${url}`);
+  //   });
+  //   return urlstring;
+  // };
+
+  // generateURLFields = () => {
+  //   let i;
+  //   let fields = [];
+  //   for (i = 0; i <= this.state.fields; i++)
+  //     fields.push(
+  //       <Form.Field key={`img-field-${i}`}>
+  //         <Input
+  //           onChange={this.handleURLChange}
+  //           type="text"
+  //           placeholder="Image URL"
+  //           className="url_field"
+  //         />
+  //       </Form.Field>
+  //     );
+  //   return fields;
+  // };
+
+  // addUrlField = e => {
+  //   e.preventDefault();
+  //   let newfields = this.state.fields+1
+  //   console.log('----EditForm state: ', this.state)
+  //   this.setState(prevState => ({
+  //     fields: newfields
+  //   }));
+  // };
+
+  // handleURLChange = e => {
+  //   this.setState({ urls: [...this.state.urls, e.target.value] });
+  // };
 
   render() {
     console.log("Edit Form Props: ", this.props);
     return (
       <>
         <div className={"content_section last_section"} id="NewForm">
-          <img
-            src={this.props.IMG ? this.props.IMG : null}
-            alt={this.props.img_alt ? this.props.img_alt : "an antique map"}
-            className={"image_wrapper image_fl display_img"}
-          />
           <Form onSubmit={this.props.handleEdit}>
             <Form.Field>
-              <input
+              <Input
                 id="name"
                 type="text"
                 placeholder={
@@ -44,7 +83,6 @@ class EditForm extends Component {
               />
             </Form.Field>
             <Form.Field>
-              {/* <label>Description:</label> */}
               <ResizableTextarea
                 placeholder={
                   this.props.type === "Note" ? "Content" : "Description"
@@ -55,8 +93,14 @@ class EditForm extends Component {
                     : this.props.item.content
                 }
               />
-              <URLInputs />
             </Form.Field>
+            <URLInputs />
+            {/* <Button type="button" onClick={this.addUrlField}>
+              Add an Image
+            </Button>
+            {this.generateURLFields()}
+            <div id="secret_url_collection">{this.printUrls()}</div> */}
+
             <Button
               type="submit"
               id="submit"

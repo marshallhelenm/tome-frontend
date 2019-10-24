@@ -20,35 +20,6 @@ class Characters extends Component {
       ? this.props.fetchStoryCharacters(this.props.stories.story)
       : this.props.fetchWorldCharacters(this.props.worlds.world);
 
-    // let trail;
-    // this.props.stories.story
-    //   ? (trail = [
-    //       ["/tome", "Home"],
-    //       ["/tome/worlds", "Worlds"],
-    //       [
-    //         `/tome/worlds/${this.props.worlds.world.id}`,
-    //         this.props.worlds.world.name
-    //       ],
-    //       ["/tome/stories", "Stories"],
-    //       [
-    //         `/tome/stories/${this.props.stories.story.id}`,
-    //         this.props.stories.story.title
-    //       ],
-    //       [`/tome/characters`, "Characters"],
-    //       [
-    //         `/tome/characters/${this.props.characters.character.id}`,
-    //         this.props.characters.character.name
-    //       ]
-    //     ])
-    //   : (trail = [
-    //       ["/tome", "Home"],
-    //       ["/tome/worlds", "Worlds"],
-    //       [
-    //         `/tome/worlds/${this.props.worlds.world.id}`,
-    //         this.props.worlds.world.name
-    //       ],
-    //       [`/tome/characters`, "Characters"]
-    //     ]);
     this.props.assignCrumbs([
       ["/tome", "Home"],
       ["/tome/worlds", "Worlds"],
@@ -58,7 +29,6 @@ class Characters extends Component {
       ],
       [`/tome/characters`, "Characters"]
     ]);
-    // this.props.addBreadCrumb(`/tome/characters`, "Characters");
   }
 
   render() {

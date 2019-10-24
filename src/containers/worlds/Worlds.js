@@ -18,7 +18,7 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
 
 const IMG =
-  "https://cdn.pixabay.com/photo/2017/07/22/11/46/adventure-2528477_960_720.jpg";
+  "https://img2.cgtrader.com/items/677143/ec4642a3bc/globe-antique-3d-model-max-fbx.jpg";
 
 class Worlds extends Component {
   componentDidMount() {

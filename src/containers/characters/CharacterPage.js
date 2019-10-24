@@ -4,7 +4,8 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import {
   deleteCharacter,
   fetchStoryCharacters,
-  fetchWorldCharacters
+  fetchWorldCharacters,
+  fetchCharacter
 } from "../../actions/charactersActions.js";
 import Display from "../../components/Display.js";
 import { assignCrumbs, addBreadCrumb } from "../../actions/breadcrumbActions";
@@ -13,7 +14,11 @@ const BASE_URL = "http://localhost:3000/";
 
 class CharacterPage extends Component {
   componentDidMount() {
-    this.props.addBreadCrumb(`/tome/characters/${this.props.characters.character.id}`, this.props.characters.character.name);
+    console.log('CharacterPage props: ', this.props)
+    this.props.addBreadCrumb(
+      `/tome/characters/${this.props.character.id}`,
+      this.props.characters.character.name
+    );
   }
 
   redirectOnDelete = () => {
@@ -26,6 +31,10 @@ class CharacterPage extends Component {
       this.props.worlds.world,
       this.redirectOnDelete
     );
+  };
+
+  refreshCharacter = () => {
+    this.props.fetchCharacter(this.props.character.id);
   };
 
   addItemToStory = story_id => {
@@ -57,8 +66,13 @@ class CharacterPage extends Component {
         {...this.props}
         category="characters"
         handleDelete={this.handleDeleteCharacter}
+        refreshItem={this.refreshCharacter}
         addItem={this.addItemToStory}
-        IMG={this.props.character.images.length === 0 ? null : this.props.character.images[0].url }
+        IMG={
+          this.props.character.images.length === 0
+            ? null
+            : this.props.character.images[0].url
+        }
         img_alt={this.props.character.name}
         item={this.props.character}
         title={this.props.character.name}
@@ -81,6 +95,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(deleteCharacter(character, story, world, redirect)),
     fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
     fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
+    fetchCharacter: id => dispatch(fetchCharacter(id)),
     assignCrumbs: trail => dispatch(assignCrumbs(trail)),
     addBreadCrumb: (path, displayName) =>
       dispatch(addBreadCrumb(path, displayName))

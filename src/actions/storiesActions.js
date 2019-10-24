@@ -79,3 +79,19 @@ export const fetchWorldStories = world => {
       .then(stories => dispatch(setWorldStories(stories)));
   };
 };
+
+export const fetchStory = id => {
+  return dispatch => {
+    return fetch(BASE_URL + `getstory`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({ story: {id: id} })
+    })
+      .then(res => res.json())
+      .then(story => dispatch(currentStory(story)));
+  };
+};

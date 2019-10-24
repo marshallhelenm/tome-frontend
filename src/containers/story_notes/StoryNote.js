@@ -4,8 +4,10 @@ import EditForm from "../EditForm";
 import { connect } from "react-redux";
 import {
   currentStoryNote,
-  deleteStoryNote
+  deleteStoryNote,
+  fetchStoryNote
 } from "../../actions/storyNotesActions.js";
+import ImgCarousel from "../ImgCarousel";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -41,13 +43,24 @@ const StoryNote = props => {
     });
   };
 
+  const refreshStoryNote = () => {
+    this.props.fetchStoryNote(this.props.story_notes.story_note.id);
+  };
+
   return (
-    <EditForm
-      {...props}
-      handleDelete={handleDeleteNote}
-      item={props.story_notes.story_note}
-      handleEdit={editNote}
-    />
+    <>
+      <ImgCarousel
+        images={props.story_notes.story_note.images}
+        item={props.story_notes.story_note}
+        refreshItem={refreshStoryNote}
+      />
+      <EditForm
+        {...props}
+        handleDelete={handleDeleteNote}
+        item={props.story_notes.story_note}
+        handleEdit={editNote}
+      />
+    </>
   );
 };
 
@@ -60,7 +73,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     currentStoryNote: note => dispatch(currentStoryNote(note)),
-    deleteStoryNote: note => dispatch(deleteStoryNote(note))
+    deleteStoryNote: note => dispatch(deleteStoryNote(note)),
+    fetchStoryNote: id => dispatch(fetchStoryNote(id))
   };
 };
 
