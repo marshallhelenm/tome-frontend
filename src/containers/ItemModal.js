@@ -45,20 +45,24 @@ class ItemModal extends Component {
     return items.map(item => {
       let item_id = item.id;
       return (
-        <Card color="brown" id={item.id} key={item.id}>
-          <Card.Content>
+        <Card color="brown" id={item.id} key={item.id} className="item-card" textAlign='center' >
+          <Card.Content textAlign="center">
             <Image
+              rounded
+              className="card-img"
               size="small"
               src={
-                item.img
-                  ? item.img
+                item.images[0]
+                  ? item.images[0].url
                   : "https://img2.cgtrader.com/items/677143/ec4642a3bc/globe-antique-3d-model-max-fbx.jpg"
               }
             />
-            <Card.Header>{item.title ? item.title : item.name}</Card.Header>
+            <Card.Header textAlign="center">
+              {item.title ? item.title : item.name}
+            </Card.Header>
             {/* <Card.Description>{item.description} </Card.Description> */}
           </Card.Content>
-          <Card.Content>
+          <Card.Content textAlign="center">
             {/* <AddToStory addItem={this.props.addItem} /> */}
             <Button
               negative
@@ -78,7 +82,7 @@ class ItemModal extends Component {
     return (
       <Modal
         id="item-modal"
-        size='small'
+        size="small"
         closeIcon
         trigger={
           <Button color="brown" onClick={this.open}>
@@ -92,9 +96,8 @@ class ItemModal extends Component {
           {/* Characters in {this.props.story} */}
           Characters
         </Modal.Header>
-        <Modal.Content scrolling >
-          <Card.Group>{this.generateItemCards()}</Card.Group>
-
+        <Modal.Content scrolling>
+          <Card.Group centered>{this.generateItemCards()}</Card.Group>
         </Modal.Content>
       </Modal>
     );

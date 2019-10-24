@@ -11,9 +11,6 @@ const StoryNavMenu = props => {
     <>
       <WorldButton world={props.worlds.world} />
       <StoriesButton />
-      <StoryNotesButton />
-      <CharactersButton />
-      <LocationsButton />
     </>
   );
 };

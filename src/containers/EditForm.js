@@ -94,13 +94,7 @@ class EditForm extends Component {
                 }
               />
             </Form.Field>
-            {this.props.type === "Note" ? null : <URLInputs />}
-            {/* <Button type="button" onClick={this.addUrlField}>
-              Add an Image
-            </Button>
-            {this.generateURLFields()}
-            <div id="secret_url_collection">{this.printUrls()}</div> */}
-
+            <URLInputs />
             <Button
               type="submit"
               id="submit"

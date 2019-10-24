@@ -49,7 +49,7 @@ class NewForm extends Component {
               placeholder={this.props.type === "Note" ? "Content" : null}
             />
           </Form.Field>
-          {this.props.type === "Note" ? null : <URLInputs />}
+          <URLInputs />
           <Form.Button
             type="submit"
             value="Save"
