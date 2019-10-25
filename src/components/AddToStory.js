@@ -35,7 +35,7 @@ class AddToStory extends Component {
     const { value } = this.state;
     return (
       <>
-        <Form onSubmit={this.handleAddItem}>
+        <Form id='add-to-story' onSubmit={this.handleAddItem}>
           <Dropdown
             id="selected_story"
             selection

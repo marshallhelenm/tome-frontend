@@ -22,6 +22,8 @@ class DeleteModal extends Component {
         trigger={<Button onClick={this.open}>Delete</Button>}
         open={this.state.open}
         onClose={this.close}
+        size='tiny'
+        id='delete-modal'
       >
         <Modal.Header>
           Are you sure you want to delete {this.props.name}?

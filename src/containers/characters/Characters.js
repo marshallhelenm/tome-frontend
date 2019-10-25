@@ -16,9 +16,7 @@ class Characters extends Component {
   componentDidMount() {
     console.log("Characters props: ", this.props);
     console.log("story: ", this.props.stories.story);
-    this.props.stories.story
-      ? this.props.fetchStoryCharacters(this.props.stories.story)
-      : this.props.fetchWorldCharacters(this.props.worlds.world);
+    this.props.fetchWorldCharacters(this.props.worlds.world);
 
     this.props.assignCrumbs([
       ["/tome", "Home"],

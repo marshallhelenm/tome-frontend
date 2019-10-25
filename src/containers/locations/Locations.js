@@ -16,9 +16,7 @@ class Locations extends Component {
   componentDidMount() {
     console.log("Locations props: ", this.props);
     console.log("story: ", this.props.stories.story);
-    this.props.stories.story
-      ? this.props.fetchStoryLocations(this.props.stories.story)
-      : this.props.fetchWorldLocations(this.props.worlds.world);
+    this.props.fetchWorldLocations(this.props.worlds.world);
     this.props.assignCrumbs([
       ["/tome", "Home"],
       ["/tome/worlds", "Worlds"],

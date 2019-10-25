@@ -44,7 +44,6 @@ class NavMenu extends Component {
           />
           <Route
             path="/tome/story_notes"
-            exact
             render={props => <StoryNotesNavMenu {...props} />}
           />
           <Route

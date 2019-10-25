@@ -33,6 +33,7 @@ class ImgCarousel extends Component {
                     img_id={image.id}
                   />
                 </div>
+                {images.length <= 1 ? null : 
                 <div id="img-nav">
                   <div>
                     <ButtonBack className='carousel-btn' >
@@ -45,6 +46,7 @@ class ImgCarousel extends Component {
                     </ButtonNext>
                   </div>
                 </div>
+                }
               </div>
             </div>
           </div>
@@ -72,6 +74,7 @@ class ImgCarousel extends Component {
     console.log("Carousel props: ", this.props);
     return (
       <CarouselProvider
+      infinite={true}
         id="img_carousel"
         naturalSlideWidth={100}
         naturalSlideHeight={100}

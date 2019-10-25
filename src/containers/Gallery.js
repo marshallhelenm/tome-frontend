@@ -43,9 +43,9 @@ class Gallery extends Component {
   };
 
   render() {
-    // console.log("gallery props: ", this.props);
+    console.log("gallery props: ", this.props);
     return (
-      <>
+      <div id='gallery-page' >
         {this.props.stories.story ? (
           <div className="content_section">
             <h1>{this.props.stories.story.title}</h1>
@@ -66,7 +66,7 @@ class Gallery extends Component {
           />
           {this.generateCards()}
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -160,3 +160,8 @@ h2 {
   justify-content: center;
   align-content: center;
 }
+
+#add-to-story{
+  display: flex;
+  flex-direction: row;
+}

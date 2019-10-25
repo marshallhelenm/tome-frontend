@@ -173,3 +173,11 @@ div.tabs a:focus {
 .hide {
   display: none;
 }
+
+#gallery-page h1 {
+  text-align: center;
+}
+
+#delete-modal{
+  text-align: center;
+}

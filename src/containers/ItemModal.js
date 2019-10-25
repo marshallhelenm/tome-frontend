@@ -80,7 +80,7 @@ class ItemModal extends Component {
   };
 
   render() {
-    // console.log("ItemModal props: ", this.props);
+    console.log("ItemModal props: ", this.props);
     return (
       <Modal
         id="item-modal"

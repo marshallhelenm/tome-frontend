@@ -25,7 +25,7 @@ class StoryNotes extends Component {
         defaultIMG={IMG}
         items={this.props.story_notes.story_notes}
         type="story_notes"
-        title={"story notes"}
+        title={"Story Notes"}
         // title={this.props.stories.story.title}
       />
     );
