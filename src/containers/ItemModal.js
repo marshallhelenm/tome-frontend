@@ -36,20 +36,53 @@ class ItemModal extends Component {
     card.style.display = "none";
   };
 
+  clickCard = e => {
+    e.preventDefault();
+    let items = [];
+    this.props.itemType === "Characters"
+      ? (items = this.props.characters.story_characters)
+      : (items = this.props.locations.story_locations);
+    let item;
+    items.forEach(s => {
+      if (`${s.id}` === `${e.currentTarget.id}`) {
+        item = s;
+      }
+      return item;
+    });
+    // console.log("item: ", item);
+    this.props.currentItem(item);
+    this.props.history.push(
+      `/tome/${this.props.url_path}/${e.currentTarget.id}`
+    );
+  };
+
   generateItemCards = () => {
     let items = [];
     this.props.itemType === "Characters"
       ? (items = this.props.characters.story_characters)
       : (items = this.props.locations.story_locations);
-    if (items.length === 0){
-      return <h2>There are no {this.props.itemType} attached to this story yet! Go to your world's {this.props.itemType} page to add some.</h2>
+    if (items.length === 0) {
+      return (
+        <h2>
+          There are no {this.props.itemType} attached to this story yet! Go to
+          your world's {this.props.itemType} page to add some.
+        </h2>
+      );
     }
     return items.map(item => {
       let item_id = item.id;
       return (
-        <Card color="brown" id={item.id} key={item.id} className="item-card" textAlign='center' >
+        <Card
+          color="brown"
+          id={item.id}
+          key={item.id}
+          className="item-card"
+          textAlign="center"
+        >
           <Card.Content textAlign="center">
             <Image
+              id={item.id}
+              onClick={this.clickCard}
               rounded
               className="card-img"
               size="small"
