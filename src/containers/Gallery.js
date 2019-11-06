@@ -4,25 +4,30 @@ import "../css/tooplate_style.css";
 import Polaroid from "../components/Polaroid";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
-import { setLocal } from "..";
+import { setLocal } from "../App.js";
 
 class Gallery extends Component {
   generateCards = () => {
-    return this.props.items.map(item => {
-      return (
-        <Polaroid
-          handleClick={this.clickCard}
-          caption={item.name ? item.name : item.title}
-          img={item.images[0] ? item.images[0].url : this.props.defaultIMG}
-          key={
-            item.name
-              ? item.name + "." + Math.random() * 10
-              : item.title + "." + Math.random() * 10
-          }
-          id={item.id}
-        />
-      );
-    });
+    console.log("in generateCards, items: ", this.props.items);
+    if (!!!this.props.items) {
+      return [];
+    } else {
+      return this.props.items.map(item => {
+        return (
+          <Polaroid
+            handleClick={this.clickCard}
+            caption={item.name ? item.name : item.title}
+            img={item.images[0] ? item.images[0].url : this.props.defaultIMG}
+            key={
+              item.name
+                ? item.name + "." + Math.random() * 10
+                : item.title + "." + Math.random() * 10
+            }
+            id={item.id}
+          />
+        );
+      });
+    }
   };
 
   clickCard = e => {
@@ -35,8 +40,8 @@ class Gallery extends Component {
       return item;
     });
     // console.log("item: ", item);
-    // this.props.currentItem(item);
-    setLocal(this.props.type, item)
+    this.props.currentItem(item);
+    setLocal(this.props.item_type, item);
     this.props.history.push(`/tome/${this.props.type}/${e.currentTarget.id}`);
   };
 
@@ -47,7 +52,7 @@ class Gallery extends Component {
   render() {
     console.log("gallery props: ", this.props);
     return (
-      <div id='gallery-page' >
+      <div id="gallery-page">
         {this.props.stories.story ? (
           <div className="content_section">
             <h1>{this.props.stories.story.title}</h1>

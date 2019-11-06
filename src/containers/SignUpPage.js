@@ -3,15 +3,7 @@ import { connect } from "react-redux";
 import { setLoggedIn } from "../actions/authActions";
 import "../css/notebook.css";
 import "../css/tooplate_style.css";
-import {
-  Segment,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Button,
-  Message
-} from "semantic-ui-react";
+import { Segment, Form, Grid, Header, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 const BASE_URL = "http://localhost:3000/";
@@ -100,7 +92,9 @@ const SignUpPage = props => {
                 </Button>
               </Segment>
             </Form>
-              <Link className='login-link' to="/">Already have an account? Log In</Link>
+            <Link className="login-link" to="/">
+              Already have an account? Log In
+            </Link>
           </Grid.Column>
         </Grid>
       </div>

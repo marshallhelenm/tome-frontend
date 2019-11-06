@@ -3,6 +3,15 @@ import { connect } from "react-redux";
 import Notebook from "./containers/Notebook";
 import './css/tome.css'
 
+export const setLocal = (label, content) => {
+  console.log(`setting local: ${label}`, content)
+  localStorage.setItem(`${label}`, JSON.stringify(content));
+}
+
+export const getLocal = (label) => {
+  return JSON.parse(localStorage.getItem(label))
+}
+
 const App = props => {
   // console.log("App props: ", props);
   return (

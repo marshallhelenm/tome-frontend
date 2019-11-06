@@ -40,6 +40,7 @@ class Locations extends Component {
             ? this.props.locations.story_locations
             : this.props.locations.locations
         }
+        item_type="location"
         type="locations"
         title={"Locations"}
       />

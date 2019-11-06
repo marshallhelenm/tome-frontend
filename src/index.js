@@ -17,11 +17,6 @@ ReactDOM.render(
 );
 
 
-export const setLocal = (label, content) => {
-  localStorage.setItem(`${label}`, JSON.stringify(content));
-}
-
-
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA

@@ -4,26 +4,21 @@ import { setLoggedIn, setLoggedOut } from "../actions/authActions";
 import "../css/notebook.css";
 import "../css/tooplate_style.css";
 import { assignCrumbs } from "../actions/breadcrumbActions";
-import {
-  Segment,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Button,
-  Message
-} from "semantic-ui-react";
+import { Segment, Form, Grid, Header, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { setLocal } from "../App";
 
 const BASE_URL = "http://localhost:3000/";
 
 class LoginPage extends Component {
   componentDidMount() {
     this.props.assignCrumbs([]);
+    localStorage.removeItem('token')
   }
 
   // console.log('props in LoginPage: ', props)
   handleLogOut = () => {
+
     this.props.setLoggedOut();
   };
 
@@ -63,44 +58,46 @@ class LoginPage extends Component {
   render() {
     return (
       <>
-        
-      <div className={"content_section login-page"}>
-        <Grid
-          textAlign="center"
-          verticalAlign="middle"
-        >
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Image id='login-img' src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg" rounded />
-            <Header as="h3" color="brown" textAlign="center">
-              Log-in to your account
-            </Header>
-            <Form size="large" onSubmit={this.handleLogIn}>
-              <Segment stacked>
-                <Form.Input
-                  icon="user"
-                  fluid
-                  iconPosition="left"
-                  id="username"
-                  placeholder="Username"
-                />
-                <Form.Input
-                  id="password"
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Password"
-                  type="password"
-                />
+        <div className={"content_section login-page"}>
+          <Grid textAlign="center" verticalAlign="middle">
+            <Grid.Column style={{ maxWidth: 450 }}>
+              <Image
+                id="login-img"
+                src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg"
+                rounded
+              />
+              <Header as="h3" color="brown" textAlign="center">
+                Log-in to your account
+              </Header>
+              <Form size="large" onSubmit={this.handleLogIn}>
+                <Segment stacked>
+                  <Form.Input
+                    icon="user"
+                    fluid
+                    iconPosition="left"
+                    id="username"
+                    placeholder="Username"
+                  />
+                  <Form.Input
+                    id="password"
+                    fluid
+                    icon="lock"
+                    iconPosition="left"
+                    placeholder="Password"
+                    type="password"
+                  />
 
-                <Button color="brown" fluid size="large">
-                  Login
-                </Button>
-              </Segment>
-            </Form>
-              <Link className='login-link' to="/signup">New? Sign Up</Link>
-          </Grid.Column>
-        </Grid>
-      </div>
+                  <Button color="brown" fluid size="large">
+                    Login
+                  </Button>
+                </Segment>
+              </Form>
+              <Link className="login-link" to="/signup">
+                New? Sign Up
+              </Link>
+            </Grid.Column>
+          </Grid>
+        </div>
       </>
     );
   }

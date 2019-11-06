@@ -16,6 +16,7 @@ import { fetchWorlds, currentWorld } from "../../actions/worldsActions.js";
 import { currentStory } from "../../actions/storiesActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
+import { getLocal } from "../../App.js";
 
 const IMG =
   "https://img2.cgtrader.com/items/677143/ec4642a3bc/globe-antique-3d-model-max-fbx.jpg";
@@ -39,14 +40,14 @@ class Worlds extends Component {
         // fetchItems={this.props.fetchWorlds}
         currentItem={this.props.currentWorld}
         defaultIMG={IMG}
-        items={localStorage.getItem('worlds')}
+        items={getLocal("worlds")}
         type="worlds"
+        item_type="world"
         title={"Your Worlds"}
       />
     );
   }
 }
-
 
 const mapStateToProps = state => {
   return {
@@ -64,8 +65,7 @@ const mapDispatchToProps = dispatch => {
     currentLocation: location => dispatch(currentLocation(location)),
     setStoryCharacters: characters => dispatch(setStoryCharacters(characters)),
     setStoryLocations: locations => dispatch(setStoryLocations(locations)),
-    assignCrumbs: (trail) =>
-      dispatch(assignCrumbs(trail))
+    assignCrumbs: trail => dispatch(assignCrumbs(trail))
   };
 };
 

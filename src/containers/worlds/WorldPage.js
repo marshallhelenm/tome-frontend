@@ -17,6 +17,7 @@ import {
 import { deleteWorld, fetchWorld } from "../../actions/worldsActions.js";
 import Display from "../../components/Display.js";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
+import { getLocal } from "../../App.js";
 
 class WorldPage extends Component {
   componentDidMount() {
@@ -45,25 +46,24 @@ class WorldPage extends Component {
     this.props.deleteWorld(this.props.world, this.redirectOnDelete);
   };
 
-  refreshWorld = ()=> {
-    this.props.fetchWorld(this.props.worlds.world.id)
-  }
+  refreshWorld = () => {
+    this.props.fetchWorld(this.props.worlds.world.id);
+  };
 
   render() {
     console.log("WorldPage props: ", this.props);
+    let world = getLocal("world");
     return (
       <Display
         {...this.props}
         handleDelete={this.handleDeleteWorld}
         refreshItem={this.refreshWorld}
-        IMG={
-          this.props.world.images.length === 0 ? null : this.props.world.images[0].url
-        }
-        img_alt={this.props.world.name}
+        IMG={world.images.length === 0 ? null : world.images[0].url}
+        img_alt={world.name}
         category={"worlds"}
-        item={this.props.world}
-        title={this.props.world.name}
-        text={this.props.world.description}
+        item={world}
+        title={world.name}
+        text={world.description}
       />
     );
   }
@@ -87,7 +87,7 @@ const mapDispatchToProps = dispatch => {
     fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
     fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
     deleteWorld: (world, redirect) => dispatch(deleteWorld(world, redirect)),
-    fetchWorld: (id)=>dispatch(fetchWorld(id)),
+    fetchWorld: id => dispatch(fetchWorld(id)),
     assignCrumbs: trail => dispatch(assignCrumbs(trail))
   };
 };

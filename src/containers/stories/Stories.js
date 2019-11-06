@@ -48,6 +48,7 @@ class Stories extends Component {
         currentItem={this.props.currentStory}
         defaultIMG={IMG}
         items={this.props.stories.world_stories ? this.props.stories.world_stories : []}
+        item_type="story"
         type="stories"
         title={`Tales of ${this.props.worlds.world.name}`}
       />

@@ -41,6 +41,7 @@ class Characters extends Component {
             ? this.props.characters.story_characters
             : this.props.characters.characters
         }
+        item_type="character"
         type="characters"
         title={"Characters"}
       />
