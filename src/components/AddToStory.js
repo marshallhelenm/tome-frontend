@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC";
-import { Button, Dropdown, Form } from "semantic-ui-react";
+import { Button, Dropdown, Form, Confirm } from "semantic-ui-react";
 import { connect } from "react-redux";
 import AddConfirm from "./AddConfirm";
 
@@ -8,7 +8,8 @@ class AddToStory extends Component {
   constructor() {
     super();
     this.state = {
-      value: ""
+      value: "",
+      open: false
     };
   }
   handleAddItem = () => {
@@ -27,33 +28,43 @@ class AddToStory extends Component {
 
   handleChange = (e, { value }) => {
     console.log(value);
-    this.setState({value})
+    this.setState({ value });
   };
+
+  show = () => this.setState({ open: true });
+  handleConfirm = () => {
+    this.handleAddItem();
+    this.setState({ open: false });
+  };
+  close = () => this.setState({ open: false })
 
   render() {
     console.log("AddToStory props: ", this.props);
     const { value } = this.state;
     return (
       <>
-        <Form id='add-to-story' onSubmit={this.handleAddItem}>
+        <Form id="add-to-story">
           <Dropdown
             id="selected_story"
             selection
             upward
             onChange={this.handleChange}
             placeholder={
-              this.props.stories.story
-                ? this.props.stories.story.title
-                : "Select Story"
+              "Select Story"
             }
             value={value}
-            // defaultValue={
-            //   this.props.stories.story ? this.props.stories.story.id : null
-            // }
             options={this.generateOptions()}
           />
-
-          <AddConfirm />
+          <Button type="button" color="brown" onClick={this.show}>
+            Add to Story
+          </Button>
+          <Confirm
+            open={this.state.open}
+            content={`Are you sure you want to add to ${this.state.value}?`}
+            size="tiny"
+            onConfirm={this.handleConfirm}
+            onCancel={this.close}
+          />
         </Form>
       </>
     );

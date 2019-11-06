@@ -4,6 +4,7 @@ import "../css/tooplate_style.css";
 import Polaroid from "../components/Polaroid";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
+import { setLocal } from "..";
 
 class Gallery extends Component {
   generateCards = () => {
@@ -34,7 +35,8 @@ class Gallery extends Component {
       return item;
     });
     // console.log("item: ", item);
-    this.props.currentItem(item);
+    // this.props.currentItem(item);
+    setLocal(this.props.type, item)
     this.props.history.push(`/tome/${this.props.type}/${e.currentTarget.id}`);
   };
 

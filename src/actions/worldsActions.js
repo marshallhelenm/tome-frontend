@@ -1,3 +1,4 @@
+import { setLocal } from "../index.js";
 const BASE_URL = "http://localhost:3000/";
 
 export const setWorlds = worlds => {
@@ -47,7 +48,10 @@ export const fetchWorlds = () => {
       body: JSON.stringify({ user: user })
     })
       .then(res => res.json())
-      .then(worlds => dispatch(setWorlds(worlds)));
+      .then(worlds => {
+        setLocal("worlds", worlds);
+        dispatch(setWorlds(worlds));
+      });
   };
 };
 
@@ -60,7 +64,7 @@ export const fetchWorld = id => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ world: {id: id} })
+      body: JSON.stringify({ world: { id: id } })
     })
       .then(res => res.json())
       .then(world => dispatch(currentWorld(world)));

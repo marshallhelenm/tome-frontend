@@ -39,13 +39,14 @@ class Worlds extends Component {
         // fetchItems={this.props.fetchWorlds}
         currentItem={this.props.currentWorld}
         defaultIMG={IMG}
-        items={this.props.worlds.worlds}
+        items={localStorage.getItem('worlds')}
         type="worlds"
         title={"Your Worlds"}
       />
     );
   }
 }
+
 
 const mapStateToProps = state => {
   return {

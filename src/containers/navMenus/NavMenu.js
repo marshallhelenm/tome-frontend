@@ -15,6 +15,7 @@ import WorldButton from "../../components/navButtons/WorldButton";
 import StoryButton from "../../components/navButtons/StoryButton";
 import StoriesButton from "../../components/navButtons/StoriesButton";
 import StoryNavMenu from "./StoryNavMenu";
+import StoryNoteNavMenu from "./StoryNoteNavMenu";
 
 class NavMenu extends Component {
   // Will create methods etc to make sure that menu shows correct things at the correct times
@@ -44,7 +45,12 @@ class NavMenu extends Component {
           />
           <Route
             path="/tome/story_notes"
+            exact
             render={props => <StoryNotesNavMenu {...props} />}
+          />
+          <Route
+            path="/tome/story_notes/:id"
+            render={props => <StoryNoteNavMenu {...props} />}
           />
           <Route
             path="/tome/locations"
