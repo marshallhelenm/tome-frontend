@@ -1,3 +1,5 @@
+import { getLocal } from "../App";
+
 const BASE_URL = "http://localhost:3000/";
 
 export const setCharacters = characters => {
@@ -38,7 +40,7 @@ export const deleteCharacter = (character, story, world, redirect) => {
       body: JSON.stringify({ character: {character_id: character.id} })
     }).then(() => {
       fetchStoryCharacters(story);
-      fetchWorldCharacters(world);
+      fetchWorldCharacters(getLocal('world'));
       redirect();
     });
   };

@@ -9,27 +9,23 @@ import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
 import { Segment, Button } from "semantic-ui-react";
 import { assignCrumbs } from "../actions/breadcrumbActions";
 import ImgCarousel from "../containers/ImgCarousel.js";
+import { getLocal } from "../App.js";
 
 class Display extends Component {
   componentDidMount() {
     console.log("Display props: ", this.props);
-    if (this.props.item.category === "worlds") {
+    let world = getLocal("world");
+    if (this.props.category === "worlds") {
       this.props.assignCrumbs([
         ["/tome", "Home"],
         ["/tome/worlds", "Worlds"],
-        [
-          `/tome/worlds/${this.props.worlds.world.id}`,
-          this.props.worlds.world.name
-        ]
+        [`/tome/worlds/${world.id}`, world.name]
       ]);
     } else if (this.props.category === "stories") {
       this.props.assignCrumbs([
         ["/tome", "Home"],
         ["/tome/worlds", "Worlds"],
-        [
-          `/tome/worlds/${this.props.worlds.world.id}`,
-          this.props.worlds.world.name
-        ],
+        [`/tome/worlds/${world.id}`, world.name],
         ["/tome/stories", "Stories"],
         [
           `/tome/stories/${this.props.stories.story.id}`,
@@ -41,10 +37,14 @@ class Display extends Component {
         ["/tome", "Home"],
         ["/tome/worlds", "Worlds"],
         [
-          `/tome/worlds/${this.props.worlds.world.id}`,
-          this.props.worlds.world.name
+          `/tome/worlds/${world.id}`,
+          world.name
         ],
-        [`/tome/${this.props.category}`, `${this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)}`]
+        [
+          `/tome/${this.props.category}`,
+          `${this.props.category.charAt(0).toUpperCase() +
+            this.props.category.slice(1)}`
+        ]
       ]);
     }
   }
@@ -58,14 +58,6 @@ class Display extends Component {
     return (
       <>
         <div className="content_section">
-          {/* {this.props.IMG ? (
-          <img
-            src={this.props.IMG}
-            alt={this.props.img_alt ? this.props.img_alt : "an antique map"}
-            className={"image_wrapper image_fl display_img"}
-          />
-        ) : null} */}
-          {/* <img src={src} alt={alt} /> */}
           <h2>{this.props.title}</h2>
         </div>
         <div className="content_section">

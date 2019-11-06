@@ -5,6 +5,7 @@ import "../../css/tooplate_style.css";
 import { fetchStories, currentStory } from "../../actions/storiesActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
+import { getLocal } from "../../App";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -16,7 +17,7 @@ class NewStory extends Component {
       title: document.getElementById("name").value,
       description: document.getElementById("description").value,
       user: JSON.parse(localStorage.getItem("user")).id,
-      world: this.props.worlds.world.id,
+      world: getLocal("world").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
     fetch(BASE_URL + "stories/new", {

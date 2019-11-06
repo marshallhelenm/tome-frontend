@@ -59,7 +59,6 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchWorlds: () => dispatch(fetchWorlds()),
     currentWorld: world => dispatch(currentWorld(world)),
-    fetchWorldLocations: story => dispatch(fetchWorldLocations(story)),
     currentStory: story => dispatch(currentStory(story)),
     currentCharacter: character => dispatch(currentCharacter(character)),
     currentLocation: location => dispatch(currentLocation(location)),

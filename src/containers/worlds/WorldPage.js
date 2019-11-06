@@ -25,16 +25,13 @@ class WorldPage extends Component {
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
-    this.props.fetchWorldStories(this.props.world);
-    this.props.fetchWorldCharacters(this.props.world);
-    this.props.fetchWorldLocations(this.props.world);
+    this.props.fetchWorldStories(getLocal("world"));
+    this.props.fetchWorldCharacters(getLocal("world"));
+    this.props.fetchWorldLocations(getLocal("world"));
     this.props.assignCrumbs([
       ["/tome", "Home"],
       ["/tome/worlds", "Worlds"],
-      [
-        `/tome/worlds/${this.props.worlds.world.id}`,
-        this.props.worlds.world.name
-      ]
+      [`/tome/worlds/${getLocal("world").id}`, getLocal("world").name]
     ]);
   }
 
@@ -47,7 +44,7 @@ class WorldPage extends Component {
   };
 
   refreshWorld = () => {
-    this.props.fetchWorld(this.props.worlds.world.id);
+    this.props.fetchWorld(getLocal("world").id);
   };
 
   render() {
@@ -58,7 +55,6 @@ class WorldPage extends Component {
         {...this.props}
         handleDelete={this.handleDeleteWorld}
         refreshItem={this.refreshWorld}
-        IMG={world.images.length === 0 ? null : world.images[0].url}
         img_alt={world.name}
         category={"worlds"}
         item={world}

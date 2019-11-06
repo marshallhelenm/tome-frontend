@@ -12,6 +12,7 @@ import {
 import Display from "../../components/Display.js";
 import { deleteStory, fetchStory } from "../../actions/storiesActions";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
+import { getLocal } from "../../App.js";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -20,7 +21,6 @@ class StoryPage extends Component {
     console.log("StoryPage props: ", this.props);
     this.props.fetchStoryCharacters(this.props.stories.story);
     this.props.fetchStoryLocations(this.props.stories.story);
-    
   }
   redirectOnDelete = () => {
     this.props.history.push(`/tome/stories`);
@@ -29,14 +29,14 @@ class StoryPage extends Component {
   handleDeleteStory = () => {
     this.props.deleteStory(
       this.props.stories.story,
-      this.props.worlds.world,
+      getLocal("world"),
       this.redirectOnDelete
     );
   };
 
-  refreshStory = ()=> {
-    this.props.fetchStory(this.props.stories.story.id)
-  }
+  refreshStory = () => {
+    this.props.fetchStory(this.props.stories.story.id);
+  };
 
   deleteItemFromStory = (item_id, type) => {
     console.log("item_id: ", item_id);

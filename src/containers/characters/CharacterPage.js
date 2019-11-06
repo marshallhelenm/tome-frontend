@@ -9,6 +9,7 @@ import {
 } from "../../actions/charactersActions.js";
 import Display from "../../components/Display.js";
 import { assignCrumbs, addBreadCrumb } from "../../actions/breadcrumbActions";
+import { getLocal } from "../../App.js";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -28,7 +29,7 @@ class CharacterPage extends Component {
     this.props.deleteCharacter(
       this.props.character,
       this.props.stories.story,
-      this.props.worlds.world,
+      getLocal('world'),
       this.redirectOnDelete
     );
   };
@@ -94,7 +95,6 @@ const mapDispatchToProps = dispatch => {
     deleteCharacter: (character, story, world, redirect) =>
       dispatch(deleteCharacter(character, story, world, redirect)),
     fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
-    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
     fetchCharacter: id => dispatch(fetchCharacter(id)),
     assignCrumbs: trail => dispatch(assignCrumbs(trail)),
     addBreadCrumb: (path, displayName) =>

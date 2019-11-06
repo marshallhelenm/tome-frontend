@@ -8,6 +8,7 @@ import {
 } from "../../actions/locationsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
+import { getLocal } from "../../App";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -19,7 +20,7 @@ class NewLocation extends Component {
     let location = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      world_id: this.props.worlds.world.id,
+      world_id: getLocal("world").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
@@ -36,8 +37,6 @@ class NewLocation extends Component {
       .then(newLocation => {
         console.log("newLocation: ", newLocation);
         this.props.currentLocation(newLocation);
-
-        // this.props.fetchWorldLocations(this.props);
         this.props.history.push(`/tome/locations/${newLocation.id}`);
       });
   };
@@ -58,7 +57,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchWorldLocations: () => dispatch(fetchWorldLocations()),
     currentLocation: location => dispatch(currentLocation(location))
   };
 };

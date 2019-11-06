@@ -8,6 +8,7 @@ import {
 } from "../../actions/charactersActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
+import { getLocal } from "../../App";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -19,7 +20,7 @@ class NewCharacter extends Component {
     let character = {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
-      world_id: this.props.worlds.world.id,
+      world_id: getLocal("world").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
@@ -37,7 +38,6 @@ class NewCharacter extends Component {
         console.log("newCharacter: ", newCharacter);
         this.props.currentCharacter(newCharacter);
 
-        // this.props.fetchWorldCharacters(this.props);
         this.props.history.push(`/tome/characters/${newCharacter.id}`);
       });
   };
@@ -58,7 +58,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchWorldCharacters: () => dispatch(fetchWorldCharacters()),
     currentCharacter: character => dispatch(currentCharacter(character))
   };
 };

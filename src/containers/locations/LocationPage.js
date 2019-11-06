@@ -9,6 +9,7 @@ import {
 } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 import { addBreadCrumb } from "../../actions/breadcrumbActions";
+import { getLocal } from "../../App.js";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -17,7 +18,10 @@ const IMG =
 
 class LocationPage extends Component {
   componentDidMount() {
-    this.props.addBreadCrumb(`/tome/characters/${this.props.locations.location.id}`, this.props.locations.location.name);
+    this.props.addBreadCrumb(
+      `/tome/characters/${this.props.locations.location.id}`,
+      this.props.locations.location.name
+    );
   }
 
   redirectOnDelete = () => {
@@ -27,14 +31,14 @@ class LocationPage extends Component {
     this.props.deleteLocation(
       this.props.location,
       this.props.stories.story,
-      this.props.worlds.world,
+      getLocal("world"),
       this.redirectOnDelete
     );
   };
 
-  refreshLocation = ()=> {
-    this.props.fetchLocation(this.props.locations.location.id)
-  }
+  refreshLocation = () => {
+    this.props.fetchLocation(this.props.locations.location.id);
+  };
 
   addItemToStory = story_id => {
     console.log("adding story: ", story_id);
@@ -50,11 +54,11 @@ class LocationPage extends Component {
         story_id: story_id
       })
     })
-    .then(response=>response.json())
-    .then(story => {
-      console.log(story);
-      fetchStoryLocations(story);
-    });
+      .then(response => response.json())
+      .then(story => {
+        console.log(story);
+        fetchStoryLocations(story);
+      });
   };
 
   render() {
@@ -89,7 +93,6 @@ const mapDispatchToProps = dispatch => {
     deleteLocation: (location, story, world, redirect) =>
       dispatch(deleteLocation(location, story, world, redirect)),
     fetchStoryLocations: story => dispatch(fetchStoryLocations(story)),
-    fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
     fetchLocation: id => dispatch(fetchLocation(id)),
     addBreadCrumb: (path, displayName) =>
       dispatch(addBreadCrumb(path, displayName))

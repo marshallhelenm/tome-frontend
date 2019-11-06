@@ -16,6 +16,7 @@ import StoryButton from "../../components/navButtons/StoryButton";
 import StoriesButton from "../../components/navButtons/StoriesButton";
 import StoryNavMenu from "./StoryNavMenu";
 import StoryNoteNavMenu from "./StoryNoteNavMenu";
+import { getLocal } from "../../App";
 
 class NavMenu extends Component {
   // Will create methods etc to make sure that menu shows correct things at the correct times
@@ -29,7 +30,7 @@ class NavMenu extends Component {
             path="/tome/worlds/:id"
             render={props => <WorldNavMenu {...props} />}
           />
-          
+
           <Route
             path="/tome/stories/:id"
             render={props => <StoryNavMenu {...props} />}
@@ -59,7 +60,7 @@ class NavMenu extends Component {
           <Route
             path="/tome/new/stories"
             render={props => (
-              <WorldButton {...props} world={this.props.worlds.world} />
+              <WorldButton {...props} world={getLocal("world")} />
             )}
           />
           <Route
@@ -67,7 +68,7 @@ class NavMenu extends Component {
             render={props => {
               return (
                 <>
-                  <WorldButton {...props} world={this.props.worlds.world} />
+                  <WorldButton {...props} world={getLocal("world")} />
                   <StoryButton {...props} story={this.props.stories.story} />
                 </>
               );

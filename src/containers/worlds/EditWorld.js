@@ -3,6 +3,7 @@ import EditForm from "../EditForm.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { currentWorld, deleteWorld } from "../../actions/worldsActions.js";
+import { getLocal } from "../../App.js";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -19,7 +20,7 @@ class EditWorld extends Component {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
       user_id: JSON.parse(localStorage.getItem("user")).user.id,
-      currentWorld: this.props.worlds.world.id,
+      currentWorld: getLocal("world").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 

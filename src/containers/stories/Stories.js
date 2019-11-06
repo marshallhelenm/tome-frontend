@@ -17,6 +17,7 @@ import {
   currentLocation
 } from "../../actions/locationsActions.js";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
+import { getLocal } from "../../App.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2016/09/10/17/18/book-1659717_1280.jpg";
@@ -24,7 +25,7 @@ const IMG =
 class Stories extends Component {
   componentDidMount() {
     console.log("Stories props: ", this.props);
-    this.props.fetchWorldStories(this.props.worlds.world);
+    this.props.fetchWorldStories(getLocal("world"));
     this.props.currentStory(null);
     this.props.currentCharacter(null);
     this.props.currentLocation(null);
@@ -32,10 +33,7 @@ class Stories extends Component {
     this.props.assignCrumbs([
       ["/tome", "Home"],
       ["/tome/worlds", "Worlds"],
-      [
-        `/tome/worlds/${this.props.worlds.world.id}`,
-        this.props.worlds.world.name
-      ],
+      [`/tome/worlds/${getLocal("world").id}`, getLocal("world").name],
       ["/tome/stories", "Stories"]
     ]);
   }
@@ -47,10 +45,14 @@ class Stories extends Component {
         {...this.props}
         currentItem={this.props.currentStory}
         defaultIMG={IMG}
-        items={this.props.stories.world_stories ? this.props.stories.world_stories : []}
+        items={
+          this.props.stories.world_stories
+            ? this.props.stories.world_stories
+            : []
+        }
         item_type="story"
         type="stories"
-        title={`Tales of ${this.props.worlds.world.name}`}
+        title={`Tales of ${getLocal("world").name}`}
       />
     );
   }
@@ -69,7 +71,6 @@ const mapDispatchToProps = dispatch => {
     currentStory: story => dispatch(currentStory(story)),
     currentCharacter: character => dispatch(currentCharacter(character)),
     currentLocation: location => dispatch(currentLocation(location)),
-    fetchWorldCharacters: story => dispatch(fetchWorldCharacters(story)),
     fetchWorldLocations: story => dispatch(fetchWorldLocations(story)),
     setStoryCharacters: characters => dispatch(setStoryCharacters(characters)),
     assignCrumbs: trail => dispatch(assignCrumbs(trail))
