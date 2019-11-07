@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC";
 import { Button, Dropdown, Form, Confirm } from "semantic-ui-react";
 import { connect } from "react-redux";
-import AddConfirm from "./AddConfirm";
+import { getLocal } from "../App";
 
 class AddToStory extends Component {
   constructor() {
@@ -17,7 +17,7 @@ class AddToStory extends Component {
   };
 
   generateOptions = () => {
-    return this.props.stories.world_stories.map(story => {
+    return getLocal('stories').map(story => {
       return {
         key: `${story.id}.${story.title}`,
         text: story.title,

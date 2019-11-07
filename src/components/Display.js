@@ -27,19 +27,13 @@ class Display extends Component {
         ["/tome/worlds", "Worlds"],
         [`/tome/worlds/${world.id}`, world.name],
         ["/tome/stories", "Stories"],
-        [
-          `/tome/stories/${this.props.stories.story.id}`,
-          this.props.stories.story.title
-        ]
+        [`/tome/stories/${getLocal("story").id}`, getLocal("story").title]
       ]);
     } else {
       this.props.assignCrumbs([
         ["/tome", "Home"],
         ["/tome/worlds", "Worlds"],
-        [
-          `/tome/worlds/${world.id}`,
-          world.name
-        ],
+        [`/tome/worlds/${world.id}`, world.name],
         [
           `/tome/${this.props.category}`,
           `${this.props.category.charAt(0).toUpperCase() +

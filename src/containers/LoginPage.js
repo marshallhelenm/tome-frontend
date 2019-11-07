@@ -13,7 +13,7 @@ const BASE_URL = "http://localhost:3000/";
 class LoginPage extends Component {
   componentDidMount() {
     this.props.assignCrumbs([]);
-    localStorage.removeItem('token')
+    localStorage.clear()
   }
 
   // console.log('props in LoginPage: ', props)

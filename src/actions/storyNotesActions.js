@@ -1,3 +1,5 @@
+import { setLocal } from "../App";
+
 const BASE_URL = "http://localhost:3000/";
 
 export const setStoryNotes = story_notes => {
@@ -25,8 +27,8 @@ export const deleteStoryNote = story_note => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ note: {note_id: story_note.id} })
-    })
+      body: JSON.stringify({ note: { note_id: story_note.id } })
+    });
   };
 };
 
@@ -41,10 +43,13 @@ export const fetchStoryNotes = story => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ note: {story_id: story.id} })
+      body: JSON.stringify({ note: { story_id: story.id } })
     })
       .then(res => res.json())
-      .then(notes => dispatch(setStoryNotes(notes)));
+      .then(notes => {
+        setLocal("story_notes", notes);
+        dispatch(setStoryNotes(notes));
+      });
   };
 };
 
@@ -57,9 +62,12 @@ export const fetchStoryNote = id => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ story_note: {id: id} })
+      body: JSON.stringify({ story_note: { id: id } })
     })
       .then(res => res.json())
-      .then(story_note => dispatch(currentStoryNote(story_note)));
+      .then(story_note => {
+        setLocal("story_note", story_note);
+        dispatch(currentStoryNote(story_note));
+      });
   };
 };

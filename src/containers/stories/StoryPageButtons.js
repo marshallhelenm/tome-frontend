@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ItemModal from "../ItemModal";
 import { currentCharacter } from "../../actions/charactersActions.js";
 import { currentLocation } from "../../actions/locationsActions.js";
+import { getLocal } from "../../App";
 
 const StoryPageButtons = props => {
   console.log("StoryPageButtons Props: ", props);
@@ -18,7 +19,7 @@ const StoryPageButtons = props => {
         itemType="Characters"
         addItem={props.addItem}
         deleteItem={props.deleteItem}
-        story={props.stories.story}
+        story={getLocal('story')}
         currentItem={props.currentCharacter}
       />
       <ItemModal
@@ -27,7 +28,7 @@ const StoryPageButtons = props => {
         itemType="Locations"
         addItem={props.addItem}
         deleteItem={props.deleteItem}
-        story={props.stories.story}
+        story={getLocal('story')}
         currentItem={props.currentLocation}
       />
     </div>

@@ -71,7 +71,6 @@ class LocationPage extends Component {
         handleDelete={this.handleDeleteLocation}
         addItem={this.addItemToStory}
         refreshItem={this.refreshLocation}
-        IMG={this.props.location.img ? this.props.location.img : IMG}
         img_alt={this.props.location.name}
         item={this.props.location}
         title={this.props.location.name}

@@ -1,3 +1,5 @@
+import { setLocal } from "../App";
+
 const BASE_URL = "http://localhost:3000/";
 
 export const setLocations = locations => {
@@ -35,7 +37,7 @@ export const deleteLocation = (location, story, world, redirect) => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ location: {location_id: location.id} })
+      body: JSON.stringify({ location: { location_id: location.id } })
     }).then(() => {
       fetchStoryLocations(story);
       fetchWorldLocations(world);
@@ -67,6 +69,7 @@ export const fetchWorldLocations = world => {
         //   "fetchWorldLocations found these locations: ",
         //   locations
         // );
+        setLocal("locations", locations);
         dispatch(setLocations(locations));
       });
   };
@@ -87,11 +90,12 @@ export const fetchStoryLocations = story => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        story_location: {story_id: story.id}
+        story_location: { story_id: story.id }
       })
     })
       .then(res => res.json())
       .then(story_locations => {
+        setLocal("story_locations", story_locations);
         dispatch(setStoryLocations(story_locations));
         console.log(
           "fetchStoryLocations found these story locations: ",
@@ -110,9 +114,12 @@ export const fetchLocation = id => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ location: {id: id} })
+      body: JSON.stringify({ location: { id: id } })
     })
       .then(res => res.json())
-      .then(location => dispatch(currentLocation(location)));
+      .then(location => {
+        setLocal("location", location);
+        dispatch(currentLocation(location));
+      });
   };
 };

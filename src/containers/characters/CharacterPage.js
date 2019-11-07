@@ -17,8 +17,8 @@ class CharacterPage extends Component {
   componentDidMount() {
     console.log('CharacterPage props: ', this.props)
     this.props.addBreadCrumb(
-      `/tome/characters/${this.props.character.id}`,
-      this.props.characters.character.name
+      `/tome/characters/${getLocal('character').id}`,
+      getLocal('character').name
     );
   }
 
@@ -27,7 +27,7 @@ class CharacterPage extends Component {
   };
   handleDeleteCharacter = () => {
     this.props.deleteCharacter(
-      this.props.character,
+      getLocal('character'),
       this.props.stories.story,
       getLocal('world'),
       this.redirectOnDelete
@@ -35,7 +35,7 @@ class CharacterPage extends Component {
   };
 
   refreshCharacter = () => {
-    this.props.fetchCharacter(this.props.character.id);
+    this.props.fetchCharacter(getLocal('character').id);
   };
 
   addItemToStory = story_id => {
@@ -48,7 +48,7 @@ class CharacterPage extends Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        character_id: this.props.character.id,
+        character_id: getLocal('character').id,
         story_id: story_id
       })
     })
@@ -69,15 +69,10 @@ class CharacterPage extends Component {
         handleDelete={this.handleDeleteCharacter}
         refreshItem={this.refreshCharacter}
         addItem={this.addItemToStory}
-        IMG={
-          this.props.character.images.length === 0
-            ? null
-            : this.props.character.images[0].url
-        }
-        img_alt={this.props.character.name}
-        item={this.props.character}
-        title={this.props.character.name}
-        text={this.props.character.description}
+        img_alt={getLocal('character').name}
+        item={getLocal('character')}
+        title={getLocal('character').name}
+        text={getLocal('character').description}
       />
     );
   }

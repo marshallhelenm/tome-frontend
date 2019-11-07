@@ -1,3 +1,5 @@
+import { setLocal } from "../App";
+
 const BASE_URL = "http://localhost:3000/";
 
 export const setStories = stories => {
@@ -55,7 +57,10 @@ export const fetchStories = () => {
       body: JSON.stringify({ user: user })
     })
       .then(res => res.json())
-      .then(stories => dispatch(setStories(stories)));
+      .then(stories => {
+        setLocal("stories", stories);
+        dispatch(setStories(stories));
+      });
   };
 };
 
@@ -76,7 +81,10 @@ export const fetchWorldStories = world => {
       })
     })
       .then(res => res.json())
-      .then(stories => dispatch(setWorldStories(stories)));
+      .then(stories => {
+        setLocal("stories", stories);
+        dispatch(setWorldStories(stories));
+      });
   };
 };
 
@@ -89,9 +97,12 @@ export const fetchStory = id => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ story: {id: id} })
+      body: JSON.stringify({ story: { id: id } })
     })
       .then(res => res.json())
-      .then(story => dispatch(currentStory(story)));
+      .then(story => {
+        setLocal("story", story);
+        dispatch(currentStory(story));
+      });
   };
 };

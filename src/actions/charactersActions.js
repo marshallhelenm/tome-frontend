@@ -1,4 +1,4 @@
-import { getLocal } from "../App";
+import { getLocal, setLocal } from "../App";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -65,10 +65,7 @@ export const fetchWorldCharacters = world => {
     })
       .then(res => res.json())
       .then(characters => {
-        // console.log(
-        //   "fetchWorldCharacters found these characters: ",
-        //   characters
-        // );
+        setLocal('characters', characters)
         dispatch(setCharacters(characters));
       });
   };
@@ -94,6 +91,7 @@ export const fetchStoryCharacters = story => {
     })
       .then(res => res.json())
       .then(story_characters => {
+        setLocal('story_characters', story_characters)
         dispatch(setStoryCharacters(story_characters));
         console.log(
           "fetchStoryCharacters found these story characters: ",
@@ -115,6 +113,9 @@ export const fetchCharacter = id => {
       body: JSON.stringify({ character: {id: id} })
     })
       .then(res => res.json())
-      .then(character => dispatch(currentCharacter(character)));
+      .then(character => {
+        setLocal('character', character)
+        dispatch(currentCharacter(character))
+      });
   };
 };

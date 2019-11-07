@@ -19,8 +19,8 @@ const BASE_URL = "http://localhost:3000/";
 class StoryPage extends Component {
   componentDidMount() {
     console.log("StoryPage props: ", this.props);
-    this.props.fetchStoryCharacters(this.props.stories.story);
-    this.props.fetchStoryLocations(this.props.stories.story);
+    this.props.fetchStoryCharacters(getLocal('story'));
+    this.props.fetchStoryLocations(getLocal('story'));
   }
   redirectOnDelete = () => {
     this.props.history.push(`/tome/stories`);
@@ -28,14 +28,14 @@ class StoryPage extends Component {
 
   handleDeleteStory = () => {
     this.props.deleteStory(
-      this.props.stories.story,
+      getLocal('story'),
       getLocal("world"),
       this.redirectOnDelete
     );
   };
 
   refreshStory = () => {
-    this.props.fetchStory(this.props.stories.story.id);
+    this.props.fetchStory(getLocal('story').id);
   };
 
   deleteItemFromStory = (item_id, type) => {
@@ -50,7 +50,7 @@ class StoryPage extends Component {
         },
         body: JSON.stringify({
           character_id: item_id,
-          story_id: this.props.stories.story.id
+          story_id: getLocal('story').id
         })
       })
         .then(response => response.json())
@@ -67,7 +67,7 @@ class StoryPage extends Component {
         },
         body: JSON.stringify({
           location_id: item_id,
-          story_id: this.props.stories.story.id
+          story_id: getLocal('story').id
         })
       })
         .then(response => response.json())
@@ -88,11 +88,10 @@ class StoryPage extends Component {
         handleDelete={this.handleDeleteStory}
         refreshItem={this.refreshStory}
         deleteItem={this.deleteItemFromStory}
-        IMG={this.props.stories.story.img}
-        img_alt={this.props.stories.story.title}
-        item={this.props.stories.story}
-        title={this.props.stories.story.title}
-        text={this.props.stories.story.description}
+        img_alt={getLocal('story').title}
+        item={getLocal('story')}
+        title={getLocal('story').title}
+        text={getLocal('story').description}
       />
     );
   }

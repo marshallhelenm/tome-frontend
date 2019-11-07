@@ -17,15 +17,12 @@ class Characters extends Component {
   componentDidMount() {
     console.log("Characters props: ", this.props);
     console.log("story: ", this.props.stories.story);
-    this.props.fetchWorldCharacters(getLocal('world'));
+    this.props.fetchWorldCharacters(getLocal("world"));
 
     this.props.assignCrumbs([
       ["/tome", "Home"],
       ["/tome/worlds", "Worlds"],
-      [
-        `/tome/worlds/${getLocal('world').id}`,
-        getLocal('world').name
-      ],
+      [`/tome/worlds/${getLocal("world").id}`, getLocal("world").name],
       [`/tome/characters`, "Characters"]
     ]);
   }
@@ -37,11 +34,7 @@ class Characters extends Component {
         {...this.props}
         currentItem={this.props.currentCharacter}
         defaultIMG={IMG}
-        items={
-          this.props.stories.story
-            ? this.props.characters.story_characters
-            : this.props.characters.characters
-        }
+        items={getLocal("characters")}
         item_type="character"
         type="characters"
         title={"Characters"}

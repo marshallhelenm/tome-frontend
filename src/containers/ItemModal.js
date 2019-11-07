@@ -4,6 +4,7 @@ import { Modal, Button, Card, Image } from "semantic-ui-react";
 import composedAuthHOC from "../HOC/AuthHOC";
 import { fetchStoryCharacters } from "../actions/charactersActions";
 import { fetchStoryLocations } from "../actions/locationsActions";
+import { getLocal } from "../App";
 
 class ItemModal extends Component {
   constructor() {
@@ -14,15 +15,15 @@ class ItemModal extends Component {
   }
 
   componentDidMount() {
-    fetchStoryCharacters(this.props.story);
-    fetchStoryLocations(this.props.story);
+    fetchStoryCharacters(getLocal("story"));
+    fetchStoryLocations(getLocal("story"));
   }
 
   open = () => {
     this.setState({ open: true });
   };
   close = () => {
-    fetchStoryCharacters(this.props.story);
+    fetchStoryCharacters(getLocal("story"));
     this.setState({ open: false });
   };
   handleDeleteItem = item_id => {
@@ -40,8 +41,8 @@ class ItemModal extends Component {
     e.preventDefault();
     let items = [];
     this.props.itemType === "Characters"
-      ? (items = this.props.characters.story_characters)
-      : (items = this.props.locations.story_locations);
+      ? (items = getLocal("story_characters"))
+      : (items = getLocal("story_locations"));
     let item;
     items.forEach(s => {
       if (`${s.id}` === `${e.currentTarget.id}`) {
@@ -59,8 +60,9 @@ class ItemModal extends Component {
   generateItemCards = () => {
     let items = [];
     this.props.itemType === "Characters"
-      ? (items = this.props.characters.story_characters)
-      : (items = this.props.locations.story_locations);
+      ? (items = getLocal("story_characters"))
+      : (items = getLocal("story_locations"));
+    !!!items ? (items = []) : (items = items);
     if (items.length === 0) {
       return (
         <h2>
@@ -128,7 +130,7 @@ class ItemModal extends Component {
         onClose={this.close}
       >
         <Modal.Header>
-          {/* Characters in {this.props.story} */}
+          {/* Characters in {getLocal('story')} */}
           {this.props.itemType}
         </Modal.Header>
         <Modal.Content scrolling>
