@@ -8,7 +8,8 @@ import {
 } from "../../actions/locationsActions.js";
 import { getLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 class EditLocation extends Component {
   handleDeleteLocation = () => {

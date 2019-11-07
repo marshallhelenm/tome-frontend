@@ -11,7 +11,8 @@ import Display from "../../components/Display.js";
 import { addBreadCrumb } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 const IMG =
   "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";

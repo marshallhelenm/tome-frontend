@@ -7,7 +7,8 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 import { getLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 class NewStory extends Component {
   createStory = e => {

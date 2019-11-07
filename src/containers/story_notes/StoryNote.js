@@ -9,7 +9,8 @@ import {
 } from "../../actions/storyNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 const StoryNote = props => {
   console.log("Story Note page props: ", props);

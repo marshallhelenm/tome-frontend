@@ -6,19 +6,16 @@ import "../css/tooplate_style.css";
 import { assignCrumbs } from "../actions/breadcrumbActions";
 import { Segment, Form, Grid, Header, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { setLocal } from "../App";
 
 const BASE_URL = "http://localhost:3000/";
-
 class LoginPage extends Component {
   componentDidMount() {
     this.props.assignCrumbs([]);
-    localStorage.clear()
+    localStorage.clear();
   }
 
   // console.log('props in LoginPage: ', props)
   handleLogOut = () => {
-
     this.props.setLoggedOut();
   };
 
@@ -43,8 +40,9 @@ class LoginPage extends Component {
     })
       .then(response => response.json())
       .then(user => {
-        if (user.message) {
-          alert(user.message);
+        console.log("response on login:", user);
+        if (user.error) {
+          alert("Please try again, or click Sign Up below.");
         } else {
           localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("token", user.token);

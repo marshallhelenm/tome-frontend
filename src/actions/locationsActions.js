@@ -1,6 +1,7 @@
 import { setLocal } from "../App";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 export const setLocations = locations => {
   // console.log("setting these locations: ", locations);

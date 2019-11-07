@@ -11,7 +11,8 @@ import Display from "../../components/Display.js";
 import { assignCrumbs, addBreadCrumb } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 class CharacterPage extends Component {
   componentDidMount() {

@@ -6,7 +6,8 @@ import { fetchWorlds, currentWorld } from "../../actions/worldsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 class NewWorld extends Component {
 

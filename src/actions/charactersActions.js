@@ -1,6 +1,7 @@
 import { getLocal, setLocal } from "../App";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "http://localhost:3000/"
+;
 
 export const setCharacters = characters => {
   // console.log("setting these characters: ", characters);
