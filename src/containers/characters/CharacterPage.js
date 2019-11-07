@@ -15,10 +15,10 @@ const BASE_URL = "http://localhost:3000/";
 
 class CharacterPage extends Component {
   componentDidMount() {
-    console.log('CharacterPage props: ', this.props)
+    console.log("CharacterPage props: ", this.props);
     this.props.addBreadCrumb(
-      `/tome/characters/${getLocal('character').id}`,
-      getLocal('character').name
+      `/tome/characters/${getLocal("character").id}`,
+      getLocal("character").name
     );
   }
 
@@ -27,15 +27,15 @@ class CharacterPage extends Component {
   };
   handleDeleteCharacter = () => {
     this.props.deleteCharacter(
-      getLocal('character'),
-      this.props.stories.story,
-      getLocal('world'),
+      getLocal("character"),
+      getLocal("story"),
+      getLocal("world"),
       this.redirectOnDelete
     );
   };
 
   refreshCharacter = () => {
-    this.props.fetchCharacter(getLocal('character').id);
+    this.props.fetchCharacter(getLocal("character").id);
   };
 
   addItemToStory = story_id => {
@@ -48,7 +48,7 @@ class CharacterPage extends Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        character_id: getLocal('character').id,
+        character_id: getLocal("character").id,
         story_id: story_id
       })
     })
@@ -69,10 +69,10 @@ class CharacterPage extends Component {
         handleDelete={this.handleDeleteCharacter}
         refreshItem={this.refreshCharacter}
         addItem={this.addItemToStory}
-        img_alt={getLocal('character').name}
-        item={getLocal('character')}
-        title={getLocal('character').name}
-        text={getLocal('character').description}
+        img_alt={getLocal("character").name}
+        item={getLocal("character")}
+        title={getLocal("character").name}
+        text={getLocal("character").description}
       />
     );
   }
@@ -81,8 +81,8 @@ class CharacterPage extends Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    characters: state.characters.characters,
-    character: state.characters.character
+    characters: getLocal("characters"),
+    character: getLocal("character")
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -6,6 +6,7 @@ import {
   currentLocation,
   deleteLocation
 } from "../../actions/locationsActions.js";
+import { getLocal } from "../../App";
 
 const BASE_URL = "http://localhost:3000/";
 
@@ -65,7 +66,7 @@ const mapStateToProps = state => {
   return {
     ...state,
     logged_in: state.auth.logged_in,
-    location: state.locations.location
+    location: getLocal("location")
   };
 };
 

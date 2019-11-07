@@ -19,8 +19,8 @@ const IMG =
 class LocationPage extends Component {
   componentDidMount() {
     this.props.addBreadCrumb(
-      `/tome/characters/${this.props.locations.location.id}`,
-      this.props.locations.location.name
+      `/tome/characters/${getLocal("location").id}`,
+      getLocal("location").name
     );
   }
 
@@ -29,15 +29,15 @@ class LocationPage extends Component {
   };
   handleDeleteLocation = () => {
     this.props.deleteLocation(
-      this.props.location,
-      this.props.stories.story,
+      getLocal("location"),
+      getLocal("story"),
       getLocal("world"),
       this.redirectOnDelete
     );
   };
 
   refreshLocation = () => {
-    this.props.fetchLocation(this.props.locations.location.id);
+    this.props.fetchLocation(getLocal('location').id);
   };
 
   addItemToStory = story_id => {
@@ -50,7 +50,7 @@ class LocationPage extends Component {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        location_id: this.props.location.id,
+        location_id: getLocal("location").id,
         story_id: story_id
       })
     })
@@ -71,10 +71,10 @@ class LocationPage extends Component {
         handleDelete={this.handleDeleteLocation}
         addItem={this.addItemToStory}
         refreshItem={this.refreshLocation}
-        img_alt={this.props.location.name}
-        item={this.props.location}
-        title={this.props.location.name}
-        text={this.props.location.description}
+        img_alt={getLocal("location").name}
+        item={getLocal("location")}
+        title={getLocal("location").name}
+        text={getLocal("location").description}
       />
     );
   }
@@ -83,7 +83,7 @@ class LocationPage extends Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    locations: state.locations.locations,
+    locations: getLocal("locations"),
     location: state.locations.location
   };
 };
