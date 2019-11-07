@@ -8,7 +8,6 @@ import {
   setStoryCharacters
 } from "../../actions/charactersActions.js";
 import {
-  fetchWorldLocations,
   currentLocation,
   setStoryLocations
 } from "../../actions/locationsActions.js";

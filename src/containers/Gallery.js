@@ -4,7 +4,7 @@ import "../css/tooplate_style.css";
 import Polaroid from "../components/Polaroid";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
-import { setLocal } from "../App.js";
+import { setLocal, getLocal } from "../App.js";
 
 class Gallery extends Component {
   generateCards = () => {
