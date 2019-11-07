@@ -9,15 +9,20 @@ class AddToStory extends Component {
     super();
     this.state = {
       value: "",
+      text: "",
       open: false
     };
   }
   handleAddItem = () => {
-    this.props.addItem(this.state.value);
+    if (this.state.value === "") {
+      return;
+    } else {
+      this.props.addItem(this.state.value);
+    }
   };
 
   generateOptions = () => {
-    return getLocal('stories').map(story => {
+    return getLocal("stories").map(story => {
       return {
         key: `${story.id}.${story.title}`,
         text: story.title,
@@ -27,8 +32,8 @@ class AddToStory extends Component {
   };
 
   handleChange = (e, { value }) => {
-    console.log(value);
     this.setState({ value });
+    this.setState({ text: e.target.innerText });
   };
 
   show = () => this.setState({ open: true });
@@ -36,7 +41,7 @@ class AddToStory extends Component {
     this.handleAddItem();
     this.setState({ open: false });
   };
-  close = () => this.setState({ open: false })
+  close = () => this.setState({ open: false });
 
   render() {
     console.log("AddToStory props: ", this.props);
@@ -49,9 +54,7 @@ class AddToStory extends Component {
             selection
             upward
             onChange={this.handleChange}
-            placeholder={
-              "Select Story"
-            }
+            placeholder={"Select Story"}
             value={value}
             options={this.generateOptions()}
           />
@@ -60,7 +63,11 @@ class AddToStory extends Component {
           </Button>
           <Confirm
             open={this.state.open}
-            content={`Are you sure you want to add to ${this.state.value}?`}
+            content={
+              this.state.value === ""
+                ? "Please select a story!"
+                : `Are you sure you want to add to ${this.state.text}?`
+            }
             size="tiny"
             onConfirm={this.handleConfirm}
             onCancel={this.close}
