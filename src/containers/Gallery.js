@@ -55,7 +55,7 @@ class Gallery extends Component {
       <div id="gallery-page">
         {this.props.stories.story ? (
           <div className="content_section">
-            <h1>{this.props.stories.story.title}</h1>
+            <h1>{getLocal("story").title}</h1>
             <h2>{this.props.title}</h2>
           </div>
         ) : (
