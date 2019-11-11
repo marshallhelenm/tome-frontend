@@ -6,7 +6,7 @@ Tome was created as a means of keeping track of the numerous elements involved i
 
 
 ## Status
-Tome was initially created as a final project for Flatiron School's Software Engineering Immersive. It is still in p
+Tome was initially created as a final project for Flatiron School's Software Engineering Immersive. It is still in progress, with plans to streamline and add additional features.
 
 ## Tech/framework
 Tome utilizes a Ruby on Rails backend and JavaScript front end, with React and Redux. Styling utilizes Semantic UI React.
