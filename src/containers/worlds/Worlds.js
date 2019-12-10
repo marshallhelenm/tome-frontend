@@ -18,7 +18,7 @@ import { assignCrumbs } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
 const IMG =
-  "https://img2.cgtrader.com/items/677143/ec4642a3bc/globe-antique-3d-model-max-fbx.jpg";
+  "https://res.cloudinary.com/dwfqeeh5f/image/upload/v1576010035/WorldBuildersTome/globe-antique-3d-model-max-fbx.jpg";
 
 class Worlds extends Component {
   componentDidMount() {
