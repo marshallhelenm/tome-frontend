@@ -1,5 +1,5 @@
 import { setLocal } from "../App.js";
-const BASE_URL = "https://tome-backend.netlify.com"
+const BASE_URL = "https://wbtome-backend.herokuapp.com/"
 ;
 
 export const setWorlds = worlds => {

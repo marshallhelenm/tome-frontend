@@ -10,7 +10,7 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 import { getLocal } from "../../App";
 
-const BASE_URL = "https://tome-backend.netlify.com"
+const BASE_URL = "https://wbtome-backend.herokuapp.com/"
 ;
 
 class NewLocation extends Component {

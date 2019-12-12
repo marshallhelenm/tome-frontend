@@ -6,7 +6,7 @@ import "../css/tooplate_style.css";
 import { Segment, Form, Grid, Header, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const BASE_URL = "https://tome-backend.netlify.com"
+const BASE_URL = "https://wbtome-backend.herokuapp.com/"
 ;
 
 const SignUpPage = props => {

@@ -8,7 +8,7 @@ import {
 } from "../../actions/charactersActions.js";
 import { getLocal } from "../../App";
 
-const BASE_URL = "https://tome-backend.netlify.com"
+const BASE_URL = "https://wbtome-backend.herokuapp.com/"
 ;
 
 class EditCharacter extends Component {
