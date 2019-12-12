@@ -6,7 +6,7 @@ import { fetchWorlds, currentWorld } from "../../actions/worldsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://tome-backend.netlify.com"
 ;
 
 class NewWorld extends Component {

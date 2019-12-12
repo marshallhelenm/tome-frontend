@@ -7,7 +7,7 @@ import {
   deleteStoryNote
 } from "../../actions/storyNotesActions.js";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://tome-backend.netlify.com"
 ;
 
 const NewNote = props => {

@@ -14,7 +14,7 @@ import { deleteStory, fetchStory } from "../../actions/storiesActions";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://tome-backend.netlify.com"
 ;
 
 class StoryPage extends Component {

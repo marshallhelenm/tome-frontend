@@ -8,7 +8,7 @@ import {
 } from "../../actions/charactersActions.js";
 import { getLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://tome-backend.netlify.com"
 ;
 
 class EditCharacter extends Component {

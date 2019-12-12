@@ -5,7 +5,7 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { currentWorld, deleteWorld } from "../../actions/worldsActions.js";
 import { getLocal } from "../../App.js";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://tome-backend.netlify.com"
 ;
 
 class EditWorld extends Component {

@@ -4,7 +4,7 @@ import EditForm from "../EditForm";
 import { connect } from "react-redux";
 import { currentStory, deleteStory } from "../../actions/storiesActions.js";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://tome-backend.netlify.com"
 ;
 
 const EditStory = props => {

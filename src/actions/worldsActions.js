@@ -1,5 +1,5 @@
 import { setLocal } from "../App.js";
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://tome-backend.netlify.com"
 ;
 
 export const setWorlds = worlds => {
