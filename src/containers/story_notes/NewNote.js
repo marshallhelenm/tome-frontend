@@ -7,7 +7,7 @@ import {
   deleteStoryNote
 } from "../../actions/storyNotesActions.js";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
+const BASE_URL = "http://localhost:3000/"
 ;
 
 const NewNote = props => {

@@ -12,7 +12,7 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 import { Image, Icon } from "semantic-ui-react";
 import ImgDelete from "../components/ImgDelete";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
+const BASE_URL = "http://localhost:3000/"
 ;
 
 class ImgCarousel extends Component {

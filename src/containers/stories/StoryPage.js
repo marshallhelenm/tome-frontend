@@ -14,7 +14,7 @@ import { deleteStory, fetchStory } from "../../actions/storiesActions";
 import { assignCrumbs } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
+const BASE_URL = "http://localhost:3000/"
 ;
 
 class StoryPage extends Component {
