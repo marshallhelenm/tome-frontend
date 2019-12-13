@@ -8,7 +8,7 @@ import {
 } from "../../actions/charactersActions.js";
 import { getLocal } from "../../App";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
+const BASE_URL = "http://localhost:3000/"
 ;
 
 class EditCharacter extends Component {

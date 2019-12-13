@@ -9,7 +9,7 @@ import {
 } from "../../actions/storyNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
+const BASE_URL = "http://localhost:3000/"
 ;
 
 const StoryNote = props => {
