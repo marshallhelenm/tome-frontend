@@ -1,14 +1,6 @@
 import React, { Component } from "react";
-import composedAuthHOC from "../HOC/AuthHOC.js";
-import { connect } from "react-redux";
 import "../css/tome.css";
-import DeleteModal from "./DeleteModal.js";
-import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
-import AddToStory from "./AddToStory.js";
-import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
-import { Segment, Button, Image, Grid } from "semantic-ui-react";
-import { assignCrumbs } from "../actions/breadcrumbActions";
-import ImgCarousel from "../containers/ImgCarousel.js";
+import { Image, Grid } from "semantic-ui-react";
 
 export default class UnderConstruction extends Component {
   
@@ -17,6 +9,7 @@ export default class UnderConstruction extends Component {
       <>
         <div className="content_section">
           <h2>Sorry, the Tome is currently under some Construction! It will return after some brief modifications.</h2>
+          <h2><a href='https://www.loom.com/share/cf40bd77b2c548b99e52f2ab25bc42ee'>Click here for a brief video demo.</a></h2>
         </div>
         <div className="content_section login-page">
         <Grid textAlign="center" verticalAlign="middle">
