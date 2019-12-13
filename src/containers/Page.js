@@ -26,6 +26,7 @@ import BreadCrumb from "../components/BreadCrumb";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 import NewNote from "./story_notes/NewNote";
+import UnderConstruction from "../components/UnderConstruction";
 
 class Page extends Component {
   render() {
@@ -37,7 +38,8 @@ class Page extends Component {
         </div>
         <div className="inner-page">
           <>
-            <Route path="/" exact render={props => <LoginPage {...props} />} />
+            {/* <Route path="/" exact render={props => <LoginPage {...props} />} /> */}
+            <Route path="/" exact render={props => <UnderConstruction/>} />
             <Route
               path="/signup"
               exact
