@@ -8,7 +8,7 @@ import {
 } from "../../actions/charactersActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
-import { getLocal } from "../../App";
+import { getLocal, setLocal } from "../../App";
 
 const BASE_URL = "http://localhost:3000/"
 ;
@@ -38,7 +38,7 @@ class NewCharacter extends Component {
       .then(newCharacter => {
         console.log("newCharacter: ", newCharacter);
         this.props.currentCharacter(newCharacter);
-
+        setLocal('character', newCharacter)
         this.props.history.push(`/tome/characters/${newCharacter.id}`);
       });
   };

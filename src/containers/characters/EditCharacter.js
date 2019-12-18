@@ -6,14 +6,12 @@ import {
   currentCharacter,
   deleteCharacter
 } from "../../actions/charactersActions.js";
-import { getLocal } from "../../App";
+import { getLocal, setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
-;
-
+const BASE_URL = "http://localhost:3000/";
 class EditCharacter extends Component {
   handleDeleteCharacter = () => {
-    this.props.deleteCharacter(getLocal('character'));
+    this.props.deleteCharacter(getLocal("character"));
     this.props.history.push(`/tome/characters`);
   };
 
@@ -25,11 +23,11 @@ class EditCharacter extends Component {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
       user: JSON.parse(localStorage.getItem("user")).id,
-      character_id: getLocal('character').id,
+      character_id: getLocal("character").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
-    fetch(BASE_URL + `characters/${getLocal('character').id}`, {
+    fetch(BASE_URL + `characters/${getLocal("character").id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -44,6 +42,7 @@ class EditCharacter extends Component {
       .then(character => {
         console.log("character: ", character);
         this.props.currentCharacter(character);
+        setLocal("character", character);
         this.props.history.push(`/tome/characters/${character.id}`);
       });
   };
@@ -53,7 +52,7 @@ class EditCharacter extends Component {
       <>
         <EditForm
           {...this.props}
-          item={getLocal('character')}
+          item={getLocal("character")}
           handleEdit={this.editCharacter}
           handleDelete={this.handleDeleteCharacter}
           item_type="characters"

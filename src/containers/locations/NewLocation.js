@@ -8,11 +8,9 @@ import {
 } from "../../actions/locationsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
-import { getLocal } from "../../App";
+import { getLocal, setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
-;
-
+const BASE_URL = "http://localhost:3000/";
 class NewLocation extends Component {
   createLocation = e => {
     e.preventDefault();
@@ -38,6 +36,7 @@ class NewLocation extends Component {
       .then(newLocation => {
         console.log("newLocation: ", newLocation);
         this.props.currentLocation(newLocation);
+        setLocal("location", newLocation);
         this.props.history.push(`/tome/locations/${newLocation.id}`);
       });
   };

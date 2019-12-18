@@ -5,13 +5,10 @@ import "../../css/tooplate_style.css";
 import { fetchWorlds, currentWorld } from "../../actions/worldsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
+import { setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
-;
-
+const BASE_URL = "http://localhost:3000/";
 class NewWorld extends Component {
-
-
   createWorld = e => {
     e.preventDefault();
     console.log("creating world");
@@ -21,7 +18,7 @@ class NewWorld extends Component {
       user_id: JSON.parse(localStorage.getItem("user")).user.id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
-    console.log(world)
+    console.log(world);
 
     fetch(BASE_URL + "worlds/new", {
       method: "POST",
@@ -36,6 +33,7 @@ class NewWorld extends Component {
       .then(newWorld => {
         console.log("newWorld: ", newWorld);
         this.props.currentWorld(newWorld);
+        setLocal("world", newWorld);
         this.props.history.push(`/tome/worlds/${newWorld.id}`);
       });
   };

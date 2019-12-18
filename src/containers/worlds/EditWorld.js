@@ -3,11 +3,9 @@ import EditForm from "../EditForm.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { currentWorld, deleteWorld } from "../../actions/worldsActions.js";
-import { getLocal } from "../../App.js";
+import { getLocal, setLocal } from "../../App.js";
 
-const BASE_URL = "http://localhost:3000/"
-;
-
+const BASE_URL = "http://localhost:3000/";
 class EditWorld extends Component {
   handleDeleteWorld = () => {
     this.props.deleteWorld(this.props.world);
@@ -38,6 +36,7 @@ class EditWorld extends Component {
       .then(world => {
         console.log("world: ", world);
         this.props.currentWorld(world);
+        setLocal("world", world);
         this.props.history.push(`/tome/worlds/${world.id}`);
       });
   };

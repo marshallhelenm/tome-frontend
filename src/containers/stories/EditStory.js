@@ -3,10 +3,9 @@ import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
 import { currentStory, deleteStory } from "../../actions/storiesActions.js";
+import { setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
-;
-
+const BASE_URL = "http://localhost:3000/";
 const EditStory = props => {
   console.log("Edit Story Form props: ", props);
 
@@ -39,6 +38,8 @@ const EditStory = props => {
       .then(story => {
         console.log("story: ", story);
         props.currentStory(story);
+        setLocal('story', story)
+
         props.history.push(`/tome/stories/${story.id}`);
       });
   };

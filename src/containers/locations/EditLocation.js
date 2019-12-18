@@ -6,7 +6,7 @@ import {
   currentLocation,
   deleteLocation
 } from "../../actions/locationsActions.js";
-import { getLocal } from "../../App";
+import { getLocal, setLocal } from "../../App";
 
 const BASE_URL = "http://localhost:3000/"
 ;
@@ -44,6 +44,7 @@ class EditLocation extends Component {
       .then(location => {
         console.log("location: ", location);
         this.props.currentLocation(location);
+        setLocal('location', location)
         this.props.history.push(`/tome/locations/${location.id}`);
       });
   };

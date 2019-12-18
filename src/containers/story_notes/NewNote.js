@@ -6,10 +6,9 @@ import {
   currentStoryNote,
   deleteStoryNote
 } from "../../actions/storyNotesActions.js";
+import { setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
-;
-
+const BASE_URL = "http://localhost:3000/";
 const NewNote = props => {
   console.log("New Note page props: ", props);
 
@@ -37,6 +36,7 @@ const NewNote = props => {
       .then(note => {
         console.log("new note: ", note);
         props.currentStoryNote(note);
+        setLocal("note", note);
         props.history.push(`/tome/story_notes/${note.id}`);
       });
   };

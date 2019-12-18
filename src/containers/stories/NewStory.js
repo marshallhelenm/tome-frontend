@@ -5,11 +5,9 @@ import "../../css/tooplate_style.css";
 import { fetchStories, currentStory } from "../../actions/storiesActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
-import { getLocal } from "../../App";
+import { getLocal, setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
-;
-
+const BASE_URL = "http://localhost:3000/";
 class NewStory extends Component {
   createStory = e => {
     e.preventDefault();
@@ -36,6 +34,7 @@ class NewStory extends Component {
       .then(newStory => {
         console.log("newStory: ", newStory);
         this.props.currentStory(newStory);
+        setLocal("story", newStory);
         this.props.history.push(`/tome/stories/${newStory.id}`);
       });
   };
