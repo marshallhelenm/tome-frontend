@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { currentStory, deleteStory } from "../../actions/storiesActions.js";
 import { setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 const EditStory = props => {
   console.log("Edit Story Form props: ", props);
 

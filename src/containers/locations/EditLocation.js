@@ -8,7 +8,7 @@ import {
 } from "../../actions/locationsActions.js";
 import { getLocal, setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://wbtome-backend.herokuapp.com/"
 ;
 
 class EditLocation extends Component {

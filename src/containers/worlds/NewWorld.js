@@ -7,7 +7,7 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 import { setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 class NewWorld extends Component {
   createWorld = e => {
     e.preventDefault();

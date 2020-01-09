@@ -8,7 +8,7 @@ import {
 } from "../../actions/storyNotesActions.js";
 import { setLocal } from "../../App";
 
-const BASE_URL = "http://localhost:3000/";
+const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 const NewNote = props => {
   console.log("New Note page props: ", props);
 

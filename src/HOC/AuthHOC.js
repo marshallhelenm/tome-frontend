@@ -8,7 +8,7 @@ const AuthHOC = WrappedComponent => {
   return class PrivacyHOC extends React.Component {
     authorized = () => {
       console.log('authorized? ', this.props.logged_in, localStorage.getItem('token'))
-      return localStorage.getItem('token') != 'null';
+      return localStorage.getItem('token') !== 'null';
     };
 
     render() {

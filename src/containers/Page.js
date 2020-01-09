@@ -38,8 +38,8 @@ class Page extends Component {
         </div>
         <div className="inner-page">
           <>
-            {/* <Route path="/" exact render={props => <LoginPage {...props} />} /> */}
-            <Route path="/" exact render={props => <UnderConstruction/>} />
+            <Route path="/" exact render={props => <LoginPage {...props} />} />
+            {/* <Route path="/" exact render={props => <UnderConstruction/>} /> */}
             <Route
               path="/signup"
               exact
@@ -143,7 +143,6 @@ class Page extends Component {
             />
           </>
         </div>
-        <div id="bottom-border"></div>
       </div>
     );
   }

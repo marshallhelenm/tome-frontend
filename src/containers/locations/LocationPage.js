@@ -11,7 +11,7 @@ import Display from "../../components/Display.js";
 import { addBreadCrumb } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
-const BASE_URL = "http://localhost:3000/"
+const BASE_URL = "https://wbtome-backend.herokuapp.com/"
 ;
 
 const IMG =

@@ -97,11 +97,11 @@ div.tabs a {
   padding-top: 2%;
   position: relative;
   clear: left;
-
+  
 }
-#bottom-border{
+.bottom-border{
   margin-right: 5%;
-  border-top: 1px dashed #ccc;
+  border-bottom: 1px dashed #ccc;
 }
 
 .content_section {
