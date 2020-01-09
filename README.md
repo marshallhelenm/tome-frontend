@@ -3,6 +3,7 @@ The World Builder's Tome, or simply, Tome, is a story-building tool that enables
 
 Tome was created as a means of keeping track of the numerous elements involved in world and story creation. While there are many note taking systems out there, Tome sets out to provide a system specifically tailored to world creation.
 
+\* For the live demo, use 'test' as both username and password to see some pre-created content.
 
 
 ## Status
