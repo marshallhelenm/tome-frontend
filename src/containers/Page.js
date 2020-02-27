@@ -25,7 +25,7 @@ import StoryNote from "./story_notes/StoryNote";
 import BreadCrumb from "../components/BreadCrumb";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
-import NewNote from "./story_notes/NewNote";
+import NewStoryNote from "./story_notes/NewStoryNote";
 import UnderConstruction from "../components/UnderConstruction";
 
 class Page extends Component {
@@ -139,7 +139,7 @@ class Page extends Component {
             <Route
               path="/tome/new/story_notes"
               exact
-              render={props => <NewNote {...props} />}
+              render={props => <NewStoryNote {...props} />}
             />
           </>
         </div>
