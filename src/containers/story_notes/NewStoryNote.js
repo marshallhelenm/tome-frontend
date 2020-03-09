@@ -6,9 +6,8 @@ import {
   currentStoryNote,
   deleteStoryNote
 } from "../../actions/storyNotesActions.js";
-import { setLocal } from "../../App";
+import { setLocal, BASE_URL } from "../../App";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 const NewStoryNote = props => {
   console.log("New Note page props: ", props);
 

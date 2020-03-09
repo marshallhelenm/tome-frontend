@@ -5,9 +5,8 @@ import "../../css/tooplate_style.css";
 import { fetchWorlds, currentWorld } from "../../actions/worldsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
-import { setLocal } from "../../App";
+import { setLocal, BASE_URL } from "../../App";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 class NewWorld extends Component {
   createWorld = e => {
     e.preventDefault();

@@ -8,6 +8,7 @@ const StoryPageButtons = props => {
   console.log("StoryPageButtons Props: ", props);
   return (
     <div className='button-bar' >
+      <Button as={Link} to="/tome/world_notes" color="brown" content="World Notes" />
       <Button as={Link} to="/tome/stories" color="brown" content="Stories" />
       <Button
         as={Link}

@@ -8,9 +8,7 @@ import {
   fetchStoryNote
 } from "../../actions/storyNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import BASE_URL from '../../App'
 
 const StoryNote = props => {
   console.log("Story Note page props: ", props);

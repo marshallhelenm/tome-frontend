@@ -3,9 +3,8 @@ import EditForm from "../EditForm.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import { currentWorld, deleteWorld } from "../../actions/worldsActions.js";
-import { getLocal, setLocal } from "../../App.js";
+import { getLocal, setLocal, BASE_URL } from "../../App.js";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 class EditWorld extends Component {
   handleDeleteWorld = () => {
     this.props.deleteWorld(this.props.world);

@@ -12,6 +12,8 @@ export const getLocal = (label) => {
   return JSON.parse(localStorage.getItem(label))
 }
 
+export const BASE_URL = "https://wbtome-backend.herokuapp.com/"
+
 const App = props => {
   // console.log("App props: ", props);
   return (

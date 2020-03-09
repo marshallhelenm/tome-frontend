@@ -8,9 +8,7 @@ import {
   fetchWorldNote
 } from "../../actions/worldNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import BASE_URL from '../../App'
 
 const WorldNote = props => {
   console.log("World Note page props: ", props);

@@ -8,10 +8,7 @@ import {
 } from "../../actions/charactersActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
-import { getLocal, setLocal } from "../../App";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import { getLocal, setLocal, BASE_URL } from "../../App";
 
 class NewCharacter extends Component {
   createCharacter = e => {

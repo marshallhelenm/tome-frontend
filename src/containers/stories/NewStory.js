@@ -5,9 +5,8 @@ import "../../css/tooplate_style.css";
 import { fetchStories, currentStory } from "../../actions/storiesActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
-import { getLocal, setLocal } from "../../App";
+import { getLocal, setLocal, BASE_URL } from "../../App";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 class NewStory extends Component {
   createStory = e => {
     e.preventDefault();
