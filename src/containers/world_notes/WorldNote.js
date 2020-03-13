@@ -8,7 +8,7 @@ import {
   fetchWorldNote
 } from "../../actions/worldNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
-import BASE_URL from '../../App'
+import { BASE_URL } from '../../App'
 
 const WorldNote = props => {
   console.log("World Note page props: ", props);

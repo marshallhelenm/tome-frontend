@@ -5,7 +5,7 @@ import "../css/notebook.css";
 import "../css/tooplate_style.css";
 import { Segment, Form, Grid, Header, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import BASE_URL from '../App'
+import { BASE_URL } from '../App'
 
 const SignUpPage = props => {
   const handleSignUp = e => {

@@ -6,7 +6,7 @@ import "../css/tooplate_style.css";
 import { assignCrumbs } from "../actions/breadcrumbActions";
 import { Segment, Form, Grid, Header, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import BASE_URL from '../App'
+import { BASE_URL } from "../App.js";
 
 class LoginPage extends Component {
   componentDidMount() {
@@ -28,7 +28,8 @@ class LoginPage extends Component {
   };
 
   logIn = userHash => {
-    // console.log("loggin in!", userHash);
+    console.log("loggin in!", userHash);
+    console.log("base url: ", BASE_URL);
 
     fetch(BASE_URL + "login", {
       method: "POST",
@@ -116,7 +117,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

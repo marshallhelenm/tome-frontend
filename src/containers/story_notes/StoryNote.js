@@ -8,7 +8,7 @@ import {
   fetchStoryNote
 } from "../../actions/storyNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
-import BASE_URL from '../../App'
+import { BASE_URL } from '../../App'
 
 const StoryNote = props => {
   console.log("Story Note page props: ", props);

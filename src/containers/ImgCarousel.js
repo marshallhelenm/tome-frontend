@@ -1,4 +1,4 @@
-import BASE_URL from '../App'
+import { BASE_URL } from '../App'
 import React, { Component } from "react";
 // import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
