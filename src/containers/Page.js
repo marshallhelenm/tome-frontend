@@ -35,7 +35,7 @@ import NewStoryNote from "./story_notes/NewStoryNote";
 import BreadCrumb from "../components/BreadCrumb";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
-import UnderConstruction from "../components/UnderConstruction";
+// import UnderConstruction from "../components/UnderConstruction";
 
 class Page extends Component {
   render() {

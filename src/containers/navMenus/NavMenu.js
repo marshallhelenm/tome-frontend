@@ -13,7 +13,6 @@ import StoryNotesNavMenu from "./StoryNotesNavMenu";
 import WorldsButton from "../../components/navButtons/WorldsButton";
 import WorldButton from "../../components/navButtons/WorldButton";
 import StoryButton from "../../components/navButtons/StoryButton";
-import StoriesButton from "../../components/navButtons/StoriesButton";
 import StoryNavMenu from "./StoryNavMenu";
 import StoryNoteNavMenu from "./StoryNoteNavMenu";
 import { getLocal } from "../../App";

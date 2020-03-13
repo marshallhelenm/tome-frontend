@@ -62,7 +62,7 @@ class ItemModal extends Component {
     this.props.itemType === "Characters"
       ? (items = getLocal("story_characters"))
       : (items = getLocal("story_locations"));
-    !!!items ? (items = []) : (items = items);
+    !!!items ? (items = []) : (items);
     if (items.length === 0) {
       return (
         <h2>
