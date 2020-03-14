@@ -6,6 +6,7 @@ import {
   fetchWorldNotes,
   currentWorldNote
 } from "../../actions/worldNotesActions.js";
+import { getLocal } from "../../App.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2016/04/30/13/11/texture-1362877_1280.jpg";
@@ -14,16 +15,17 @@ class WorldNotes extends Component {
 
   componentDidMount(){
     console.log("world notes props: ", this.props);
-    this.props.fetchWorldNotes(this.props.worlds.world)
+    this.props.fetchWorldNotes(getLocal('world'))
   }
-
+ 
   render() {
+    console.log('world notes props: ', this.props)
     return (
       <Gallery
         {...this.props}
         currentItem={this.props.currentWorldNote}
         defaultIMG={IMG}
-        items={this.props.world_notes.world_notes}
+        items={getLocal('world').world_notes}
         item_type="world_note"
         type="world_notes"
         title={"World Notes"}

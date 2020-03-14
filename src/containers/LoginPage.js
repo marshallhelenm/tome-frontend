@@ -28,8 +28,8 @@ class LoginPage extends Component {
   };
 
   logIn = userHash => {
-    console.log("loggin in!", userHash);
-    console.log("base url: ", BASE_URL);
+    // console.log("loggin in!", userHash);
+    // console.log("base url: ", BASE_URL);
 
     fetch(BASE_URL + "login", {
       method: "POST",
@@ -41,7 +41,7 @@ class LoginPage extends Component {
     })
       .then(response => response.json())
       .then(user => {
-        console.log("response on login:", user);
+        // console.log("response on login:", user);
         if (user.error) {
           alert("Please try again, or click Sign Up below.");
         } else {

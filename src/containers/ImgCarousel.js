@@ -70,7 +70,7 @@ class ImgCarousel extends Component {
   };
 
   render() {
-    console.log("Carousel props: ", this.props);
+    // console.log("Carousel props: ", this.props);
     return (
       <CarouselProvider
       infinite={true}

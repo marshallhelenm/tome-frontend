@@ -6,6 +6,7 @@ import {
   fetchWorldStories,
   currentStory
 } from "../../actions/storiesActions.js";
+import { fetchWorldNotes } from "../../actions/worldNotesActions.js";
 import {
   fetchWorldCharacters,
   currentCharacter
@@ -28,6 +29,7 @@ class WorldPage extends Component {
     this.props.fetchWorldStories(getLocal("world"));
     this.props.fetchWorldCharacters(getLocal("world"));
     this.props.fetchWorldLocations(getLocal("world"));
+    this.props.fetchWorldNotes(getLocal("world"));
     this.props.assignCrumbs([
       ["/tome", "Home"],
       ["/tome/worlds", "Worlds"],
@@ -82,6 +84,7 @@ const mapDispatchToProps = dispatch => {
     fetchWorldStories: world => dispatch(fetchWorldStories(world)),
     fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
     fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
+    fetchWorldNotes: world => dispatch(fetchWorldNotes(world)),
     deleteWorld: (world, redirect) => dispatch(deleteWorld(world, redirect)),
     fetchWorld: id => dispatch(fetchWorld(id)),
     assignCrumbs: trail => dispatch(assignCrumbs(trail))

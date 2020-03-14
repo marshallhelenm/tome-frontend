@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const StoryPageButtons = props => {
-  console.log("StoryPageButtons Props: ", props);
+  console.log("WorldPageButtons Props: ", props);
   return (
     <div className='button-bar' >
       <Button as={Link} to="/tome/world_notes" color="brown" content="World Notes" />

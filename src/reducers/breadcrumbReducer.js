@@ -21,7 +21,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         nav: state.nav.pop()
       };
     case "ASSIGN_CRUMBS":
-      console.log("assigning breadcrumbs in reducer: ", action.payload);
+      // console.log("assigning breadcrumbs in reducer: ", action.payload);
       return {
         ...state,
         nav: action.payload

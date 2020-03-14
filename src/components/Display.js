@@ -13,8 +13,9 @@ import { getLocal } from "../App.js";
 
 class Display extends Component {
   componentDidMount() {
-    console.log("Display props: ", this.props);
+    // console.log("Display props: ", this.props);
     let world = getLocal("world");
+    //assign breadcrumb trail:
     if (this.props.category === "worlds") {
       this.props.assignCrumbs([
         ["/tome", "Home"],
@@ -49,6 +50,7 @@ class Display extends Component {
     );
   };
   render() {
+    console.log("display page props: ", this.props);
     return (
       <>
         <div className="content_section">
@@ -72,7 +74,11 @@ class Display extends Component {
         ) : null}
         {this.props.category === "worlds" ? (
           <div className="content_section">
-            <WorldPageButtons {...this.props} />
+            <WorldPageButtons
+              {...this.props}
+              addItem={this.props.addItem}
+              deleteItem={this.props.deleteItem}
+            />
           </div>
         ) : null}
         <div className="content_section last_section">

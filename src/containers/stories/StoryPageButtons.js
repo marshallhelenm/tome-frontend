@@ -9,7 +9,7 @@ import { currentLocation } from "../../actions/locationsActions.js";
 import { getLocal } from "../../App";
 
 const StoryPageButtons = props => {
-  console.log("StoryPageButtons Props: ", props);
+  // console.log("StoryPageButtons Props: ", props);
   return (
     <div className="button-bar">
       <Button as={Link} to="/tome/story_notes" color="brown" content="Notes" />
