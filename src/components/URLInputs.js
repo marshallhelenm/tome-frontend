@@ -25,7 +25,7 @@ class URLInputs extends Component {
           <Input
             onChange={this.handleURLChange}
             type="text"
-            placeholder="Image URL"
+            placeholder="Image URL (must end in .jpg .jpeg .png or .gif)"
             className="url_field"
           />
         </Form.Field>
@@ -43,6 +43,7 @@ class URLInputs extends Component {
   };
 
   handleURLChange = e => {
+    if (e.target.value.toLowerCase().endsWith(".jpg") || e.target.value.toLowerCase().endsWith(".jpeg") || e.target.value.toLowerCase().endsWith(".png") || e.target.value.toLowerCase().endsWith(".gif"))
     this.setState({ urls: [...this.state.urls, e.target.value] });
   };
 
@@ -50,7 +51,7 @@ class URLInputs extends Component {
     return (
       <>
           {this.generateURLFields()}
-        <Button onClick={this.addUrlField}>Add another Image</Button>
+        <Button onClick={this.addUrlField}>Add another Image Field</Button>
         <div id="secret_url_collection">{this.printUrls()}</div>
       </>
     );
