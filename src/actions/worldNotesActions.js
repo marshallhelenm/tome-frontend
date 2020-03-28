@@ -1,6 +1,7 @@
 import { setLocal, BASE_URL } from "../App";
 
 export const setWorldNotes = world_notes => {
+  console.log('setting world notes in setWorldNotes')
   return {
     type: "SET_WORLD_NOTES",
     payload: world_notes

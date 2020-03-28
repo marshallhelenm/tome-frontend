@@ -3,6 +3,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log('in story notes reducer')
   switch (action.type) {
     case "SET_STORY_NOTES":
       return {

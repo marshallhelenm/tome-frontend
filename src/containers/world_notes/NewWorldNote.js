@@ -6,7 +6,7 @@ import {
   currentWorldNote,
   deleteWorldNote
 } from "../../actions/worldNotesActions.js";
-import { setLocal, BASE_URL } from "../../App";
+import { setLocal, BASE_URL, getLocal } from "../../App";
 
 const NewWorldNote = props => {
   console.log("New Note page props: ", props);
@@ -18,7 +18,7 @@ const NewWorldNote = props => {
     let note = {
       title: document.getElementById("name").value,
       content: document.getElementById("description").value,
-      world_id: props.worlds.world.id,
+      world_id: getLocal("world").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
@@ -36,7 +36,7 @@ const NewWorldNote = props => {
         console.log("new note: ", note);
         props.currentWorldNote(note);
         setLocal("note", note);
-        props.hiworld.push(`/tome/world_notes/${note.id}`);
+        props.history.push(`/tome/world_notes/${note.id}`);
       });
   };
 

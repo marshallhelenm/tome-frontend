@@ -8,7 +8,7 @@ import { setLocal, getLocal } from "../App.js";
 
 class Gallery extends Component {
   generateCards = () => {
-    console.log("in generateCards, items: ", this.props.items);
+    // console.log("in generateCards, items: ", this.props.items);
     if (!!!this.props.items) {
       return [];
     } else {

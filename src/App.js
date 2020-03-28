@@ -4,12 +4,12 @@ import Notebook from "./containers/Notebook";
 import './css/tome.css'
 
 export const setLocal = (label, content) => {
-  console.log(`setting local: ${label}`, content)
+  // console.log(`setting local: ${label}`, content)
   localStorage.setItem(`${label}`, JSON.stringify(content));
 }
 
 export const getLocal = (label) => {
-  console.log("getting local " + label, localStorage.getItem(label))
+  // console.log("getting local " + label, localStorage.getItem(label))
   return JSON.parse(localStorage.getItem(label))
 }
 
