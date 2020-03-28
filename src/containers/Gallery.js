@@ -13,6 +13,7 @@ class Gallery extends Component {
       return [];
     } else {
       return this.props.items.map(item => {
+        console.log("item: ", item)
         return (
           <Polaroid
             handleClick={this.clickCard}

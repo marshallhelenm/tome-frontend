@@ -25,7 +25,7 @@ class WorldNotes extends Component {
         {...this.props}
         currentItem={this.props.currentWorldNote}
         defaultIMG={IMG}
-        items={getLocal('world').world_notes}
+        items={this.props.world_notes.world_notes}
         item_type="world_note"
         type="world_notes"
         title={"World Notes"}

@@ -3,7 +3,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log('in world notes reducer')
+  // console.log('in world notes reducer')
   switch (action.type) {
     case "SET_WORLD_NOTES":
       return {
