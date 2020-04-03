@@ -8,7 +8,7 @@ class URLInputs extends Component {
   };
 
   printUrls = () => {
-    console.log("editform state: ", this.state);
+    // console.log("editform state: ", this.state);
     let urlstring = "";
     let urls = this.state.urls;
     urls.forEach(url => {
@@ -36,7 +36,7 @@ class URLInputs extends Component {
   addUrlField = e => {
     e.preventDefault();
     let newfields = this.state.fields+1
-    console.log('----EditForm state: ', this.state)
+    // console.log('----EditForm state: ', this.state)
     this.setState(prevState => ({
       fields: newfields
     }));

@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
   currentStoryNote,
   deleteStoryNote,
-  fetchStoryNote
+  fetchStoryNote,
+  fetchStoryNotes
 } from "../../actions/storyNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
 import { getLocal, setLocal, BASE_URL } from "../../App.js";
@@ -18,6 +19,7 @@ class StoryNote extends Component {
 
   handleDeleteNote = () => {
     this.props.deleteStoryNote(getLocal('story_note'));
+    this.props.fetchStoryNotes(getLocal('story'))
     this.props.history.push("/tome/story_notes");
   };
 
@@ -85,7 +87,8 @@ const mapDispatchToProps = dispatch => {
   return {
     currentStoryNote: note => dispatch(currentStoryNote(note)),
     deleteStoryNote: note => dispatch(deleteStoryNote(note)),
-    fetchStoryNote: id => dispatch(fetchStoryNote(id))
+    fetchStoryNote: id => dispatch(fetchStoryNote(id)),
+    fetchStoryNotes: id => dispatch(fetchStoryNotes(id))
   };
 };
 

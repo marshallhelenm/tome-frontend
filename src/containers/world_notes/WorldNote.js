@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
   currentWorldNote,
   deleteWorldNote,
-  fetchWorldNote
+  fetchWorldNote,
+  fetchWorldNotes
 } from "../../actions/worldNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
 import { BASE_URL, getLocal, setLocal } from "../../App";
@@ -85,7 +86,8 @@ const mapDispatchToProps = dispatch => {
   return {
     currentWorldNote: note => dispatch(currentWorldNote(note)),
     deleteWorldNote: note => dispatch(deleteWorldNote(note)),
-    fetchWorldNote: id => dispatch(fetchWorldNote(id))
+    fetchWorldNote: id => dispatch(fetchWorldNote(id)),
+    fetchWorldNotes: id => dispatch(fetchWorldNotes(id))
   };
 };
 

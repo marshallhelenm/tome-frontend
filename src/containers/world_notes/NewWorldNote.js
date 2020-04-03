@@ -35,7 +35,7 @@ const NewWorldNote = props => {
       .then(note => {
         console.log("new note: ", note);
         props.currentWorldNote(note);
-        setLocal("note", note);
+        setLocal("world_note", note);
         props.history.push(`/tome/world_notes/${note.id}`);
       });
   };

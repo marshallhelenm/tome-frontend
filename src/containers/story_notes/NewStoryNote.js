@@ -6,7 +6,7 @@ import {
   currentStoryNote,
   deleteStoryNote
 } from "../../actions/storyNotesActions.js";
-import { setLocal, BASE_URL } from "../../App";
+import { setLocal, BASE_URL, getLocal } from "../../App";
 
 const NewStoryNote = props => {
   console.log("New Note page props: ", props);
@@ -18,7 +18,7 @@ const NewStoryNote = props => {
     let note = {
       title: document.getElementById("name").value,
       content: document.getElementById("description").value,
-      story_id: props.stories.story.id,
+      story_id: getLocal('story').id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
@@ -35,7 +35,7 @@ const NewStoryNote = props => {
       .then(note => {
         console.log("new note: ", note);
         props.currentStoryNote(note);
-        setLocal("note", note);
+        setLocal("story_note", note);
         props.history.push(`/tome/story_notes/${note.id}`);
       });
   };

@@ -39,7 +39,7 @@ import SignUpPage from "./SignUpPage";
 
 class Page extends Component {
   render() {
-    console.log("Page props: ", this.props);
+    // console.log("Page props: ", this.props);
     return (
       <div id="page">
         <div id="breadcrumbs">
