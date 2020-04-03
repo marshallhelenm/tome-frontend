@@ -61,7 +61,7 @@ export const fetchWorldNote = id => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ world_note: { id: id } })
+      body: JSON.stringify({ note: { id: id } })
     })
       .then(res => res.json())
       .then(world_note => {

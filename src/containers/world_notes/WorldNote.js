@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
@@ -8,28 +8,31 @@ import {
   fetchWorldNote
 } from "../../actions/worldNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
-import { BASE_URL } from '../../App'
+import { BASE_URL, getLocal, setLocal } from "../../App";
 
-const WorldNote = props => {
-  console.log("World Note page props: ", props);
+class WorldNote extends Component {
+  componentDidMount() {
+    console.log("World Note page props: ", this.props);
+    this.props.fetchWorldNote(getLocal("world_note").id);
+  }
 
-  const handleDeleteNote = () => {
-    props.deleteWorldNote(props.world_notes.world_note);
-    props.history.push("/tome/world_notes");
+  handleDeleteNote = () => {
+    this.props.deleteWorldNote(getLocal("world_note"));
+    this.props.history.push("/tome/world_notes");
   };
 
-  const editNote = e => {
+  editNote = e => {
     e.preventDefault();
     console.log("saving changes to world_note");
 
     let note = {
       title: document.getElementById("name").value,
       content: document.getElementById("description").value,
-      world_id: props.world_notes.world_note.world.id,
+      world_id: getLocal("world").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
-    fetch(BASE_URL + `world_notes/${props.world_notes.world_note.id}`, {
+    fetch(BASE_URL + `world_notes/${getLocal("world_note").id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -37,32 +40,40 @@ const WorldNote = props => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        note: { ...note, note_id: props.world_notes.world_note.id }
+        note: { ...note, note_id: getLocal("world_note").id }
       })
-    });
+    })
+      .then(res => res.json())
+      .then(world_note => {
+        setLocal("world_note", world_note);
+      });
   };
 
-  const refreshWorldNote = () => {
-    this.props.fetchWorldNote(this.props.world_notes.world_note.id);
+  refreshWorldNote = () => {
+    this.props.fetchWorldNote(getLocal("world_note").id);
   };
 
-  return (
-    <>
-      <ImgCarousel
-        images={props.world_notes.world_note.images}
-        item={props.world_notes.world_note}
-        refreshItem={refreshWorldNote}
-      />
-      <EditForm
-        {...props}
-        type='Note'
-        handleDelete={handleDeleteNote}
-        item={props.world_notes.world_note}
-        handleEdit={editNote}
-      />
-    </>
-  );
-};
+  render() {
+    let world_note = getLocal("world_note");
+    console.log("world_note: ", world_note);
+    return (
+      <>
+        <ImgCarousel
+          images={world_note.images}
+          item={world_note}
+          refreshItem={this.refreshWorldNote}
+        />
+        <EditForm
+          {...this.props}
+          type="Note"
+          handleDelete={this.handleDeleteNote}
+          item={world_note}
+          handleEdit={this.editNote}
+        />
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

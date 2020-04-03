@@ -17,7 +17,7 @@ class StoryNote extends Component {
   }
 
   handleDeleteNote = () => {
-    this.props.deleteStoryNote(this.props.story_notes.story_note);
+    this.props.deleteStoryNote(getLocal('story_note'));
     this.props.history.push("/tome/story_notes");
   };
 
@@ -50,7 +50,7 @@ class StoryNote extends Component {
   };
 
   refreshStoryNote = () => {
-    this.props.fetchStoryNote(this.props.story_notes.story_note.id);
+    this.props.fetchStoryNote(getLocal("story_note").id);
   };
 
   render() {
