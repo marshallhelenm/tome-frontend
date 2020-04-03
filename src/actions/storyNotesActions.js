@@ -61,7 +61,7 @@ export const fetchStoryNote = id => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ story_note: { id: id } })
+      body: JSON.stringify({ note: { id: id } })
     })
       .then(res => res.json())
       .then(story_note => {

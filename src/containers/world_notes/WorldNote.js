@@ -15,7 +15,7 @@ const WorldNote = props => {
 
   const handleDeleteNote = () => {
     props.deleteWorldNote(props.world_notes.world_note);
-    props.hiworld.push("/tome/world_notes");
+    props.history.push("/tome/world_notes");
   };
 
   const editNote = e => {
@@ -25,7 +25,7 @@ const WorldNote = props => {
     let note = {
       title: document.getElementById("name").value,
       content: document.getElementById("description").value,
-      world_id: props.worlds.world.id,
+      world_id: props.world_notes.world_note.world.id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 

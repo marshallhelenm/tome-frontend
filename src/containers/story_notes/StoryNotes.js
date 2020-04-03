@@ -6,6 +6,7 @@ import {
   fetchStoryNotes,
   currentStoryNote
 } from "../../actions/storyNotesActions.js";
+import { getLocal } from "../../App.js";
 
 const IMG =
   "https://cdn.pixabay.com/photo/2016/04/30/13/11/texture-1362877_1280.jpg";
@@ -14,9 +15,9 @@ class StoryNotes extends Component {
 
   componentDidMount(){
     console.log("story notes props: ", this.props);
-    this.props.fetchStoryNotes(this.props.stories.story)
+    this.props.fetchStoryNotes(getLocal('story'))
   }
-
+ 
   render() {
     return (
       <Gallery
