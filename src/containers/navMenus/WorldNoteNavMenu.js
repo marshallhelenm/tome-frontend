@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import WorldButton from "../../components/navButtons/WorldButton";
 import { getLocal } from "../../App";
 
-const StoryNotesNavMenu = props => {
+const WorldNoteNavMenu = props => {
   return (
     <>
       {/* <WorldButton /> */}
@@ -25,4 +25,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(StoryNotesNavMenu);
+export default connect(mapStateToProps)(WorldNoteNavMenu);

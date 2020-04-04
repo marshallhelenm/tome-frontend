@@ -61,7 +61,7 @@ class NavMenu extends Component {
           />
           <Route
             path="/tome/world_notes/:id"
-            render={props => <StoryNoteNavMenu {...props} />}
+            render={props => <WorldNoteNavMenu {...props} />}
           />
           <Route
             path="/tome/locations"
