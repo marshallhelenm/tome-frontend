@@ -10,12 +10,13 @@ import StoriesNavMenu from "./StoriesNavMenu";
 import LocationsNavMenu from "./LocationsNavMenu";
 import CharactersNavMenu from "./CharactersNavMenu";
 import StoryNotesNavMenu from "./StoryNotesNavMenu";
+import WorldNotesNavMenu from "./WorldNotesNavMenu";
 import WorldsButton from "../../components/navButtons/WorldsButton";
 import WorldButton from "../../components/navButtons/WorldButton";
 import StoryButton from "../../components/navButtons/StoryButton";
-import StoriesButton from "../../components/navButtons/StoriesButton";
 import StoryNavMenu from "./StoryNavMenu";
 import StoryNoteNavMenu from "./StoryNoteNavMenu";
+import WorldNoteNavMenu from "./WorldNoteNavMenu";
 import { getLocal } from "../../App";
 
 class NavMenu extends Component {
@@ -51,7 +52,16 @@ class NavMenu extends Component {
           />
           <Route
             path="/tome/story_notes/:id"
-            render={props => <StoryNoteNavMenu {...props} />}
+            render={props => <WorldNoteNavMenu {...props} />}
+          />
+          <Route
+            path="/tome/world_notes"
+            exact
+            render={props => <WorldNotesNavMenu {...props} />}
+          />
+          <Route
+            path="/tome/world_notes/:id"
+            render={props => <WorldNoteNavMenu {...props} />}
           />
           <Route
             path="/tome/locations"

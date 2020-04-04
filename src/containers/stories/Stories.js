@@ -8,7 +8,6 @@ import {
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import {
-  fetchWorldCharacters,
   currentCharacter,
   setStoryCharacters
 } from "../../actions/charactersActions.js";

@@ -1,9 +1,7 @@
-import { setLocal } from "../App";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import { setLocal, BASE_URL } from "../App";
 
 export const setStoryNotes = story_notes => {
+  console.log('setting story notes in setStoryNotes')
   return {
     type: "SET_STORY_NOTES",
     payload: story_notes
@@ -31,7 +29,7 @@ export const deleteStoryNote = story_note => {
       body: JSON.stringify({ note: { note_id: story_note.id } })
     });
   };
-};
+}; 
 
 export const fetchStoryNotes = story => {
   console.log("running fetchStoryNotes. story: ", story);
@@ -63,7 +61,7 @@ export const fetchStoryNote = id => {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({ story_note: { id: id } })
+      body: JSON.stringify({ note: { id: id } })
     })
       .then(res => res.json())
       .then(story_note => {

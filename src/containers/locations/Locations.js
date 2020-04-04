@@ -11,7 +11,7 @@ import { assignCrumbs } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
 const IMG =
-  "https://cdn.pixabay.com/photo/2017/05/15/01/02/travel-2313444_1280.jpg";
+  "https://res.cloudinary.com/dwfqeeh5f/image/upload/v1586019077/WorldBuildersTome/jakob-braun-RHltK9oYD7w-unsplash.jpg";
 
 class Locations extends Component {
   componentDidMount() {

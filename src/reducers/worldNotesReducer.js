@@ -1,19 +1,19 @@
 const initialState = {
-  story_notes: []
+  world_notes: []
 };
 
 const reducer = (state = initialState, action) => {
-  // console.log('in story notes reducer')
+  // console.log('in world notes reducer')
   switch (action.type) {
-    case "SET_STORY_NOTES":
+    case "SET_WORLD_NOTES":
       return {
         ...state,
-        story_notes: action.payload
+        world_notes: action.payload
       };
-    case "CURRENT_STORY_NOTE":
+    case "CURRENT_WORLD_NOTE":
       return {
         ...state,
-        story_note: action.payload
+        world_note: action.payload
       };
     default:
       return state;

@@ -8,11 +8,12 @@ import { setLocal, getLocal } from "../App.js";
 
 class Gallery extends Component {
   generateCards = () => {
-    console.log("in generateCards, items: ", this.props.items);
+    // console.log("in generateCards, items: ", this.props.items);
     if (!!!this.props.items) {
       return [];
     } else {
       return this.props.items.map(item => {
+        console.log("item: ", item)
         return (
           <Polaroid
             handleClick={this.clickCard}

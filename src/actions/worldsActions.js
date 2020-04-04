@@ -1,6 +1,4 @@
-import { setLocal } from "../App.js";
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import { setLocal, BASE_URL } from "../App.js";
 
 export const setWorlds = worlds => {
   return {

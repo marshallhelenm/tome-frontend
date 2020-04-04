@@ -1,7 +1,4 @@
-import { setLocal } from "../App";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import { setLocal, BASE_URL } from "../App";
 
 export const setLocations = locations => {
   // console.log("setting these locations: ", locations);

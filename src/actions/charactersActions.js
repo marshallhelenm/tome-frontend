@@ -1,7 +1,4 @@
-import { getLocal, setLocal } from "../App";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import { getLocal, setLocal, BASE_URL } from "../App";
 
 export const setCharacters = characters => {
   // console.log("setting these characters: ", characters);

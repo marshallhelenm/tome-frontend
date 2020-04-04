@@ -9,10 +9,7 @@ import {
 } from "../../actions/charactersActions.js";
 import Display from "../../components/Display.js";
 import { assignCrumbs, addBreadCrumb } from "../../actions/breadcrumbActions";
-import { getLocal } from "../../App.js";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import { getLocal, BASE_URL } from "../../App.js";
 
 class CharacterPage extends Component {
   componentDidMount() {

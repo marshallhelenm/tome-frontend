@@ -6,10 +6,7 @@ import {
   currentLocation,
   deleteLocation
 } from "../../actions/locationsActions.js";
-import { getLocal, setLocal } from "../../App";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+import { getLocal, setLocal, BASE_URL } from "../../App";
 
 class EditLocation extends Component {
   handleDeleteLocation = () => {

@@ -3,13 +3,12 @@ import composedAuthHOC from "../../HOC/AuthHOC";
 import NewForm from "../NewForm";
 import { connect } from "react-redux";
 import {
-  currentStoryNote,
-  deleteStoryNote
-} from "../../actions/storyNotesActions.js";
-import { setLocal } from "../../App";
+  currentWorldNote,
+  deleteWorldNote
+} from "../../actions/worldNotesActions.js";
+import { setLocal, BASE_URL, getLocal } from "../../App";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/";
-const NewNote = props => {
+const NewWorldNote = props => {
   console.log("New Note page props: ", props);
 
   const createNote = e => {
@@ -19,11 +18,11 @@ const NewNote = props => {
     let note = {
       title: document.getElementById("name").value,
       content: document.getElementById("description").value,
-      story_id: props.stories.story.id,
+      world_id: getLocal("world").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
-    fetch(BASE_URL + `story_notes/new`, {
+    fetch(BASE_URL + `world_notes/new`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -35,9 +34,9 @@ const NewNote = props => {
       .then(resp => resp.json())
       .then(note => {
         console.log("new note: ", note);
-        props.currentStoryNote(note);
-        setLocal("note", note);
-        props.history.push(`/tome/story_notes/${note.id}`);
+        props.currentWorldNote(note);
+        setLocal("world_note", note);
+        props.history.push(`/tome/world_notes/${note.id}`);
       });
   };
 
@@ -52,12 +51,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    currentStoryNote: note => dispatch(currentStoryNote(note)),
-    deleteStoryNote: note => dispatch(deleteStoryNote(note))
+    currentWorldNote: note => dispatch(currentWorldNote(note)),
+    deleteWorldNote: note => dispatch(deleteWorldNote(note))
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(composedAuthHOC(NewNote));
+)(composedAuthHOC(NewWorldNote));

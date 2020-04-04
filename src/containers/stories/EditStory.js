@@ -3,9 +3,8 @@ import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
 import { currentStory, deleteStory } from "../../actions/storiesActions.js";
-import { setLocal } from "../../App";
+import { setLocal, BASE_URL } from "../../App";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 const EditStory = props => {
   console.log("Edit Story Form props: ", props);
 

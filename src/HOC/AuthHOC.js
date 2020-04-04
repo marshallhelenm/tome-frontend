@@ -7,7 +7,7 @@ import {compose} from 'redux'
 const AuthHOC = WrappedComponent => {
   return class PrivacyHOC extends React.Component {
     authorized = () => {
-      console.log('authorized? ', this.props.logged_in, localStorage.getItem('token'))
+      // console.log('authorized? ', this.props.logged_in, localStorage.getItem('token'))
       return localStorage.getItem('token') !== 'null';
     };
 

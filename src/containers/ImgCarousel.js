@@ -1,3 +1,4 @@
+import { BASE_URL } from '../App'
 import React, { Component } from "react";
 // import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -11,9 +12,6 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { Image, Icon } from "semantic-ui-react";
 import ImgDelete from "../components/ImgDelete";
-
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
 
 class ImgCarousel extends Component {
   generateImgDivs = images => {

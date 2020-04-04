@@ -1,37 +1,40 @@
-import React from "react";
+import React, { Component } from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
 import EditForm from "../EditForm";
 import { connect } from "react-redux";
 import {
   currentStoryNote,
   deleteStoryNote,
-  fetchStoryNote
+  fetchStoryNote,
+  fetchStoryNotes
 } from "../../actions/storyNotesActions.js";
 import ImgCarousel from "../ImgCarousel";
+import { getLocal, setLocal, BASE_URL } from "../../App.js";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-;
+class StoryNote extends Component {
+  componentDidMount() {
+    console.log("Story Note page props: ", this.props);
+    this.props.fetchStoryNote(getLocal("story_note").id);
+  }
 
-const StoryNote = props => {
-  console.log("Story Note page props: ", props);
-
-  const handleDeleteNote = () => {
-    props.deleteStoryNote(props.story_notes.story_note);
-    props.history.push("/tome/story_notes");
+  handleDeleteNote = () => {
+    this.props.deleteStoryNote(getLocal('story_note'));
+    this.props.fetchStoryNotes(getLocal('story'))
+    this.props.history.push("/tome/story_notes");
   };
 
-  const editNote = e => {
+  editNote = e => {
     e.preventDefault();
     console.log("saving changes to story_note");
 
     let note = {
       title: document.getElementById("name").value,
       content: document.getElementById("description").value,
-      story_id: props.stories.story.id,
+      story_id: getLocal("story").id,
       img_url: document.getElementById("secret_url_collection").textContent
     };
 
-    fetch(BASE_URL + `story_notes/${props.story_notes.story_note.id}`, {
+    fetch(BASE_URL + `story_notes/${getLocal("story_note").id}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -39,32 +42,40 @@ const StoryNote = props => {
         Accept: "application/json"
       },
       body: JSON.stringify({
-        note: { ...note, note_id: props.story_notes.story_note.id }
+        note: { ...note, note_id: getLocal("story_note").id }
       })
-    });
+    })
+      .then(res => res.json())
+      .then(story_note => {
+        setLocal("story_note", story_note);
+      });
   };
 
-  const refreshStoryNote = () => {
-    this.props.fetchStoryNote(this.props.story_notes.story_note.id);
+  refreshStoryNote = () => {
+    this.props.fetchStoryNote(getLocal("story_note").id);
   };
 
-  return (
-    <>
-      <ImgCarousel
-        images={props.story_notes.story_note.images}
-        item={props.story_notes.story_note}
-        refreshItem={refreshStoryNote}
-      />
-      <EditForm
-        {...props}
-        type='Note'
-        handleDelete={handleDeleteNote}
-        item={props.story_notes.story_note}
-        handleEdit={editNote}
-      />
-    </>
-  );
-};
+  render() {
+    let story_note = getLocal("story_note");
+    console.log("story_note: ", story_note);
+    return (
+      <>
+        <ImgCarousel
+          images={story_note.images}
+          item={story_note}
+          refreshItem={this.refreshStoryNote}
+        />
+        <EditForm
+          {...this.props}
+          type="Note"
+          handleDelete={this.handleDeleteNote}
+          item={story_note}
+          handleEdit={this.editNote}
+        />
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -76,7 +87,8 @@ const mapDispatchToProps = dispatch => {
   return {
     currentStoryNote: note => dispatch(currentStoryNote(note)),
     deleteStoryNote: note => dispatch(deleteStoryNote(note)),
-    fetchStoryNote: id => dispatch(fetchStoryNote(id))
+    fetchStoryNote: id => dispatch(fetchStoryNote(id)),
+    fetchStoryNotes: id => dispatch(fetchStoryNotes(id))
   };
 };
 

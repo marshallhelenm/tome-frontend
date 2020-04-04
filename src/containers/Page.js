@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import "../css/notebook.css";
 import "../css/tooplate_style.css";
 // import LoginPage from "./LoginPage.js";
@@ -6,27 +7,35 @@ import "../css/tooplate_style.css";
 import Worlds from "./worlds/Worlds.js";
 import WorldPage from "./worlds/WorldPage.js";
 import NewWorld from "./worlds/NewWorld.js";
+
 import Stories from "./stories/Stories.js";
 import StoryPage from "./stories/StoryPage.js";
 import NewStory from "./stories/NewStory.js";
 import EditStory from "./stories/EditStory.js";
+
 import Characters from "./characters/Characters.js";
 import CharacterPage from "./characters/CharacterPage.js";
+import NewCharacter from "./characters/NewCharacter";
+import EditCharacter from "./characters/EditCharacter.js";
+
 import Locations from "./locations/Locations.js";
 import LocationPage from "./locations/LocationPage.js";
 import NewLocation from "./locations/NewLocation.js";
 import EditLocation from "./locations/EditLocation.js";
-import { Route } from "react-router-dom";
-import EditCharacter from "./characters/EditCharacter.js";
-import NewCharacter from "./characters/NewCharacter";
+
+import WorldNotes from "./world_notes/WorldNotes";
+import WorldNote from "./world_notes/WorldNote";
+import NewWorldNote from "./world_notes/NewWorldNote";
 import EditWorld from "./worlds/EditWorld";
+
 import StoryNotes from "./story_notes/StoryNotes";
 import StoryNote from "./story_notes/StoryNote";
+import NewStoryNote from "./story_notes/NewStoryNote";
+
 import BreadCrumb from "../components/BreadCrumb";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
-import NewNote from "./story_notes/NewNote";
-import UnderConstruction from "../components/UnderConstruction";
+// import UnderConstruction from "../components/UnderConstruction";
 
 class Page extends Component {
   render() {
@@ -139,7 +148,24 @@ class Page extends Component {
             <Route
               path="/tome/new/story_notes"
               exact
-              render={props => <NewNote {...props} />}
+              render={props => <NewStoryNote {...props} />}
+            />
+          </>
+          <>
+            <Route
+              path="/tome/world_notes"
+              exact
+              render={props => <WorldNotes {...props} />}
+            />
+            <Route
+              path="/tome/world_notes/:id"
+              exact
+              render={props => <WorldNote {...props} />}
+            />
+            <Route
+              path="/tome/new/world_notes"
+              exact
+              render={props => <NewWorldNote {...props} />}
             />
           </>
         </div>

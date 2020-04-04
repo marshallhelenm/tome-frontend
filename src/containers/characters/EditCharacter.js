@@ -6,9 +6,8 @@ import {
   currentCharacter,
   deleteCharacter
 } from "../../actions/charactersActions.js";
-import { getLocal, setLocal } from "../../App";
+import { getLocal, setLocal, BASE_URL } from "../../App";
 
-const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 class EditCharacter extends Component {
   handleDeleteCharacter = () => {
     this.props.deleteCharacter(getLocal("character"));
