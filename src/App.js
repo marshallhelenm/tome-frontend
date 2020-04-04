@@ -14,7 +14,7 @@ export const getLocal = (label) => {
 }
 
 // export const BASE_URL = "https://wbtome-backend.herokuapp.com/"
-export const BASE_URL = "http://localhost:3000/"
+export const BASE_URL = "https://wbtome-backend.herokuapp.com/"
 
 const App = props => {
   // console.log("App props: ", props);
