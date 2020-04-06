@@ -4,15 +4,12 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import {
   deleteLocation,
   fetchStoryLocations,
-  fetchWorldLocations,
   fetchLocation
 } from "../../actions/locationsActions.js";
 import Display from "../../components/Display.js";
 import { addBreadCrumb } from "../../actions/breadcrumbActions";
 import { getLocal, BASE_URL } from "../../App.js";
 
-const IMG =
-  "https://cdn.pixabay.com/photo/2015/10/12/15/01/mountain-984083_960_720.jpg";
 
 class LocationPage extends Component {
   componentDidMount() {

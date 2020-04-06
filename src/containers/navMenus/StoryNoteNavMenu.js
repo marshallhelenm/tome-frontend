@@ -10,7 +10,7 @@ import WorldButton from "../../components/navButtons/WorldButton";
 const StoryNotesNavMenu = props => {
   return (
     <>
-      {/* <WorldButton /> */}
+      <WorldButton />
       <StoriesButton />
       <StoryButton story={props.stories.story} />
       <StoryNotesButton />

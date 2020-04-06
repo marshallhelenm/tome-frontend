@@ -41,7 +41,7 @@ class LoginPage extends Component {
     })
       .then(response => response.json())
       .then(user => {
-        // console.log("response on login:", user);
+        console.log("response on login:", user);
         if (user.error) {
           alert("Please try again, or click Sign Up below.");
         } else {

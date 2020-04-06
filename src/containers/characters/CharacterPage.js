@@ -4,7 +4,6 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import {
   deleteCharacter,
   fetchStoryCharacters,
-  fetchWorldCharacters,
   fetchCharacter
 } from "../../actions/charactersActions.js";
 import Display from "../../components/Display.js";

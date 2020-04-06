@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import "../../css/notebook.css";
 import "../../css/tooplate_style.css";
 import {
-  fetchWorldLocations,
   currentLocation
 } from "../../actions/locationsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";

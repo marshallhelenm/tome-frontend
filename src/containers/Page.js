@@ -32,7 +32,7 @@ import StoryNotes from "./story_notes/StoryNotes";
 import StoryNote from "./story_notes/StoryNote";
 import NewStoryNote from "./story_notes/NewStoryNote";
 
-import BreadCrumb from "../components/BreadCrumb";
+// import BreadCrumb from "../components/BreadCrumb";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 // import UnderConstruction from "../components/UnderConstruction";
