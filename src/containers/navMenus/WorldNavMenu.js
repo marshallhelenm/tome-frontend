@@ -3,6 +3,7 @@ import StoriesButton from "../../components/navButtons/StoriesButton";
 import CharactersButton from "../../components/navButtons/CharactersButton";
 import LocationsButton from "../../components/navButtons/LocationsButton";
 import { connect } from "react-redux";
+import WorldNotesButton from "../../components/navButtons/WorldNotesButton";
 
 const WorldNavMenu = () => {
   return (
@@ -10,6 +11,7 @@ const WorldNavMenu = () => {
       <StoriesButton />
       <CharactersButton />
       <LocationsButton />
+      <WorldNotesButton />
     </>
   );
 };

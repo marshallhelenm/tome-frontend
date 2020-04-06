@@ -5,7 +5,7 @@ const WorldNotesButton = () => {
   return (
     <div className="tab">
       <Link to={"/tome/world_notes"} className="menu_04">
-        Notes
+        World Notes
       </Link>
     </div>
   );

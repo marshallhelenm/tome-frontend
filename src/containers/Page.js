@@ -43,7 +43,7 @@ class Page extends Component {
     return (
       <div id="page">
         <div id="breadcrumbs">
-          <Route path="/" render={props => <BreadCrumb />} />
+          {/* <Route path="/" render={props => <BreadCrumb />} /> */}
         </div>
         <div className="inner-page">
           <>
