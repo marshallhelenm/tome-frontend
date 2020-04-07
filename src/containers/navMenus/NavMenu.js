@@ -26,11 +26,16 @@ class NavMenu extends Component {
     return (
       <div id="tabs">
         <div className="tabs">
+
           <Route path="/tome" render={props => <WorldsButton {...props} />} />
           <Route
             path="/tome/worlds/:id"
             render={props => <WorldNavMenu {...props} />}
           />
+          <Route
+              path="/tome/new/stories"
+              render={props => <StoriesNavMenu {...props} />}
+            />
 
           <Route
             path="/tome/stories/:id"
@@ -45,6 +50,10 @@ class NavMenu extends Component {
             path="/tome/characters"
             render={props => <CharactersNavMenu {...props} />}
           />
+          <Route
+              path="/tome/new/characters"
+              render={props => <CharactersNavMenu {...props} />}
+            />
           <Route
             path="/tome/story_notes"
             exact
@@ -64,9 +73,18 @@ class NavMenu extends Component {
             render={props => <WorldNoteNavMenu {...props} />}
           />
           <Route
+              path="/tome/new/world_notes"
+              exact
+              render={props => <WorldNotesNavMenu {...props} />}
+            />
+          <Route
             path="/tome/locations"
             render={props => <LocationsNavMenu {...props} />}
           />
+          <Route
+              path="/tome/new/locations"
+              render={props => <LocationsNavMenu {...props} />}
+            />
           <Route
             path="/tome/new/stories"
             render={props => (

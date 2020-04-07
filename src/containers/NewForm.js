@@ -8,7 +8,7 @@ import URLInputs from "../components/URLInputs";
 
 class NewForm extends Component {
   componentDidMount() {
-    this.props.addBreadCrumb(`/tome/new/${this.props.type}`, "New");
+    // this.props.addBreadCrumb(`/tome/new/${this.props.type}`, "New");
   }
 
   handleSubmit = (e) => {
