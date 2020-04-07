@@ -7,7 +7,7 @@ import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
 import AddToStory from "./AddToStory.js";
 import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
 import { Segment, Button } from "semantic-ui-react";
-import { assignCrumbs } from "../actions/breadcrumbActions";
+// import { assignCrumbs } from "../actions/breadcrumbActions";
 import ImgCarousel from "../containers/ImgCarousel.js";
 import { getLocal } from "../App.js";
 
@@ -16,32 +16,32 @@ class Display extends Component {
     // console.log("Display props: ", this.props);
     let world = getLocal("world");
     //assign breadcrumb trail:
-    if (this.props.category === "worlds") {
-      this.props.assignCrumbs([
-        ["/tome", "Home"],
-        ["/tome/worlds", "Worlds"],
-        [`/tome/worlds/${world.id}`, world.name]
-      ]);
-    } else if (this.props.category === "stories") {
-      this.props.assignCrumbs([
-        ["/tome", "Home"],
-        ["/tome/worlds", "Worlds"],
-        [`/tome/worlds/${world.id}`, world.name],
-        ["/tome/stories", "Stories"],
-        [`/tome/stories/${getLocal("story").id}`, getLocal("story").title]
-      ]);
-    } else {
-      this.props.assignCrumbs([
-        ["/tome", "Home"],
-        ["/tome/worlds", "Worlds"],
-        [`/tome/worlds/${world.id}`, world.name],
-        [
-          `/tome/${this.props.category}`,
-          `${this.props.category.charAt(0).toUpperCase() +
-            this.props.category.slice(1)}`
-        ]
-      ]);
-    }
+    // if (this.props.category === "worlds") {
+    //   this.props.assignCrumbs([
+    //     ["/tome", "Home"],
+    //     ["/tome/worlds", "Worlds"],
+    //     [`/tome/worlds/${world.id}`, world.name]
+    //   ]);
+    // } else if (this.props.category === "stories") {
+    //   this.props.assignCrumbs([
+    //     ["/tome", "Home"],
+    //     ["/tome/worlds", "Worlds"],
+    //     [`/tome/worlds/${world.id}`, world.name],
+    //     ["/tome/stories", "Stories"],
+    //     [`/tome/stories/${getLocal("story").id}`, getLocal("story").title]
+    //   ]);
+    // } else {
+    //   this.props.assignCrumbs([
+    //     ["/tome", "Home"],
+    //     ["/tome/worlds", "Worlds"],
+    //     [`/tome/worlds/${world.id}`, world.name],
+    //     [
+    //       `/tome/${this.props.category}`,
+    //       `${this.props.category.charAt(0).toUpperCase() +
+    //         this.props.category.slice(1)}`
+    //     ]
+    //   ]);
+    // }
   }
 
   clickEdit = () => {
@@ -114,13 +114,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    assignCrumbs: trail => dispatch(assignCrumbs(trail))
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     assignCrumbs: trail => dispatch(assignCrumbs(trail))
+//   };
+// };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
+  // mapDispatchToProps
 )(composedAuthHOC(Display));

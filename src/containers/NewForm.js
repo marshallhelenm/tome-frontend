@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC";
-import { addBreadCrumb, removeOneCrumb } from "../actions/breadcrumbActions";
+// import { addBreadCrumb, removeOneCrumb } from "../actions/breadcrumbActions";
 import { connect } from "react-redux";
 import { Form, Input } from "semantic-ui-react";
 import ResizableTextarea from "../components/ResizableTextArea";
@@ -71,15 +71,15 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addBreadCrumb: (path, displayName) =>
-      dispatch(addBreadCrumb(path, displayName)),
-    removeOneCrumb: () => dispatch(removeOneCrumb())
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addBreadCrumb: (path, displayName) =>
+//       dispatch(addBreadCrumb(path, displayName)),
+//     removeOneCrumb: () => dispatch(removeOneCrumb())
+//   };
+// };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
+  // mapDispatchToProps
 )(composedAuthHOC(NewForm));
