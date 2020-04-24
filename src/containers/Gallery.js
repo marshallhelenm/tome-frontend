@@ -5,6 +5,7 @@ import Polaroid from "../components/Polaroid";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { setLocal, getLocal } from "../App.js";
+import SortBar from "../components/SortBar";
 
 class Gallery extends Component {
   generateCards = () => {
@@ -64,6 +65,7 @@ class Gallery extends Component {
             <h2>{this.props.title}</h2>
           </div>
         )}
+        <SortBar {...props}/>
         <div className="content_section last_section gallery_box">
           <Polaroid
             handleClick={this.newItem}
