@@ -13,8 +13,8 @@ class Gallery extends Component {
     if (!!!this.props.items) {
       return [];
     } else {
-      return this.props.items.map(item => {
-        console.log("item: ", item)
+      return this.props.items.map((item) => {
+        console.log("item: ", item);
         return (
           <Polaroid
             handleClick={this.clickCard}
@@ -32,10 +32,10 @@ class Gallery extends Component {
     }
   };
 
-  clickCard = e => {
+  clickCard = (e) => {
     e.preventDefault();
     let item;
-    this.props.items.forEach(s => {
+    this.props.items.forEach((s) => {
       if (`${s.id}` === `${e.currentTarget.id}`) {
         item = s;
       }
@@ -65,7 +65,9 @@ class Gallery extends Component {
             <h2>{this.props.title}</h2>
           </div>
         )}
-        <SortBar {...props}/>
+        <div>
+          <SortBar {...this.props} class="sort" />
+        </div>
         <div className="content_section last_section gallery_box">
           <Polaroid
             handleClick={this.newItem}
@@ -81,9 +83,9 @@ class Gallery extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 

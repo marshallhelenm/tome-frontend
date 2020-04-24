@@ -185,3 +185,7 @@ div.tabs a:focus {
 #delete-modal{
   text-align: center;
 }
+
+.sort {
+  z-index: -1;
+}
