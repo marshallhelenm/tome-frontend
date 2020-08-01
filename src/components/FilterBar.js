@@ -1,22 +1,21 @@
 import React from 'react'
 import { Dropdown } from 'semantic-ui-react'
 
+const options = [ // TODO: implement function to map tags from props to the options array
+  { key: 'af', value: 'af', text: 'Afghanistan' }, 
+  { key: 'ax', value: 'ax', text: 'Aland Islands' }
+]
+
 const FilterBar = () => (
   <Dropdown
-    text='Filter'
-    icon='filter'
-    floating
-    labeled
-    button
-    className='icon'
-  >
-    <Dropdown.Menu>
-      <Dropdown.Header icon='tags' content='Filter by tag' />
-      <Dropdown.Item>Important</Dropdown.Item>
-      <Dropdown.Item>Announcement</Dropdown.Item>
-      <Dropdown.Item>Discussion</Dropdown.Item>
-    </Dropdown.Menu>
-  </Dropdown>
+    clearable
+    fluid
+    multiple
+    search
+    selection
+    options={options}
+    placeholder='Filter by Tags'
+  />
 )
 
 export default FilterBar

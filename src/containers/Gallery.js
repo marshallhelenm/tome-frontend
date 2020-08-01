@@ -13,7 +13,7 @@ class Gallery extends Component {
     if (!!!this.props.items) {
       return [];
     } else {
-      return this.props.items.map((item) => {
+      let cards = this.props.items.map((item) => {
         console.log("item: ", item);
         return (
           <Polaroid
@@ -29,6 +29,8 @@ class Gallery extends Component {
           />
         );
       });
+      //TODO: sort the cards
+      return cards;
     }
   };
 

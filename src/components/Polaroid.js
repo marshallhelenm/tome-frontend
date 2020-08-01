@@ -4,10 +4,6 @@ import "../css/tooplate_style.css";
 import "../css/polaroid.css";
 
 class Polaroid extends Component {
-  generateCards = () => {
-    console.log("cards!");
-    return "cards here";
-  };
 
   render() {
     return (
