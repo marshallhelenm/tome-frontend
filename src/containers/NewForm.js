@@ -1,73 +1,73 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import composedAuthHOC from "../HOC/AuthHOC";
-// import { addBreadCrumb, removeOneCrumb } from "../actions/breadcrumbActions";
 import { connect } from "react-redux";
-import { Form, Input } from "semantic-ui-react";
-import ResizableTextarea from "../components/ResizableTextArea";
 import URLInputs from "../components/URLInputs";
+import {
+  Box,
+  Button,
+  Form,
+  Heading,
+  FormField,
+  TextInput,
+  TextArea,
+} from "grommet";
 
-class NewForm extends Component {
-  componentDidMount() {
-    // this.props.addBreadCrumb(`/tome/new/${this.props.type}`, "New");
-  }
+const NewForm = ({ stories, handleNew, type }) => {
+  const INITIAL_STATE =
+    type === "story" || type === "Note"
+      ? { title: "", content: "" }
+      : { name: "", description: "" };
+  const [value, setValue] = useState(INITIAL_STATE);
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.handleNew(e);
-    // this.props.removeOneCrumb();
+  const storyItem = () => {
+    return stories.story;
   };
+  return (
+    <Box id="NewForm">
+      <Heading>New {type}</Heading>
+      <Form
+        onSubmit={() => handleNew(value)}
+        value={value}
+        onChange={(nextValue) => setValue(nextValue)}
+        onReset={() => setValue({ INITIAL_STATE })}
+      >
+        <div id="story_id">{storyItem() ? stories.story.id : null}</div>
+        <FormField
+          name="name"
+          htmlfor="name"
+          label={type === "story" || type === "Note" ? "Title" : "Name"}
+        >
+          <TextInput
+            id="name"
+            type="text"
+            placeholder={type === "story" || type === "Note" ? "Title" : "Name"}
+            className="input_field"
+          />
+        </FormField>
+        <FormField
+          htmlfor={
+            type === "story" || type === "Note" ? "content" : "description"
+          }
+          label={type === "Note" ? "Content" : "Description"}
+        >
+          <TextArea
+            id={type === "story" || type === "Note" ? "content" : "description"}
+            name={
+              type === "story" || type === "Note" ? "content" : "description"
+            }
+            placeholder={type === "Note" ? "Content" : "Description"}
+          />
+        </FormField>
+        <URLInputs />
+        <Button primary type="submit" id="submit" label="Submit" />
+      </Form>
+    </Box>
+  );
+};
 
-  render() {
-    console.log("handleNew: ", this.props.handleNew);
-    const storyItem = () => {
-      return this.props.stories.story;
-    };
-    // console.log("new form props: ", this.props);
-    return (
-      <div className={"content_section last_section"} id="NewForm">
-        <h1>New {this.props.type}</h1>
-        <Form onSubmit={this.handleSubmit}>
-          <div id="story_id">
-            {storyItem() ? this.props.stories.story.id : null}
-          </div>
-          <Form.Field>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              placeholder={
-                this.props.type === "story" || this.props.type === "Note"
-                  ? "Title"
-                  : "Name"
-              }
-              className="input_field"
-            />
-          </Form.Field>
-          <Form.Field>
-            {/* <label htmlFor="description">Description:</label> */}
-            <ResizableTextarea
-              placeholder={this.props.type === "Note" ? "Content" : null}
-            />
-          </Form.Field>
-          <URLInputs />
-          <Form.Button
-            type="submit"
-            value="Save"
-            id="submit"
-            name="submit"
-            className={"submit_btn"}
-          >
-            Submit
-          </Form.Button>
-        </Form>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 

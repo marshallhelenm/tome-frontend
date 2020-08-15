@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../../css/notebook.css";
-import "../../css/tooplate_style.css";
-import {
-  currentLocation
-} from "../../actions/locationsActions.js";
+import { currentLocation } from "../../actions/locationsActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 import { getLocal, setLocal, BASE_URL } from "../../App";
 
 class NewLocation extends Component {
-  createLocation = e => {
+  createLocation = (e) => {
     e.preventDefault();
     console.log("creating location");
 
@@ -18,7 +14,7 @@ class NewLocation extends Component {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
       world_id: getLocal("world").id,
-      img_url: document.getElementById("secret_url_collection").textContent
+      img_url: document.getElementById("secret_url_collection").textContent,
     };
 
     fetch(BASE_URL + "locations/new", {
@@ -26,12 +22,12 @@ class NewLocation extends Component {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
-      body: JSON.stringify({ location })
+      body: JSON.stringify({ location }),
     })
-      .then(response => response.json())
-      .then(newLocation => {
+      .then((response) => response.json())
+      .then((newLocation) => {
         console.log("newLocation: ", newLocation);
         this.props.currentLocation(newLocation);
         setLocal("location", newLocation);
@@ -45,17 +41,17 @@ class NewLocation extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ...state,
     locations: state.locations.locations,
-    logged_in: state.auth.logged_in
+    logged_in: state.auth.logged_in,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    currentLocation: location => dispatch(currentLocation(location))
+    currentLocation: (location) => dispatch(currentLocation(location)),
   };
 };
 

@@ -1,14 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "grommet";
 
-const WorldsButton = props => {
-  return (
-    <div className="tab">
-      <Link to={`/tome/worlds`} className="menu_04">
-        Worlds
-      </Link>
-    </div>
-  );
+const WorldsButton = () => {
+  return <Button href="/tome/worlds" label="Worlds" />;
 };
 
 export default WorldsButton;

@@ -3,11 +3,10 @@ import Gallery from "../Gallery.js";
 import {
   fetchWorldCharacters,
   currentCharacter,
-  fetchStoryCharacters
+  fetchStoryCharacters,
 } from "../../actions/charactersActions.js";
 import { connect } from "react-redux";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
-import { assignCrumbs, addBreadCrumb } from "../../actions/breadcrumbActions";
 import { getLocal } from "../../App.js";
 
 const IMG =
@@ -18,13 +17,6 @@ class Characters extends Component {
     console.log("Characters props: ", this.props);
     console.log("story: ", this.props.stories.story);
     this.props.fetchWorldCharacters(getLocal("world"));
-
-    this.props.assignCrumbs([
-      ["/tome", "Home"],
-      ["/tome/worlds", "Worlds"],
-      [`/tome/worlds/${getLocal("world").id}`, getLocal("world").name],
-      [`/tome/characters`, "Characters"]
-    ]);
   }
 
   render() {
@@ -43,20 +35,17 @@ class Characters extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
-    fetchStoryCharacters: story => dispatch(fetchStoryCharacters(story)),
-    currentCharacter: character => dispatch(currentCharacter(character)),
-    assignCrumbs: trail => dispatch(assignCrumbs(trail)),
-    addBreadCrumb: (path, displayName) =>
-      dispatch(addBreadCrumb(path, displayName))
+    fetchWorldCharacters: (world) => dispatch(fetchWorldCharacters(world)),
+    fetchStoryCharacters: (story) => dispatch(fetchStoryCharacters(story)),
+    currentCharacter: (character) => dispatch(currentCharacter(character)),
   };
 };
 

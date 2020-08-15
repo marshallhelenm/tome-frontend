@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import "../css/notebook.css";
-import "../css/tooplate_style.css";
 import "../css/polaroid.css";
 
 class Polaroid extends Component {

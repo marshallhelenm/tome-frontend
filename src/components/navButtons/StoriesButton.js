@@ -1,14 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "grommet";
 
 const StoriesButton = () => {
-  return (
-    <div className="tab">
-      <Link to={"/tome/stories"} className="menu_04">
-        Stories
-      </Link>
-    </div>
-  );
+  return <Button to="/tome/stories" label="Stories" />;
 };
 
 export default StoriesButton;

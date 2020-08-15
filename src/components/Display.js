@@ -1,47 +1,19 @@
 import React, { Component } from "react";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { connect } from "react-redux";
-import "../css/tome.css";
 import DeleteModal from "./DeleteModal.js";
 import StoryPageButtons from "../containers/stories/StoryPageButtons.js";
 import AddToStory from "./AddToStory.js";
 import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
-import { Segment, Button } from "semantic-ui-react";
 // import { assignCrumbs } from "../actions/breadcrumbActions";
 import ImgCarousel from "../containers/ImgCarousel.js";
 import { getLocal } from "../App.js";
+import { Heading, Box, Text, Button } from "grommet";
 
 class Display extends Component {
   componentDidMount() {
     // console.log("Display props: ", this.props);
     let world = getLocal("world");
-    //assign breadcrumb trail:
-    // if (this.props.category === "worlds") {
-    //   this.props.assignCrumbs([
-    //     ["/tome", "Home"],
-    //     ["/tome/worlds", "Worlds"],
-    //     [`/tome/worlds/${world.id}`, world.name]
-    //   ]);
-    // } else if (this.props.category === "stories") {
-    //   this.props.assignCrumbs([
-    //     ["/tome", "Home"],
-    //     ["/tome/worlds", "Worlds"],
-    //     [`/tome/worlds/${world.id}`, world.name],
-    //     ["/tome/stories", "Stories"],
-    //     [`/tome/stories/${getLocal("story").id}`, getLocal("story").title]
-    //   ]);
-    // } else {
-    //   this.props.assignCrumbs([
-    //     ["/tome", "Home"],
-    //     ["/tome/worlds", "Worlds"],
-    //     [`/tome/worlds/${world.id}`, world.name],
-    //     [
-    //       `/tome/${this.props.category}`,
-    //       `${this.props.category.charAt(0).toUpperCase() +
-    //         this.props.category.slice(1)}`
-    //     ]
-    //   ]);
-    // }
   }
 
   clickEdit = () => {
@@ -50,50 +22,43 @@ class Display extends Component {
     );
   };
   render() {
-    console.log("display page props: ", this.props);
+    // console.log("display page props: ", this.props);
     return (
-      <>
-        <div className="content_section">
-          <h2>{this.props.title}</h2>
-        </div>
-        <div className="content_section">
-          <ImgCarousel
-            images={this.props.item.images}
-            item={this.props.item}
-            refreshItem={this.props.refreshItem}
-          />
-        </div>
+      <Box>
+        <Heading>{this.props.title}</Heading>
+        <ImgCarousel
+          images={this.props.item.images}
+          item={this.props.item}
+          refreshItem={this.props.refreshItem}
+        />
         {this.props.category === "stories" ? (
-          <div className="content_section">
+          <Box>
             <StoryPageButtons
               {...this.props}
               addItem={this.props.addItem}
               deleteItem={this.props.deleteItem}
             />
-          </div>
+          </Box>
         ) : null}
         {this.props.category === "worlds" ? (
-          <div className="content_section">
+          <Box>
             <WorldPageButtons
               {...this.props}
               addItem={this.props.addItem}
               deleteItem={this.props.deleteItem}
             />
-          </div>
+          </Box>
         ) : null}
-        <div className="content_section last_section">
-          {this.props.text ? <Segment>{this.props.text}</Segment> : null}
-          <div className="button-bar">
+        <Box>
+          {this.props.text && <Text>{this.props.text}</Text>}
+          <Box direction="row">
             <Button
               type="submit"
-              value="Edit"
+              label="Edit"
               id="edit-btn"
               name="submit"
-              className="submit_btn"
               onClick={this.clickEdit}
-            >
-              Edit
-            </Button>
+            />
             <DeleteModal
               handleDelete={this.props.handleDelete}
               name={this.props.title ? this.props.title : this.props.name}
@@ -101,16 +66,16 @@ class Display extends Component {
             {this.props.addItem ? (
               <AddToStory addItem={this.props.addItem} />
             ) : null}
-          </div>
-        </div>
-      </>
+          </Box>
+        </Box>
+      </Box>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 

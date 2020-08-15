@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../../css/notebook.css";
-import "../../css/tooplate_style.css";
 import { fetchStories, currentStory } from "../../actions/storiesActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 import { getLocal, setLocal, BASE_URL } from "../../App";
 
 class NewStory extends Component {
-  createStory = e => {
+  createStory = (e) => {
     e.preventDefault();
     console.log("creating story");
     let story = {
@@ -16,21 +14,21 @@ class NewStory extends Component {
       description: document.getElementById("description").value,
       user: JSON.parse(localStorage.getItem("user")).id,
       world: getLocal("world").id,
-      img_url: document.getElementById("secret_url_collection").textContent
+      img_url: document.getElementById("secret_url_collection").textContent,
     };
     fetch(BASE_URL + "stories/new", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
       body: JSON.stringify({
-        story
-      })
+        story,
+      }),
     })
-      .then(response => response.json())
-      .then(newStory => {
+      .then((response) => response.json())
+      .then((newStory) => {
         console.log("newStory: ", newStory);
         this.props.currentStory(newStory);
         setLocal("story", newStory);
@@ -44,18 +42,18 @@ class NewStory extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ...state,
     stories: state.stories.stories,
-    logged_in: state.auth.logged_in
+    logged_in: state.auth.logged_in,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchStories: () => dispatch(fetchStories()),
-    currentStory: story => dispatch(currentStory(story))
+    currentStory: (story) => dispatch(currentStory(story)),
   };
 };
 

@@ -1,34 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setLoggedIn } from "../actions/authActions";
-import "../css/notebook.css";
-import "../css/tooplate_style.css";
-import { Segment, Form, Grid, Header, Image, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import { BASE_URL } from '../App'
+import { BASE_URL } from "../App";
+import {
+  Box,
+  Image,
+  Heading,
+  Form,
+  TextInput,
+  Button,
+  FormField,
+} from "grommet";
 
-const SignUpPage = props => {
-  const handleSignUp = e => {
+const INITIAL_STATE = {
+  username: "",
+  password: "",
+  confirm: "",
+};
+
+const SignUpPage = (props) => {
+  const [userDetails, setUserDetails] = useState(INITIAL_STATE);
+
+  const handleSignUp = (e) => {
     e.preventDefault();
-    let username = e.target.username.value;
-    let password = e.target.password.value;
-    let confirm_password = e.target.confirm_password.value;
-    signUp({ username, password, confirm_password });
+    const { username, password, confirm } = userDetails;
+    signUp({ username, password, confirm });
   };
 
-  const signUp = userHash => {
+  const signUp = (userHash) => {
     console.log("Signing Up!", userHash);
 
     fetch(BASE_URL + "signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
-      body: JSON.stringify({ user: userHash })
+      body: JSON.stringify({ user: userHash }),
     })
-      .then(response => response.json())
-      .then(user => {
+      .then((response) => response.json())
+      .then((user) => {
         if (user.error) {
           alert(
             "Either that username is already taken, or your passwords didn't match. Please try again."
@@ -47,73 +59,57 @@ const SignUpPage = props => {
   };
 
   return (
-    <>
-      <div className={"content_section last-section login-page"}>
-        <Grid textAlign="center" verticalAlign="middle">
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Image
-              id="login-img"
-              src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg"
-              rounded
-            />
-            <Header as="h3" color="brown" textAlign="center">
-              Sign Up
-            </Header>
-            <Form size="large" onSubmit={handleSignUp}>
-              <Segment stacked>
-                <Form.Input
-                  icon="user"
-                  fluid
-                  iconPosition="left"
-                  id="username"
-                  placeholder="Username"
-                />
-                <Form.Input
-                  id="password"
-                  fluid
-                  icon="lock"
-                  iconPosition="left"
-                  placeholder="Password"
-                  type="password"
-                />
-                <Form.Input
-                  id="confirm_password"
-                  fluid
-                  icon="lock"
-                  name="confirm_password"
-                  iconPosition="left"
-                  placeholder="Confirm Password"
-                  type="password"
-                />
+    <Box>
+      <Image
+        id="login-img"
+        src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg"
+      />
+      <Heading>Sign Up</Heading>
+      <Form
+        value={userDetails}
+        onReset={() => setUserDetails(INITIAL_STATE)}
+        onSubmit={handleSignUp}
+        onChange={(nextValue) => setUserDetails(nextValue)}
+      >
+        <FormField name="username" htmlfor="username" label="Username">
+          <TextInput name="username" id="username" placeholder="Username" />
+        </FormField>
+        <FormField name="password" htmlfor="password" label="Password">
+          <TextInput
+            name="password"
+            id="password"
+            placeholder="Password"
+            type="password"
+          />
+        </FormField>
+        <FormField name="confirm" htmlfor="confirm" label="Confirm Password">
+          <TextInput
+            id="confirm"
+            name="confirm"
+            placeholder="Confirm Password"
+            type="password"
+          />
+        </FormField>
 
-                <Button color="brown" fluid size="large">
-                  Sign Up
-                </Button>
-              </Segment>
-            </Form>
-            <Link className="login-link" to="/">
-              Already have an account? Log In
-            </Link>
-          </Grid.Column>
-        </Grid>
-      </div>
-    </>
+        <Button primary type="submit" label="Sign Up" />
+      </Form>
+      <Link className="login-link" to="/">
+        Already have an account? Log In
+      </Link>
+    </Box>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    token: state.auth.token
+    token: state.auth.token,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    setLoggedIn: () => dispatch(setLoggedIn())
+    setLoggedIn: () => dispatch(setLoggedIn()),
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignUpPage);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

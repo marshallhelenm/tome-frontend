@@ -1,14 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "grommet";
 
 const LocationsButton = () => {
-  return (
-    <div className="tab">
-      <Link to={"/tome/locations"} className="menu_04">
-        Locations
-      </Link>
-    </div>
-  );
+  return <Button href="/tome/locations" label="Locations" />;
 };
 
 export default LocationsButton;

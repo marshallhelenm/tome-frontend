@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import "../css/notebook.css";
-import "../css/tooplate_style.css";
 import Polaroid from "../components/Polaroid";
 import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { setLocal, getLocal } from "../App.js";
+import { Box, Heading } from "grommet";
 
 class Gallery extends Component {
   generateCards = () => {
@@ -12,8 +11,8 @@ class Gallery extends Component {
     if (!!!this.props.items) {
       return [];
     } else {
-      return this.props.items.map(item => {
-        console.log("item: ", item)
+      return this.props.items.map((item) => {
+        console.log("item: ", item);
         return (
           <Polaroid
             handleClick={this.clickCard}
@@ -31,10 +30,10 @@ class Gallery extends Component {
     }
   };
 
-  clickCard = e => {
+  clickCard = (e) => {
     e.preventDefault();
     let item;
-    this.props.items.forEach(s => {
+    this.props.items.forEach((s) => {
       if (`${s.id}` === `${e.currentTarget.id}`) {
         item = s;
       }
@@ -51,20 +50,18 @@ class Gallery extends Component {
   };
 
   render() {
-    console.log("gallery props: ", this.props);
+    // console.log("gallery props: ", this.props);
     return (
-      <div id="gallery-page">
+      <Box id="gallery-page">
         {this.props.stories.story ? (
-          <div className="content_section">
+          <Box>
             <h1>{getLocal("story").title}</h1>
             <h2>{this.props.title}</h2>
-          </div>
+          </Box>
         ) : (
-          <div className="content_section">
-            <h2>{this.props.title}</h2>
-          </div>
+          <Heading>{this.props.title}</Heading>
         )}
-        <div className="content_section last_section gallery_box">
+        <Box>
           <Polaroid
             handleClick={this.newItem}
             id="new"
@@ -73,15 +70,15 @@ class Gallery extends Component {
             caption="New"
           />
           {this.generateCards()}
-        </div>
-      </div>
+        </Box>
+      </Box>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 

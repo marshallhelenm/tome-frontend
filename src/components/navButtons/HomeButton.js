@@ -1,14 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "grommet";
 
 const HomeButton = () => {
-  return (
-    <div className="tab">
-      <Link to={"/tome"} className="menu_04">
-        Home
-      </Link>
-    </div>
-  );
+  return <Button href="/tome" label="Home" />;
 };
 
 export default HomeButton;

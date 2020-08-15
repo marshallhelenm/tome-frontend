@@ -1,14 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "grommet";
 
 const LogOutButton = () => {
-  return (
-    <div className="tab">
-      <Link to={"/"} className="menu_04">
-        Log Out
-      </Link>
-    </div>
-  );
+  return <Button href="/" label="Log Out" />;
 };
 
 export default LogOutButton;

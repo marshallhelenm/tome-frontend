@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { getLocal } from "../../App";
+import { Button } from "grommet";
 
-const StoryButton = props => {
+const StoryButton = () => {
   return (
-    <div className="tab">
-      <Link to={`/tome/stories/${getLocal('story').id}`} className="menu_04">
-        {getLocal('story').title}
-      </Link>
-    </div>
+    <Button
+      to={`/tome/stories/${getLocal("story").id}`}
+      label={getLocal("story").title}
+    />
   );
 };
 

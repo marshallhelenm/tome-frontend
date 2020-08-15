@@ -1,34 +1,22 @@
 import React from "react";
 import composedAuthHOC from "../../HOC/AuthHOC";
-import { Button } from "semantic-ui-react";
+import { Button, Box } from "grommet";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
-const StoryPageButtons = props => {
+const StoryPageButtons = (props) => {
   console.log("WorldPageButtons Props: ", props);
   return (
-    <div className='button-bar' >
-      <Button as={Link} to="/tome/world_notes" color="brown" content="World Notes" />
-      <Button as={Link} to="/tome/stories" color="brown" content="Stories" />
-      <Button
-        as={Link}
-        to="/tome/characters"
-        color="brown"
-        content="Characters"
-      />
-      <Button
-        as={Link}
-        to="/tome/locations"
-        color="brown"
-        content="Locations"
-      />
-    </div>
+    <Box direction="row" pad="small">
+      <Button primary href="/tome/world_notes" label="World Notes" />
+      <Button primary href="/tome/characters" label="Characters" />
+      <Button primary href="/tome/locations" label="Locations" />
+    </Box>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 

@@ -1,47 +1,36 @@
-import React, { Component } from "react";
-import { Modal, Button } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Layer, Button, Box, Heading } from "grommet";
 import composedAuthHOC from "../HOC/AuthHOC";
 
-class DeleteModal extends Component {
-  constructor() {
-    super();
-    this.state = {
-      open: false
-    };
-  }
-  open = () => {
-    this.setState({ open: true });
-  };
-  close = () => {
-    this.setState({ open: false });
-  };
+const DeleteModal = ({ handleDelete, name }) => {
+  const [show, setShow] = useState(false);
 
-  render() {
-    return (
-      <Modal
-        trigger={<Button onClick={this.open}>Delete</Button>}
-        open={this.state.open}
-        onClose={this.close}
-        size='tiny'
-        id='delete-modal'
-      >
-        <Modal.Header>
-          Are you sure you want to delete {this.props.name}?
-        </Modal.Header>
-        <Modal.Content>
-          <p>This action is permanent, and cannot be undone!</p>
-          <Modal.Actions>
-            <Button
-              negative
-              content="Delete"
-              onClick={this.props.handleDelete}
-            />
-            <Button color="brown" content="Cancel" onClick={this.close} />
-          </Modal.Actions>
-        </Modal.Content>
-      </Modal>
-    );
-  }
-}
+  return (
+    <Box>
+      <Button label="Delete" onClick={() => setShow(true)} />
+      {show && (
+        <Layer
+          onEsc={() => setShow(false)}
+          onClickOutside={() => setShow(false)}
+          id="delete-modal"
+        >
+          <Heading>Are you sure you want to delete {name}?</Heading>
+          <Box>
+            This action is permanent, and cannot be undone!
+            <Box direction="row">
+              <Button label="Delete" onClick={handleDelete} />
+              <Button
+                label="Cancel"
+                onClick={() => {
+                  setShow(false);
+                }}
+              />
+            </Box>
+          </Box>
+        </Layer>
+      )}
+    </Box>
+  );
+};
 
 export default composedAuthHOC(DeleteModal);

@@ -1,175 +1,66 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
-import "../css/notebook.css";
-import "../css/tooplate_style.css";
-// import LoginPage from "./LoginPage.js";
-// import SignUpPage from "./SignUpPage.js";
-import Worlds from "./worlds/Worlds.js";
-import WorldPage from "./worlds/WorldPage.js";
-import NewWorld from "./worlds/NewWorld.js";
+import { Route, Switch } from "react-router-dom";
 
-import Stories from "./stories/Stories.js";
-import StoryPage from "./stories/StoryPage.js";
-import NewStory from "./stories/NewStory.js";
-import EditStory from "./stories/EditStory.js";
-
-import Characters from "./characters/Characters.js";
-import CharacterPage from "./characters/CharacterPage.js";
-import NewCharacter from "./characters/NewCharacter";
-import EditCharacter from "./characters/EditCharacter.js";
-
-import Locations from "./locations/Locations.js";
-import LocationPage from "./locations/LocationPage.js";
-import NewLocation from "./locations/NewLocation.js";
-import EditLocation from "./locations/EditLocation.js";
-
-import WorldNotes from "./world_notes/WorldNotes";
-import WorldNote from "./world_notes/WorldNote";
-import NewWorldNote from "./world_notes/NewWorldNote";
-import EditWorld from "./worlds/EditWorld";
-
-import StoryNotes from "./story_notes/StoryNotes";
-import StoryNote from "./story_notes/StoryNote";
-import NewStoryNote from "./story_notes/NewStoryNote";
-
-// import BreadCrumb from "../components/BreadCrumb";
+import { Worlds, WorldPage, NewWorld, EditWorld } from "./worlds";
+import { Stories, StoryPage, EditStory, NewStory } from "./stories";
+import {
+  CharacterPage,
+  Characters,
+  NewCharacter,
+  EditCharacter,
+} from "./characters";
+import {
+  LocationPage,
+  Locations,
+  NewLocation,
+  EditLocation,
+} from "./locations";
+import { WorldNote, WorldNotes, NewWorldNote } from "./world_notes";
+import { StoryNote, StoryNotes, NewStoryNote } from "./story_notes";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
+import { Main } from "grommet";
 // import UnderConstruction from "../components/UnderConstruction";
 
 class Page extends Component {
   render() {
     // console.log("Page props: ", this.props);
     return (
-      <div id="page">
-        <div id="breadcrumbs">
-          {/* <Route path="/" render={props => <BreadCrumb />} /> */}
-        </div>
-        <div className="inner-page">
-          <>
-            <Route path="/" exact render={props => <LoginPage {...props} />} />
-            {/* <Route path="/" exact render={props => <UnderConstruction/>} /> */}
-            <Route
-              path="/signup"
-              exact
-              render={props => <SignUpPage {...props} />}
-            />
-          </>
-          <>
-            <Route
-              path="/tome/worlds"
-              exact
-              render={props => <Worlds {...props} />}
-            />
-            <Route
-              path="/tome/new/worlds"
-              render={props => <NewWorld {...props} />}
-            />
-            <Route
-              path="/tome/worlds/:id"
-              render={props => <WorldPage {...props} />}
-            />
-            <Route
-              path="/tome/edit/worlds/:id"
-              render={props => <EditWorld {...props} />}
-            />
-          </>
-          <>
-            <Route
-              path="/tome/stories"
-              exact
-              render={props => <Stories {...props} />}
-            />
-            <Route
-              path="/tome/stories/:id"
-              exact
-              render={props => <StoryPage {...props} />}
-            />
-            <Route
-              path="/tome/new/stories"
-              render={props => <NewStory {...props} />}
-            />
-            <Route
-              path="/tome/edit/stories/:id"
-              render={props => <EditStory {...props} />}
-            />
-          </>
-          <>
-            <Route
-              path="/tome/characters"
-              exact
-              render={props => <Characters {...props} />}
-            />
-            <Route
-              path="/tome/characters/:id"
-              exact
-              render={props => <CharacterPage {...props} />}
-            />
-            <Route
-              path="/tome/new/characters"
-              render={props => <NewCharacter {...props} />}
-            />
-            <Route
-              path="/tome/edit/characters/:id"
-              render={props => <EditCharacter {...props} />}
-            />
-          </>
-          <>
-            <Route
-              path="/tome/locations"
-              exact
-              render={props => <Locations {...props} />}
-            />
-            <Route
-              path="/tome/locations/:id"
-              exact
-              render={props => <LocationPage {...props} />}
-            />
-            <Route
-              path="/tome/new/locations"
-              render={props => <NewLocation {...props} />}
-            />
-            <Route
-              path="/tome/edit/locations/:id"
-              render={props => <EditLocation {...props} />}
-            />
-          </>
-          <>
-            <Route
-              path="/tome/story_notes"
-              exact
-              render={props => <StoryNotes {...props} />}
-            />
-            <Route
-              path="/tome/story_notes/:id"
-              exact
-              render={props => <StoryNote {...props} />}
-            />
-            <Route
-              path="/tome/new/story_notes"
-              exact
-              render={props => <NewStoryNote {...props} />}
-            />
-          </>
-          <>
-            <Route
-              path="/tome/world_notes"
-              exact
-              render={props => <WorldNotes {...props} />}
-            />
-            <Route
-              path="/tome/world_notes/:id"
-              exact
-              render={props => <WorldNote {...props} />}
-            />
-            <Route
-              path="/tome/new/world_notes"
-              exact
-              render={props => <NewWorldNote {...props} />}
-            />
-          </>
-        </div>
-      </div>
+      <Main>
+        <Switch>
+          <Route path="/" exact component={LoginPage} />
+          {/* <Route path="/" exact component={derConstruction/>} /> */}
+          <Route path="/signup" exact component={SignUpPage} />
+
+          <Route path="/tome/worlds" exact component={Worlds} />
+          <Route path="/tome/new/worlds" component={NewWorld} />
+          <Route path="/tome/worlds/:id" component={WorldPage} />
+          <Route path="/tome/edit/worlds/:id" component={EditWorld} />
+
+          <Route path="/tome/stories" exact component={Stories} />
+          <Route path="/tome/stories/:id" exact component={StoryPage} />
+          <Route path="/tome/new/stories" component={NewStory} />
+          <Route path="/tome/edit/stories/:id" component={EditStory} />
+
+          <Route path="/tome/characters" exact component={Characters} />
+          <Route path="/tome/characters/:id" exact component={CharacterPage} />
+          <Route path="/tome/new/characters" component={NewCharacter} />
+          <Route path="/tome/edit/characters/:id" component={EditCharacter} />
+
+          <Route path="/tome/locations" exact component={Locations} />
+          <Route path="/tome/locations/:id" exact component={LocationPage} />
+          <Route path="/tome/new/locations" component={NewLocation} />
+          <Route path="/tome/edit/locations/:id" component={EditLocation} />
+
+          <Route path="/tome/story_notes" exact component={StoryNotes} />
+          <Route path="/tome/story_notes/:id" exact component={StoryNote} />
+          <Route path="/tome/new/story_notes" exact component={NewStoryNote} />
+
+          <Route path="/tome/world_notes" exact component={WorldNotes} />
+          <Route path="/tome/world_notes/:id" exact component={WorldNote} />
+          <Route path="/tome/new/world_notes" exact component={NewWorldNote} />
+        </Switch>
+      </Main>
     );
   }
 }

@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.9.5",
-    "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "eslint-plugin-flowtype": "^3.13.0",
+    "grommet": "^2.14.0",
+    "grommet-icons": "^4.4.0",
     "minimist": "^1.2.5",
     "mkdirp": "^1.0.3",
+    "polished": "^3.6.5",
     "pure-react-carousel": "^1.26.0",
     "re-carousel": "^2.4.0",
     "react": "^16.13.0",
@@ -22,7 +23,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.88.2",
+    "semantic-ui-react": "^1.2.0",
+    "styled-components": "^5.1.1",
     "typescript": "^3.8.3"
   },
   "scripts": {

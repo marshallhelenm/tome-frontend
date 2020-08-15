@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../../css/notebook.css";
-import "../../css/tooplate_style.css";
 import Gallery from "../Gallery.js";
 import {
   currentCharacter,
-  setStoryCharacters
+  setStoryCharacters,
 } from "../../actions/charactersActions.js";
 import {
   currentLocation,
-  setStoryLocations
+  setStoryLocations,
 } from "../../actions/locationsActions.js";
 import { fetchWorlds, currentWorld } from "../../actions/worldsActions.js";
 import { currentStory } from "../../actions/storiesActions.js";
@@ -29,7 +27,10 @@ class Worlds extends Component {
     this.props.currentLocation(null);
     this.props.setStoryCharacters([]);
     this.props.setStoryLocations([]);
-    this.props.assignCrumbs([["/tome", "Home"], ["/tome/worlds", "Worlds"]]);
+    this.props.assignCrumbs([
+      ["/tome", "Home"],
+      ["/tome/worlds", "Worlds"],
+    ]);
   }
   render() {
     // console.log("Worlds props: ", this.props);
@@ -48,22 +49,23 @@ class Worlds extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    ...state
+    ...state,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchWorlds: () => dispatch(fetchWorlds()),
-    currentWorld: world => dispatch(currentWorld(world)),
-    currentStory: story => dispatch(currentStory(story)),
-    currentCharacter: character => dispatch(currentCharacter(character)),
-    currentLocation: location => dispatch(currentLocation(location)),
-    setStoryCharacters: characters => dispatch(setStoryCharacters(characters)),
-    setStoryLocations: locations => dispatch(setStoryLocations(locations)),
-    assignCrumbs: trail => dispatch(assignCrumbs(trail))
+    currentWorld: (world) => dispatch(currentWorld(world)),
+    currentStory: (story) => dispatch(currentStory(story)),
+    currentCharacter: (character) => dispatch(currentCharacter(character)),
+    currentLocation: (location) => dispatch(currentLocation(location)),
+    setStoryCharacters: (characters) =>
+      dispatch(setStoryCharacters(characters)),
+    setStoryLocations: (locations) => dispatch(setStoryLocations(locations)),
+    assignCrumbs: (trail) => dispatch(assignCrumbs(trail)),
   };
 };
 

@@ -4,16 +4,16 @@ import composedAuthHOC from "../../HOC/AuthHOC.js";
 import {
   fetchStories,
   fetchWorldStories,
-  currentStory
+  currentStory,
 } from "../../actions/storiesActions.js";
 import { fetchWorldNotes } from "../../actions/worldNotesActions.js";
 import {
   fetchWorldCharacters,
-  currentCharacter
+  currentCharacter,
 } from "../../actions/charactersActions.js";
 import {
   currentLocation,
-  fetchWorldLocations
+  fetchWorldLocations,
 } from "../../actions/locationsActions.js";
 import { deleteWorld, fetchWorld } from "../../actions/worldsActions.js";
 import Display from "../../components/Display.js";
@@ -33,7 +33,7 @@ class WorldPage extends Component {
     this.props.assignCrumbs([
       ["/tome", "Home"],
       ["/tome/worlds", "Worlds"],
-      [`/tome/worlds/${getLocal("world").id}`, getLocal("world").name]
+      [`/tome/worlds/${getLocal("world").id}`, getLocal("world").name],
     ]);
   }
 
@@ -67,27 +67,27 @@ class WorldPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ...state,
     worlds: state.worlds.worlds,
     logged_in: state.auth.logged_in,
-    world: state.worlds.world
+    world: state.worlds.world,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchStories: () => dispatch(fetchStories()),
-    currentStory: story => dispatch(currentStory(story)),
-    currentCharacter: character => dispatch(currentCharacter(character)),
-    currentLocation: location => dispatch(currentLocation(location)),
-    fetchWorldStories: world => dispatch(fetchWorldStories(world)),
-    fetchWorldCharacters: world => dispatch(fetchWorldCharacters(world)),
-    fetchWorldLocations: world => dispatch(fetchWorldLocations(world)),
-    fetchWorldNotes: world => dispatch(fetchWorldNotes(world)),
+    currentStory: (story) => dispatch(currentStory(story)),
+    currentCharacter: (character) => dispatch(currentCharacter(character)),
+    currentLocation: (location) => dispatch(currentLocation(location)),
+    fetchWorldStories: (world) => dispatch(fetchWorldStories(world)),
+    fetchWorldCharacters: (world) => dispatch(fetchWorldCharacters(world)),
+    fetchWorldLocations: (world) => dispatch(fetchWorldLocations(world)),
+    fetchWorldNotes: (world) => dispatch(fetchWorldNotes(world)),
     deleteWorld: (world, redirect) => dispatch(deleteWorld(world, redirect)),
-    fetchWorld: id => dispatch(fetchWorld(id)),
-    assignCrumbs: trail => dispatch(assignCrumbs(trail))
+    fetchWorld: (id) => dispatch(fetchWorld(id)),
+    assignCrumbs: (trail) => dispatch(assignCrumbs(trail)),
   };
 };
 export default connect(

@@ -1,16 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../../css/notebook.css";
-import "../../css/tooplate_style.css";
-import {
-  currentCharacter
-} from "../../actions/charactersActions.js";
+import { currentCharacter } from "../../actions/charactersActions.js";
 import composedAuthHOC from "../../HOC/AuthHOC.js";
 import NewForm from "../NewForm";
 import { getLocal, setLocal, BASE_URL } from "../../App";
 
 class NewCharacter extends Component {
-  createCharacter = e => {
+  createCharacter = (e) => {
     e.preventDefault();
     console.log("creating character");
 
@@ -18,7 +14,7 @@ class NewCharacter extends Component {
       name: document.getElementById("name").value,
       description: document.getElementById("description").value,
       world_id: getLocal("world").id,
-      img_url: document.getElementById("secret_url_collection").textContent
+      img_url: document.getElementById("secret_url_collection").textContent,
     };
 
     fetch(BASE_URL + "characters/new", {
@@ -26,15 +22,15 @@ class NewCharacter extends Component {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
-      body: JSON.stringify({ character })
+      body: JSON.stringify({ character }),
     })
-      .then(response => response.json())
-      .then(newCharacter => {
+      .then((response) => response.json())
+      .then((newCharacter) => {
         console.log("newCharacter: ", newCharacter);
         this.props.currentCharacter(newCharacter);
-        setLocal('character', newCharacter)
+        setLocal("character", newCharacter);
         this.props.history.push(`/tome/characters/${newCharacter.id}`);
       });
   };
@@ -45,17 +41,17 @@ class NewCharacter extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ...state,
     characters: state.characters.characters,
-    logged_in: state.auth.logged_in
+    logged_in: state.auth.logged_in,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    currentCharacter: character => dispatch(currentCharacter(character))
+    currentCharacter: (character) => dispatch(currentCharacter(character)),
   };
 };
 
