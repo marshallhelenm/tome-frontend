@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setLoggedIn, setLoggedOut } from "../actions/authActions";
 import { assignCrumbs } from "../actions/breadcrumbActions";
@@ -14,36 +14,25 @@ import {
   Button,
 } from "grommet";
 
-class LoginPage extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      password: "",
-    };
-  }
-  componentDidMount() {
-    this.props.assignCrumbs([]);
-    localStorage.clear();
-  }
+const LoginPage = ({ setLoggedOut, setLoggedIn, history }) => {
+  const INITIAL_STATE = {
+    username: "",
+    password: "",
+  };
+
+  const [values, setValues] = useState(INITIAL_STATE);
 
   // console.log('props in LoginPage: ', props)
-  handleLogOut = () => {
-    this.props.setLoggedOut();
+  const handleLogOut = () => {
+    setLoggedOut();
   };
 
-  handleLogIn = (e) => {
+  const handleLogIn = (e) => {
     e.preventDefault();
-    let username = this.state.username;
-    let password = this.state.password;
-    // console.log('username: ', username, 'password: ', password)
-    this.logIn({ username, password });
+    logIn(values);
   };
 
-  logIn = (userHash) => {
-    // console.log("loggin in!", userHash);
-    // console.log("base url: ", BASE_URL);
-
+  const logIn = (userHash) => {
     fetch(BASE_URL + "login", {
       method: "POST",
       headers: {
@@ -61,47 +50,45 @@ class LoginPage extends Component {
           localStorage.setItem("user", JSON.stringify(user));
           localStorage.setItem("token", user.token);
 
-          this.props.setLoggedIn();
-          this.props.history.push("/tome/worlds");
+          setLoggedIn();
+          history.push("/tome/worlds");
         }
       });
   };
 
-  render() {
-    return (
-      <Box>
-        <Image
-          id="login-img"
-          src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg"
-        />
-        <Heading>Log-in to your account</Heading>
-        <Form
-          value={this.state}
-          onReset={() => this.setState({ username: "", password: "" })}
-          onSubmit={this.handleLogIn}
-          onChange={(nextValue) => this.setState(nextValue)}
-        >
-          <FormField name="username" htmlfor="username" label="Username">
-            <TextInput name="username" id="username" placeholder="Username" />
-          </FormField>
-          <FormField name="password" htmlfor="password" label="Password">
-            <TextInput
-              name="password"
-              id="password"
-              placeholder="Password"
-              type="password"
-            />
-          </FormField>
+  return (
+    <Box>
+      <Image
+        id="login-img"
+        src="https://res.cloudinary.com/dwfqeeh5f/image/upload/v1571932362/WorldBuildersTome/stack-o-globes.jpg"
+      />
+      <Heading>Log-in to your account</Heading>
+      <Form
+        value={values}
+        onReset={() => setValues(INITIAL_STATE)}
+        onSubmit={handleLogIn}
+        onChange={(nextValue) => setValues(nextValue)}
+      >
+        <FormField name="username" htmlfor="username" label="Username">
+          <TextInput name="username" id="username" placeholder="Username" />
+        </FormField>
+        <FormField name="password" htmlfor="password" label="Password">
+          <TextInput
+            name="password"
+            id="password"
+            placeholder="Password"
+            type="password"
+          />
+        </FormField>
 
-          <Button primary type="submit" label="Log In" />
-        </Form>
-        <Link className="login-link" to="/signup">
-          New? Sign Up
-        </Link>
-      </Box>
-    );
-  }
-}
+        <Button primary type="submit" label="Log In" />
+      </Form>
+      <Link className="login-link" to="/signup">
+        New? Sign Up
+      </Link>
+    </Box>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
