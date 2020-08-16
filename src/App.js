@@ -1,10 +1,9 @@
 import React from "react";
-import { Grommet } from "grommet";
-import grommetTheme from "./grommetTheme";
 import Sidebar from "./containers/Sidebar.js";
 import Page from "./containers/Page.js";
 import { BrowserRouter as Router } from "react-router-dom";
-
+import { ThemeProvider } from "@chakra-ui/core";
+import theme from "./chakraTheme";
 export const setLocal = (label, content) => {
   // console.log(`setting local: ${label}`, content)
   localStorage.setItem(`${label}`, JSON.stringify(content));
@@ -21,12 +20,12 @@ export const BASE_URL = "https://wbtome-backend.herokuapp.com/";
 const App = (props) => {
   // console.log("App props: ", props);
   return (
-    <Grommet theme={grommetTheme}>
+    <ThemeProvider theme={theme}>
       <Router>
         <Sidebar {...props} />
         <Page {...props} />
       </Router>
-    </Grommet>
+    </ThemeProvider>
   );
 };
 

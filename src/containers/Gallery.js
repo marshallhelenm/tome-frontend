@@ -4,20 +4,30 @@ import { connect } from "react-redux";
 import composedAuthHOC from "../HOC/AuthHOC.js";
 import { setLocal, getLocal } from "../App.js";
 import { Box, Heading } from "grommet";
+import SimpleBox from "../components/SimpleBox";
 
-class Gallery extends Component {
-  generateCards = () => {
-    // console.log("in generateCards, items: ", this.props.items);
-    if (!!!this.props.items) {
+const Gallery = ({
+  stories,
+  title,
+  defaultIMG,
+  history,
+  type,
+  items,
+  item_type,
+  currentItem,
+}) => {
+  const generateCards = () => {
+    // console.log("in generateCards, items: ", items);
+    if (!!!items) {
       return [];
     } else {
-      return this.props.items.map((item) => {
+      return items.map((item) => {
         console.log("item: ", item);
         return (
           <Polaroid
-            handleClick={this.clickCard}
+            handleClick={clickCard}
             caption={item.name ? item.name : item.title}
-            img={item.images[0] ? item.images[0].url : this.props.defaultIMG}
+            img={item.images[0] ? item.images[0].url : defaultIMG}
             key={
               item.name
                 ? item.name + "." + Math.random() * 10
@@ -30,51 +40,48 @@ class Gallery extends Component {
     }
   };
 
-  clickCard = (e) => {
+  const clickCard = (e) => {
     e.preventDefault();
     let item;
-    this.props.items.forEach((s) => {
+    items.forEach((s) => {
       if (`${s.id}` === `${e.currentTarget.id}`) {
         item = s;
       }
       return item;
     });
     // console.log("item: ", item);
-    this.props.currentItem(item);
-    setLocal(this.props.item_type, item);
-    this.props.history.push(`/tome/${this.props.type}/${e.currentTarget.id}`);
+    currentItem(item);
+    setLocal(item_type, item);
+    history.push(`/tome/${type}/${e.currentTarget.id}`);
   };
 
-  newItem = () => {
-    this.props.history.push(`/tome/new/${this.props.type}`);
+  const newItem = () => {
+    history.push(`/tome/new/${type}`);
   };
 
-  render() {
-    // console.log("gallery props: ", this.props);
-    return (
-      <Box id="gallery-page">
-        {this.props.stories.story ? (
-          <Box>
-            <h1>{getLocal("story").title}</h1>
-            <h2>{this.props.title}</h2>
-          </Box>
-        ) : (
-          <Heading>{this.props.title}</Heading>
-        )}
+  return (
+    <Box id="gallery-page">
+      {stories.story ? (
         <Box>
-          <Polaroid
-            handleClick={this.newItem}
-            id="new"
-            key="new"
-            img={this.props.defaultIMG}
-            caption="New"
-          />
-          {this.generateCards()}
+          <h1>{getLocal("story").title}</h1>
+          <h2>{title}</h2>
         </Box>
-      </Box>
-    );
-  }
-}
+      ) : (
+        <Heading>{title}</Heading>
+      )}
+      <SimpleBox>
+        <Polaroid
+          handleClick={newItem}
+          id="new"
+          key="new"
+          img={defaultIMG}
+          caption="New"
+        />
+        {generateCards()}
+      </SimpleBox>
+    </Box>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

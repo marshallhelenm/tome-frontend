@@ -8,7 +8,8 @@ import WorldPageButtons from "../containers/worlds/WorldPageButtons.js";
 // import { assignCrumbs } from "../actions/breadcrumbActions";
 import ImgCarousel from "../containers/ImgCarousel.js";
 import { getLocal } from "../App.js";
-import { Heading, Box, Text, Button } from "grommet";
+import { Heading, Box, Text, Button } from "@chakra-ui/core";
+import SimpleBox from "./SimpleBox.js";
 
 class Display extends Component {
   componentDidMount() {
@@ -24,7 +25,7 @@ class Display extends Component {
   render() {
     // console.log("display page props: ", this.props);
     return (
-      <Box>
+      <SimpleBox>
         <Heading>{this.props.title}</Heading>
         <ImgCarousel
           images={this.props.item.images}
@@ -68,7 +69,7 @@ class Display extends Component {
             ) : null}
           </Box>
         </Box>
-      </Box>
+      </SimpleBox>
     );
   }
 }

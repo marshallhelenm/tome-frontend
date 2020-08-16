@@ -1,0 +1,40 @@
+.display_img {
+  max-width: 100%;
+}
+
+.gallery_box > div {
+  flex: 0 0 50%;
+}
+
+#story_id {
+  display: none;
+}
+
+#secret_url_collection {
+  display: none;
+}
+
+#text_area {
+  font-size: 20px;
+  line-height: 24px;
+  resize: none;
+  overflow: auto;
+  height: auto;
+}
+
+.login-link {
+  color: brown;
+  margin-top: 10px;
+}
+
+.login-link:hover {
+  color: black;
+}
+
+.login-page {
+  border: none;
+}
+h2 {
+  text-align: center;
+  font-family: "Fondamento", cursive;
+}
